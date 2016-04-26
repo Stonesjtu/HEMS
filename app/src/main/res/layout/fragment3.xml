@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/background2">
+
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/tabrow1"
+            android:layout_marginTop="15dp"
+            android:elevation="5dp"
+            android:background="#ffffff">
+
+
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:id="@+id/pic_qingjingmoshi"
+                android:src="@mipmap/building_31"
+                android:layout_marginLeft="20dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="情景模式"
+                android:id="@+id/text_qingjingmoshi"
+                android:gravity="center"
+                android:layout_weight="1" />
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:id="@+id/ic_arrow_right_1"
+                android:src="@mipmap/ic_arrow_right"
+
+              />
+
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/tabrow2"
+           android:layout_marginTop="30dp"
+            android:elevation="2dp"
+            android:background="#ffffff">
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:id="@+id/pic_youhuajieguo"
+                android:src="@mipmap/education_84"
+                android:layout_marginLeft="20dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="优化结果"
+                android:id="@+id/text_youhuajieguo"
+                android:gravity="center"
+                android:layout_weight="1" />
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:id="@+id/ic_arrow_right_2"
+                android:src="@mipmap/ic_arrow_right"
+                />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/tabrow3"
+            android:elevation="5dp"
+            android:background="#ffffff">
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:id="@+id/pic_feiyongduibi"
+                android:src="@mipmap/finance_75"
+                android:layout_marginLeft="20dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="费用对比"
+                android:id="@+id/text_feiyongduibi"
+                android:gravity="center"
+                android:layout_weight="1" />
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:id="@+id/ic_arrow_right_3"
+                android:src="@mipmap/ic_arrow_right"
+                />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="30dp"
+            android:id="@+id/tabrow4"
+            android:elevation="5dp"
+            android:background="#ffffff">
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:id="@+id/pic_shezhi"
+                android:src="@mipmap/basic_55"
+                android:layout_marginLeft="20dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="设置"
+                android:id="@+id/text_shezhi"
+                android:gravity="center"
+                android:layout_weight="1" />
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:id="@+id/ic_arrow_right_4"
+                android:src="@mipmap/ic_arrow_right"
+                />
+
+        </TableRow>
+
+    </TableLayout>
+</LinearLayout>
