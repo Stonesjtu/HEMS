@@ -99,7 +99,7 @@ public class KongtiaoActivity extends Activity{
         XAxis xAxis = barChart.getXAxis();
 //        chart.animateXY(5000,5000);
 //        chart.animateX(5000);
-        barChart.animateY(3000);
+        barChart.animateY(1000);
         barChart.getAxisRight().setEnabled(false);
         barChart.setDescription("时刻");
     }
