@@ -1,5 +1,6 @@
 package cn.edu.sjtu.ysy.hems.ui;
 
+
 import android.app.ActionBar;
 import android.app.Activity;
 import android.app.Fragment;
@@ -18,6 +19,9 @@ import java.util.Locale;
 
 import cn.edu.sjtu.ysy.hems.R;
 import db.Database;
+import model.Appliance;
+import model.ApplianceDelay;
+import model.ApplianceTher;
 //test <code></code>
 
 
@@ -25,6 +29,8 @@ import db.Database;
 
 
 //
+
+
 
 
 public class MainActivity extends Activity implements ActionBar.TabListener {
@@ -43,12 +49,46 @@ public class MainActivity extends Activity implements ActionBar.TabListener {
      * The {@link ViewPager} that will host the section contents.
      */
     ViewPager mViewPager;
+    public static Appliance Bingxiang;
+    public static Appliance Dianshi;
+    public static ApplianceDelay Xiyiji;
+    public static ApplianceDelay Xiwanji;
+    public static ApplianceTher Kongtiao;
+    public static ApplianceTher Reshuiqi;
+    public static ApplianceTher Kongjing;
+    public static ApplianceTher Dianche;
+
+    public static Appliance[] appliances={Kongtiao,Bingxiang,Dianshi,Reshuiqi,Xiyiji,Xiwanji,Dianche,Kongjing};
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Database.setContext(this.getApplicationContext());
+//        Kongtiao=new ApplianceTher("1","空调",2500);
+//        Bingxiang=new Appliance("2","冰箱",300);
+//        Dianshi=new Appliance("3","电视",150);
+//        Reshuiqi=new ApplianceTher("4","热水器",1500);
+//        Xiyiji=new ApplianceDelay("5","洗衣机",600,1);
+//        Xiwanji=new ApplianceDelay("6","洗碗机",1000,1);
+//        Dianche=new ApplianceTher("7","电动汽车",3000);
+//        Kongjing=new ApplianceTher("8","空气净化器",100);
+//        Kongtiao.savetoDB();
+//        Bingxiang.savetoDB();
+//        Dianshi.savetoDB();
+//        Reshuiqi.savetoDB();
+//        Xiyiji.savetoDB();
+//        Xiwanji.savetoDB();
+//        Dianche.savetoDB();
+//        Kongjing.savetoDB();
+       int trystate[]={12,14,15,19,5,3,5,6,7,8,9,0,1,1,1,1,1,1,1,6,4,6,7,43};
+        Kongtiao.setState(trystate);
+        int trstate1[]={1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1};
+        Xiyiji.setState(trstate1);
+        int trstate2[]={0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1};
+        Xiwanji.setState(trstate2);
+
 
         // Set up the action bar.
         final ActionBar actionBar = getActionBar();

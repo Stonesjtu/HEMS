@@ -15,7 +15,17 @@ public class ApplianceTher extends Appliance{
 
 
     public ApplianceTher(String id, String name, int ratedpower) {
-        super(id, name, ratedpower,THERMAL);
+        super(THERMAL);
+        this.id = id;
+        this.name = name;
+        this.power = ratedpower;
+        Database connection = new Database();
+        SQLiteDatabase db = connection.getDatabase();
+        String sql = "INSERT INTO appliancether(id,name,power,kind)"
+                + "VALUES('" + id
+                + "','" + name + "','" + ratedpower +  "','" + 1 +"' )";
+        db.execSQL(sql);
+        db.close();
     }
 
     public int getTset() {
@@ -38,6 +48,11 @@ public class ApplianceTher extends Appliance{
 
     public void setTset(int t) {
         this.Tset = t;
+    }
+
+    @Override
+    public int[] getPower(){
+        return state;
     }
 
 

@@ -16,10 +16,19 @@ public class ApplianceDelay extends Appliance {
 
 
 
-    public ApplianceDelay(String id, String name,double ratedpower, int duration) {
-        super(id, name, ratedpower,DELAY);
+    public ApplianceDelay(String id, String name,int ratedpower, int duration) {
+         super(DELAY);
         this.duration=duration;
-
+        this.id = id;
+        this.name = name;
+        this.power = ratedpower;
+        Database connection = new Database();
+        SQLiteDatabase db = connection.getDatabase();
+        String sql = "INSERT INTO appliancedelay(id,name,power,kind)"
+                + "VALUES('" + id
+                + "','" + name + "','" + ratedpower +  "','" + 0 +"' )";
+        db.execSQL(sql);
+        db.close();
 
     }
 

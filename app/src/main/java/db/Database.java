@@ -22,108 +22,118 @@ public class  Database extends SQLiteOpenHelper {
         String sql = "CREATE TABLE appliance(" + "id     VARCHAR(10)	PRIMARY KEY  NOT NULL,"
                 + "name 	VARCHAR(10)	NOT NULL,"
                 + "power   REAL	 NOT NULL,"
-                + "state1   INTEGER	 NOT NULL,"
-                + "state2   INTEGER	 NOT NULL,"
-                + "state3   INTEGER	 NOT NULL,"
-                + "state4   INTEGER	 NOT NULL,"
-                + "state5   INTEGER	 NOT NULL,"
-                + "state6   INTEGER	 NOT NULL,"
-                + "state7   INTEGER	 NOT NULL,"
-                + "state8   INTEGER	 NOT NULL,"
-                + "state9   INTEGER	 NOT NULL,"
-                + "state10   INTEGER	 NOT NULL,"
-                + "state11   INTEGER	 NOT NULL,"
-                + "state12   INTEGER	 NOT NULL,"
-                + "state13   INTEGER	 NOT NULL,"
-                + "state14   INTEGER	 NOT NULL,"
-                + "state15   INTEGER	 NOT NULL,"
-                + "state16   INTEGER	 NOT NULL,"
-                + "state17   INTEGER	 NOT NULL,"
-                + "state18  INTEGER	 NOT NULL,"
-                + "state19   INTEGER	 NOT NULL,"
-                + "state20   INTEGER	 NOT NULL,"
-                + "state21   INTEGER	 NOT NULL,"
-                + "state22   INTEGER	 NOT NULL,"
-                + "state23   INTEGER	 NOT NULL,"
-                + "state24   INTEGER	 NOT NULL,"
-                +"kind INTEGER NOT NULL);";
+                + "state1   INTEGER	 ,"
+                + "state2   INTEGER	 ,"
+                + "state3   INTEGER	 ,"
+                + "state4   INTEGER	 ,"
+                + "state5   INTEGER	 ,"
+                + "state6   INTEGER	 ,"
+                + "state7   INTEGER	 ,"
+                + "state8   INTEGER	,"
+                + "state9   INTEGER	,"
+                + "state10   INTEGER	 ,"
+                + "state11   INTEGER	 ,"
+                + "state12   INTEGER	,"
+                + "state13   INTEGER	 ,"
+                + "state14   INTEGER	 ,"
+                + "state15   INTEGER	,"
+                + "state16   INTEGER	,"
+                + "state17   INTEGER	 ,"
+                + "state18  INTEGER	 ,"
+                + "state19   INTEGER	,"
+                + "state20   INTEGER	 ,"
+                + "state21   INTEGER	,"
+                + "state22   INTEGER	,"
+                + "state23   INTEGER	 ,"
+                + "state24   INTEGER	,"
+                +"kind INTEGER );";
 
         String sql1 = "CREATE TABLE appliancedelay(" + "id     VARCHAR(10) PRIMARY KEY 	NOT NULL,"
                 + "name 	VARCHAR(10)	NOT NULL,"
                 + "power   REAL	 NOT NULL,"
-                + "state1   INTEGER	 NOT NULL,"
-                + "state2   INTEGER	 NOT NULL,"
-                + "state3   INTEGER	 NOT NULL,"
-                + "state4   INTEGER	 NOT NULL,"
-                + "state5   INTEGER	 NOT NULL,"
-                + "state6   INTEGER	 NOT NULL,"
-                + "state7   INTEGER	 NOT NULL,"
-                + "state8   INTEGER	 NOT NULL,"
-                + "state9   INTEGER	 NOT NULL,"
-                + "state10   INTEGER	 NOT NULL,"
-                + "state11   INTEGER	 NOT NULL,"
-                + "state12   INTEGER	 NOT NULL,"
-                + "state13   INTEGER	 NOT NULL,"
-                + "state14   INTEGER	 NOT NULL,"
-                + "state15   INTEGER	 NOT NULL,"
-                + "state16   INTEGER	 NOT NULL,"
-                + "state17   INTEGER	 NOT NULL,"
-                + "state18  INTEGER	 NOT NULL,"
-                + "state19   INTEGER	 NOT NULL,"
-                + "state20   INTEGER	 NOT NULL,"
-                + "state21   INTEGER	 NOT NULL,"
-                + "state22   INTEGER	 NOT NULL,"
-                + "state23   INTEGER	 NOT NULL,"
-                + "state24   INTEGER	 NOT NULL,"
+                + "state1   INTEGER	 ,"
+                + "state2   INTEGER	 ,"
+                + "state3   INTEGER	 ,"
+                + "state4   INTEGER	 ,"
+                + "state5   INTEGER	,"
+                + "state6   INTEGER	 ,"
+                + "state7   INTEGER	 ,"
+                + "state8   INTEGER	 ,"
+                + "state9   INTEGER	 ,"
+                + "state10   INTEGER	 ,"
+                + "state11   INTEGER	 ,"
+                + "state12   INTEGER	,"
+                + "state13   INTEGER	 ,"
+                + "state14   INTEGER	,"
+                + "state15   INTEGER	 ,"
+                + "state16   INTEGER	 ,"
+                + "state17   INTEGER	 ,"
+                + "state18  INTEGER	,"
+                + "state19   INTEGER	 ,"
+                + "state20   INTEGER	 ,"
+                + "state21   INTEGER	,"
+                + "state22   INTEGER	 ,"
+                + "state23   INTEGER	,"
+                + "state24   INTEGER	 ,"
                 + "starttime   INTEGER	,"
                 + "overtime  INTEGER	 ,"
                 + "duration  INTEGER	 ,"
-                +"kind INTEGER NOT NULL);";
+                +"kind INTEGER);";
         String sql2 = "CREATE TABLE appliancether(" + "id     VARCHAR(10) PRIMARY KEY 	NOT NULL,"
                 + "name 	VARCHAR(10)	NOT NULL,"
                 + "power   REAL	 NOT NULL,"
-                + "state1    INTEGER	 NOT NULL,"
-                + "state2   INTEGER	 NOT NULL,"
-                + "state3    INTEGER	 NOT NULL,"
-                + "state4    INTEGER	 NOT NULL,"
-                + "state5    INTEGER	 NOT NULL,"
-                + "state6   INTEGER	 NOT NULL,"
-                + "state7    INTEGER	 NOT NULL,"
-                + "state8    INTEGER	 NOT NULL,"
-                + "state9    INTEGER	 NOT NULL,"
-                + "state10    INTEGER	 NOT NULL,"
-                + "state11    INTEGER	 NOT NULL,"
-                + "state12    INTEGER	 NOT NULL,"
-                + "state13    INTEGER	 NOT NULL,"
-                + "state14    INTEGER	 NOT NULL,"
-                + "state15    INTEGER	 NOT NULL,"
-                + "state16    INTEGER	 NOT NULL,"
-                + "state17    INTEGER	 NOT NULL,"
-                + "state18   INTEGER	 NOT NULL,"
-                + "state19   INTEGER NOT NULL,"
-                + "state20   INTEGER	 NOT NULL,"
-                + "state21   INTEGER	 NOT NULL,"
-                + "state22   INTEGER	 NOT NULL,"
-                + "state23    INTEGER NOT NULL,"
-                + "state24    INTEGER NOT NULL,"
+                + "state1    INTEGER	 ,"
+                + "state2   INTEGER	,"
+                + "state3    INTEGER	,"
+                + "state4    INTEGER	,"
+                + "state5    INTEGER	,"
+                + "state6   INTEGER	 ,"
+                + "state7    INTEGER	 ,"
+                + "state8    INTEGER	,"
+                + "state9    INTEGER	,"
+                + "state10    INTEGER	 ,"
+                + "state11    INTEGER	 ,"
+                + "state12    INTEGER	 ,"
+                + "state13    INTEGER	 ,"
+                + "state14    INTEGER	 ,"
+                + "state15    INTEGER	,"
+                + "state16    INTEGER	 ,"
+                + "state17    INTEGER	 ,"
+                + "state18   INTEGER	 ,"
+                + "state19   INTEGER ,"
+                + "state20   INTEGER	 ,"
+                + "state21   INTEGER	 ,"
+                + "state22   INTEGER	 ,"
+                + "state23    INTEGER ,"
+                + "state24    INTEGER ,"
                 + "starttime   INTEGER	,"
                 + "overtime  INTEGER	 ,"
                 + "Tset   REAL	,"
-                +"kind INTEGER NOT NULL);";
+                +"kind INTEGER );";
 
-//        String sqlbx =" INSERT INTO appliance(id,name,power,kind) VALUES('2','冰箱',300,2)";
-//        String sqltv =" INSERT INTO appliance(id,name,power,kind) VALUES('3','电视',150,2)";
-//        String sqlac =" INSERT INTEGERO appliance(id,name,power,kind) VALUES('2','冰箱',300,2)";
-//        String sqlwh =" INSERT INTEGERO appliance(id,name,power,kind) VALUES('2','冰箱',300,2)";
-//        String sqlev =" INSERT INTEGERO appliance(id,name,power,kind) VALUES('2','冰箱',300,2)";
-//        String sqlxy =" INSERT INTEGERO appliance(id,name,power,kind) VALUES('2','冰箱',300,2)";
-//        String sqlxw =" INSERT INTEGERO appliance(id,name,power,kind) VALUES('2','冰箱',300,2)";
-//        String sqlkj =" INSERT INTEGERO appliance(id,name,power,kind) VALUES('2','冰箱',300,2)";
+        String sqlbx =" INSERT INTO appliance(id,name,power,kind) VALUES('2','冰箱',300,2)";
+        String sqltv =" INSERT INTO appliance(id,name,power,kind) VALUES('3','电视',150,2)";
+        String sqlac =" INSERT INTO appliancether(id,name,power,kind) VALUES('1','空调',2500,1)";
+        String sqlwh =" INSERT INTO appliancether(id,name,power,kind) VALUES('4','热水器',300,1)";
+        String sqlev =" INSERT INTO appliancether(id,name,power,kind) VALUES('7','电动汽车',300,1)";
+        String sqlxy =" INSERT INTO appliancedelay(id,name,power,kind) VALUES('5','洗衣机',300,0)";
+        String sqlxw =" INSERT INTRO appliancedelay(id,name,power,kind) VALUES('6','洗碗机',300,0)";
+        String sqlkj =" INSERT INTO appliancether(id,name,power,kind) VALUES('8','空气净化器',300,1)";
 
 
         db.execSQL(sql);
         db.execSQL(sql1);
         db.execSQL(sql2);
+        db.execSQL(sqlac);
+        db.execSQL(sqlbx);
+        db.execSQL(sqltv);
+        db.execSQL(sqlwh);
+        db.execSQL(sqlxy);
+        db.execSQL(sqlxw);
+        db.execSQL(sqlev);
+        db.execSQL(sqlkj);
+
+
     }
 
 //    public void updadeState(String tableName,int[] hstate)
