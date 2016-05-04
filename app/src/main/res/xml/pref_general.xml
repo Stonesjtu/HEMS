@@ -30,11 +30,6 @@
         <!--android:positiveButtonText="@null"-->
         <!--android:title="@string/pref_title_add_friends_to_messages" />-->
 
-    <PreferenceCategory
-        android:title="系统设置">
-        <CheckBoxPreference
-            android:title="是否进行智能优化控制 "
-            android:key="if_save_personal" />
         <EditTextPreference
 
             android:summary="请输入用户名"
@@ -48,7 +43,4 @@
             android:title="@string/pref_title_display_name">
         </EditTextPreference>
 
-
-
-    </PreferenceCategory>
 </PreferenceScreen>

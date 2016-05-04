@@ -58,7 +58,7 @@ public class MainActivity extends Activity implements ActionBar.TabListener {
     public static ApplianceTher Kongjing;
     public static ApplianceTher Dianche;
 
-    public static Appliance[] appliances={Kongtiao,Bingxiang,Dianshi,Reshuiqi,Xiyiji,Xiwanji,Dianche,Kongjing};
+    public static Appliance[] appliances;
 
 
     @Override
@@ -66,28 +66,54 @@ public class MainActivity extends Activity implements ActionBar.TabListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Database.setContext(this.getApplicationContext());
-//        Kongtiao=new ApplianceTher("1","空调",2500);
-//        Bingxiang=new Appliance("2","冰箱",300);
-//        Dianshi=new Appliance("3","电视",150);
-//        Reshuiqi=new ApplianceTher("4","热水器",1500);
-//        Xiyiji=new ApplianceDelay("5","洗衣机",600,1);
-//        Xiwanji=new ApplianceDelay("6","洗碗机",1000,1);
-//        Dianche=new ApplianceTher("7","电动汽车",3000);
-//        Kongjing=new ApplianceTher("8","空气净化器",100);
-//        Kongtiao.savetoDB();
-//        Bingxiang.savetoDB();
-//        Dianshi.savetoDB();
-//        Reshuiqi.savetoDB();
-//        Xiyiji.savetoDB();
-//        Xiwanji.savetoDB();
-//        Dianche.savetoDB();
-//        Kongjing.savetoDB();
-       int trystate[]={12,14,15,19,5,3,5,6,7,8,9,0,1,1,1,1,1,1,1,6,4,6,7,43};
+        Kongtiao=new ApplianceTher("1");
+        Bingxiang=new Appliance("2");
+        Dianshi=new Appliance("3");
+        Reshuiqi=new ApplianceTher("4");
+        Xiyiji=new ApplianceDelay("5");
+        Xiwanji=new ApplianceDelay("6");
+        Dianche=new ApplianceTher("7");
+        Kongjing=new ApplianceTher("8");
+
+        appliances = new Appliance[] {Kongtiao,Bingxiang,Dianshi,Reshuiqi,Xiyiji,Xiwanji,Dianche,Kongjing};
+
+        for (int i=0;i<8;i++){
+            appliances[i].loadfromDB();
+        }
+//
+//        Kongtiao.loadfromDB();
+//        Bingxiang.loadfromDB();
+//        Dianshi.loadfromDB();
+//        Reshuiqi.loadfromDB();
+//        Xiyiji.loadfromDB();
+//        Xiwanji.loadfromDB();
+//        Dianche.loadfromDB();
+//        Kongjing.loadfromDB();
+
+    //test code
+
+        int trystate[]={451,450,0,0,0,0,0,0,0,0,0,0,0,541,540,451,360,270,270,270,180,270,360,360};
         Kongtiao.setState(trystate);
-        int trstate1[]={1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1};
+        int trystatebx[]={43,45,52,37,42,41,47,49,50,38,46,31,47,56,51,47,43,49,40,50,52,51,52,53};
+        Bingxiang.setState(trystatebx);
+        int trystatetv[]={0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,147,135,100,70,30,0,0};
+        Dianshi.setState(trystatetv);
+        int trystatersq[]={0,0,0,0,0,0,0,0,0,292,307,384,400,415,415,430,446,461,384,0,0,0,0,0};
+        Reshuiqi.setState(trystatersq);
+        int trstate1[]={0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,1,1,0,0,0};
         Xiyiji.setState(trstate1);
-        int trstate2[]={0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1};
+        int trstate2[]={0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,11,0,0,0};
         Xiwanji.setState(trstate2);
+        int trystateev[]={0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3000,3000,3000,3000,3000,3000,0,0,0};
+        Dianche.setState(trystateev);
+        Kongjing.setState(trystatebx);
+
+        for (int i=0;i<8;i++){
+            appliances[i].savetoDB();
+        }
+
+
+
 
 
         // Set up the action bar.

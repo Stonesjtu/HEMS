@@ -6,11 +6,14 @@
     android:visibility="visible"
     android:measureWithLargestChild="false">
 
-    <DatePicker
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/datePicker"
-        android:spinnersShown="true" />
+        android:text="昨日用电"
+        style="@style/HomeText"
+        android:id="@+id/textView14"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="30dp" />
 
     <LinearLayout
         android:orientation="vertical"
@@ -26,8 +29,8 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="总用电(度)"
-                android:id="@+id/eletotal"
+                android:text="选择电器"
+                android:id="@+id/textview21"
                 android:layout_weight="1"
                 android:gravity="center_horizontal"
                 android:textSize="18dp"
@@ -67,15 +70,14 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content">
 
-            <TextView
-                android:layout_width="wrap_content"
+            <Spinner
+                android:layout_width="79dp"
                 android:layout_height="wrap_content"
-                android:text="34"
-                android:id="@+id/totalkwh"
-                android:layout_weight="1"
-                android:textSize="18dp"
-                android:textStyle="bold"
-                android:gravity="center_horizontal" />
+                android:id="@+id/spinner"
+                android:spinnerMode="dialog"
+                android:layout_weight="0.30"
+                android:entries="@array/choose_app"
+                android:gravity="end" />
 
             <TextView
                 android:layout_width="wrap_content"

@@ -21,7 +21,7 @@
                     style="@style/HomeButton"
                     android:drawableTop="@drawable/ic_chart_h"
                     android:onClick="onButtonClicker"
-                    android:text="每日用电"
+                    android:text="@string/electrictitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/textcolor" />
@@ -31,7 +31,7 @@
                     style="@style/HomeButton"
                     android:drawableTop="@drawable/ic_bullish_h"
                     android:onClick="onButtonClicker"
-                    android:text="每月用电"
+                    android:text="@string/Generatortitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/textcolor" />
@@ -49,7 +49,7 @@
                     style="@style/HomeButton"
                     android:drawableTop="@drawable/ic_survey_h"
                     android:onClick="onButtonClicker"
-                    android:text="电费详情"
+                    android:text="@string/elechargetitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/textcolor" />
@@ -57,9 +57,9 @@
                 <Button
                     android:id="@+id/btn_power"
                     style="@style/HomeButton"
-                    android:drawableTop="@drawable/ic_thermometer_h"
+                    android:drawableTop="@drawable/ic_power_h"
                     android:onClick="onButtonClicker"
-                    android:text="舒适度"
+                    android:text="@string/comforttitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/textcolor" />

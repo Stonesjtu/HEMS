@@ -1,5 +1,6 @@
 package control;
 
+import cn.edu.sjtu.ysy.hems.ui.Generator;
 import cn.edu.sjtu.ysy.hems.ui.MainActivity;
 
 import static cn.edu.sjtu.ysy.hems.ui.MainActivity.Bingxiang;
@@ -20,15 +21,19 @@ public class Calculate {
     public final static double sell = 0.44;
 
 
-    public double charge=0; //每日用电费用
-    public double chargepeak=0;
-    public double chargevalley=0;
+    public static double charge=0; //每日用电费用
+    public static double chargepeak=0;
+    public static double chargevalley=0;
+    public static double chargegen=0;
+    public static double chargepeakgen=0;
+    public static double chargevalleygen=0;
 
-    public int work=0; //每日电器总功率
-    public int workpeak=0;
-    public int workvalley=0;
+    public static int work=0; //每日电器总功率
+    public static int workpeak=0;
+    public static int workvalley=0;
 
-    public int getWorkpeak(){
+    public static int getWorkpeak(){
+        workpeak=0;
         for (int i=0;i<16;i++){
             workpeak+= MainActivity.Bingxiang.getPower()[i];
             workpeak+=MainActivity.Kongtiao.getPower()[i];
@@ -45,7 +50,8 @@ public class Calculate {
 
 
 
-    public int getWorkvalley(){
+    public static int getWorkvalley(){
+        workvalley=0;
         for (int i=16;i<24;i++){
             workvalley+= MainActivity.Bingxiang.getPower()[i];
             workvalley+=MainActivity.Kongtiao.getPower()[i];
@@ -60,8 +66,9 @@ public class Calculate {
         return workvalley;
     }
 
-    public int getWork(){
+    public static int getWork(){
 
+        work=0;
         work+= MainActivity.Bingxiang.getSumPower();
         work+= MainActivity.Kongtiao.getSumPower();
         work+= MainActivity.Dianshi.getSumPower();
@@ -74,7 +81,8 @@ public class Calculate {
         return work;
     }
 
-    public double getChargepeak(){
+    public static double getChargepeak(){
+        chargepeak=0;
         for (int i=0;i<16;i++){
            chargepeak+= MainActivity.Bingxiang.getPrice()[i];
             chargepeak+=MainActivity.Kongtiao.getPrice()[i];
@@ -88,7 +96,8 @@ public class Calculate {
         return chargepeak;
     }
 
-    public double getChargevalley(){
+    public static double getChargevalley(){
+        chargevalley=0;
         for (int i=0;i<16;i++){
             chargevalley += Bingxiang.getPrice()[i];
             chargevalley += Kongtiao.getPrice()[i];
@@ -102,18 +111,35 @@ public class Calculate {
         return chargevalley;
     }
 
-    public double getCharge(){
-
-        charge += Bingxiang.getSumPower();
-        charge += Kongtiao.getSumPower();
-        charge += Dianshi.getSumPower();
-        charge += Reshuiqi.getSumPower();
-        charge += Xiyiji.getSumPower();
-        charge += Xiwanji.getSumPower();
-        charge += Dianche.getSumPower();
-        charge += Kongjing.getSumPower();
+    public static double getCharge(){
+        charge=0;
+        charge= getChargepeak()+getChargevalley();
 
         return charge;
     }
 
+
+    public static double getChargepeakgen(){  //电源实例化要先打开generator界面
+        chargepeakgen=0;
+        for (int i=0;i<16;i++){
+            chargepeakgen += (Generator.Fengji.getPower()[i] * subsidy/1000);
+            chargepeakgen += (Generator.Guangfu.getPower()[i]*subsidy/1000);
+        }
+        return chargepeakgen;
+    }
+
+    public static double getChargevalleygen(){  //电源实例化要先打开generator界面
+        chargevalleygen=0;
+        for (int i=0;i<16;i++){
+            chargevalleygen += Generator.Fengji.getPower()[i] * subsidy/1000;
+            chargevalleygen += Generator.Fengji.getPower()[i] * subsidy/1000;
+        }
+        return chargevalleygen;
+    }
+
+    public static double getChargegen(){  //电源实例化要先打开generator界面
+       chargegen=0;
+        chargegen=getChargepeakgen()+getChargevalleygen();
+        return chargegen;
+    }
 }

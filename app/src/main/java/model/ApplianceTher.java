@@ -1,6 +1,7 @@
 package model;
 
 import android.content.ContentValues;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import db.Database;
@@ -14,18 +15,8 @@ public class ApplianceTher extends Appliance{
     public int overtime;
 
 
-    public ApplianceTher(String id, String name, int ratedpower) {
-        super(THERMAL);
-        this.id = id;
-        this.name = name;
-        this.power = ratedpower;
-        Database connection = new Database();
-        SQLiteDatabase db = connection.getDatabase();
-        String sql = "INSERT INTO appliancether(id,name,power,kind)"
-                + "VALUES('" + id
-                + "','" + name + "','" + ratedpower +  "','" + 1 +"' )";
-        db.execSQL(sql);
-        db.close();
+    public ApplianceTher(String id) {
+        super(id, THERMAL);
     }
 
     public int getTset() {
@@ -51,16 +42,29 @@ public class ApplianceTher extends Appliance{
     }
 
     @Override
-    public int[] getPower(){
-        return state;
+    public void setState( int[] hstate) {
+
+        this.state = hstate;
+        Database connection = new Database();
+        SQLiteDatabase db = connection.getDatabase();
+
+        for (int i=1;i<24;i++) {
+            String sql = "UPDATE appliancether SET ";
+            sql = sql + "state" + i +"="+hstate[i-1]+" where id=" +id;
+            db.execSQL(sql);
+        }
+        db.close();
+
     }
 
 
+
+    @Override
     public void  savetoDB() {
         Database connection = new Database();
         SQLiteDatabase db = connection.getDatabase();
         ContentValues values = new ContentValues();
-        for (int i=1;i>24;i++){
+        for (int i=1;i<24;i++){
             values.put("state" + i, state[i-1]);
         }
         values.put("Tset",Tset);
@@ -68,5 +72,26 @@ public class ApplianceTher extends Appliance{
         values.put("overtime",overtime);
         db.update("appliancether", values, "id=?", new String[]{id});
         db.close();
+    }
+
+    @Override
+    public void loadfromDB(){
+        Database connection = new Database();
+        SQLiteDatabase db = connection.getDatabase();
+        Cursor cur = db.rawQuery("select * from appliancether where id=?",new String[]{id});
+        while (cur.moveToNext()) {
+            name=cur.getString(cur.getColumnIndex("name"));
+            power=cur.getInt(cur.getColumnIndex("power"));
+            Tset=cur.getInt(cur.getColumnIndex("Tset"));
+            starttime=cur.getInt(cur.getColumnIndex("starttime"));
+            overtime=cur.getInt(cur.getColumnIndex("overtime"));
+            int[] state=new int[24];
+            for (int i=1;i<25;i++) {
+                state[i-1] = cur.getInt(cur.getColumnIndex("state"+i));
+            }
+            this.setState(state);
+            cur.moveToNext();
+        }
+        connection.close(db);
     }
 }

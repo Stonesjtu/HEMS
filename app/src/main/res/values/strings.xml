@@ -5,18 +5,45 @@
     <string name="title_section2">用电数据</string>
     <string name="title_section3">智能优化</string>
 
+    <string name="app1">空调</string>
+    <string name="app2">冰箱</string>
+    <string name="app3">电视</string>
+    <string name="app4">热水器</string>
+    <string name="app5">洗衣机</string>
+    <string name="app6">洗碗机</string>
+    <string name="app7">电动汽车</string>
+    <string name="app8">空气净化器</string>
+
+
+
+
     <string name="hello_world">Hello world!</string>
     <string name="kongtiaotitle">电器详细信息</string>
 
     <string name="electrictitle">用电信息</string>
     <string name="elechargetitle">电费详情</string>
-    <string name="comforttitle">舒适度</string>
+    <string name="comforttitle">实时功率</string>
     <string name="comparetitle">费用对比</string>
     <string name="resulttitle">优化结果</string>
+    <string name="Generatortitle">发电信息</string>
 
 
     <string name="action_settings">退出</string>
+    <string name="action_save">保存修改</string>
+    <string name="action_back">返回主页</string>
     <string name="title_activity_settings">设置</string>
+
+    <string-array name="choose_app">
+        <item>@string/app1</item>
+        <item>@string/app2</item>
+        <item>@string/app3</item>
+        <item>@string/app4</item>
+        <item>@string/app5</item>
+        <item>@string/app6</item>
+        <item>@string/app7</item>
+        <item>@string/app8</item>
+        <item>总计</item>
+    </string-array>
 
 
 
@@ -40,10 +67,10 @@
         <item>Never</item>
     </string-array>
     <string-array name="pref_example_list_values">
-        <item>1</item>
-        <item>0</item>
-        <item>-1</item>
-    </string-array>
+    <item>1</item>
+    <item>0</item>
+    <item>-1</item>
+</string-array>
 
     <!-- Example settings for Data & Sync -->
     <string name="pref_header_data_sync">关于</string>
@@ -86,6 +113,6 @@
         <item>1</item>
         <item>0</item>
     </string-array>
-    <string name="pref_weather">晴日</string>
-    <string name="pref_weather_description">请选择当日天气状况</string>
+    <string name="pref_weather">是否优化</string>
+    <string name="pref_weather_description">根据优化计划自动控制智能电器</string>
 </resources>

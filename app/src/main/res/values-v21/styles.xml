@@ -26,4 +26,31 @@
         <item name="android:background">@null</item>
     </style>
 
+    <style name="HomeText">
+        <item name="android:layout_gravity">center_horizontal</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:textSize">@dimen/text_size_verylarge</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/textcolor</item>
+        <item name="android:background">@null</item>
+    </style>
+
+    <style name="Tablerow">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_margin">1dp</item>
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:background">@color/white</item>
+    </style>
+
+    <style name="Tabletext">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_margin">1dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:gravity">center_horizontal</item>
+    </style>
+
 </resources>

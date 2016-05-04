@@ -2,6 +2,7 @@ package model;
 
 
 import android.content.ContentValues;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import db.Database;
@@ -16,20 +17,8 @@ public class ApplianceDelay extends Appliance {
 
 
 
-    public ApplianceDelay(String id, String name,int ratedpower, int duration) {
-         super(DELAY);
-        this.duration=duration;
-        this.id = id;
-        this.name = name;
-        this.power = ratedpower;
-        Database connection = new Database();
-        SQLiteDatabase db = connection.getDatabase();
-        String sql = "INSERT INTO appliancedelay(id,name,power,kind)"
-                + "VALUES('" + id
-                + "','" + name + "','" + ratedpower +  "','" + 0 +"' )";
-        db.execSQL(sql);
-        db.close();
-
+    public ApplianceDelay(String id) {
+         super(id,DELAY);
     }
 
     public int getDuration() {
@@ -43,6 +32,16 @@ public class ApplianceDelay extends Appliance {
     public int getOvertime() {
         return overtime;
     }
+    @Override
+    public int[] getPower(){
+
+        int[] nowpower=new int[24];
+        for (int i=0;i<24;i++){
+             nowpower[i]= power * getState()[i];
+
+        }
+        return nowpower;
+    }
 
     public void setOvertime(int hour) {
         this.overtime = hour;
@@ -53,11 +52,28 @@ public class ApplianceDelay extends Appliance {
         this.starttime = hour;
     }
 
+    @Override
+    public void setState( int[] hstate) {
+
+        this.state = hstate;
+        Database connection = new Database();
+        SQLiteDatabase db = connection.getDatabase();
+
+        for (int i=1;i<24;i++) {
+            String sql = "UPDATE appliancedelay SET ";
+            sql = sql + "state" + i +"="+hstate[i-1]+" where id=" +id;
+            db.execSQL(sql);
+        }
+        db.close();
+
+    }
+
+    @Override
    public void  savetoDB() {
         Database connection = new Database();
         SQLiteDatabase db = connection.getDatabase();
         ContentValues values = new ContentValues();
-        for (int i=1;i>24;i++){
+        for (int i=1;i<24;i++){
             values.put("state" + i, state[i-1]);
         }
        values.put("duration",duration);
@@ -67,4 +83,24 @@ public class ApplianceDelay extends Appliance {
         db.close();
     }
 
+    @Override
+    public void loadfromDB(){
+        Database connection = new Database();
+        SQLiteDatabase db = connection.getDatabase();
+        Cursor cur = db.rawQuery("select * from appliancedelay where id=?",new String[]{id});
+        while (cur.moveToNext()) {
+            name=cur.getString(cur.getColumnIndex("name"));
+            power=cur.getInt(cur.getColumnIndex("power"));
+            duration=cur.getInt(cur.getColumnIndex("duration"));
+            starttime=cur.getInt(cur.getColumnIndex("starttime"));
+            overtime=cur.getInt(cur.getColumnIndex("overtime"));
+            int[] state=new int[24];
+            for (int i=1;i<25;i++) {
+                state[i-1] = cur.getInt(cur.getColumnIndex("state"+i));
+            }
+            this.setState(state);
+            cur.moveToNext();
+        }
+        connection.close(db);
+    }
 }

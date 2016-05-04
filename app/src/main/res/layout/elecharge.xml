@@ -7,7 +7,7 @@
     <TableLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="50dp"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp">
 
@@ -109,7 +109,7 @@
     </TableLayout>
 
     <LinearLayout
-        android:orientation="horizontal"
+        android:orientation="vertical"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp">
@@ -117,45 +117,52 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="今日电费"
+            android:text="昨日电费"
             android:id="@+id/textView10"
-            android:layout_weight="1"
-            android:layout_gravity="center_vertical"
-            android:gravity="center_horizontal" />
+            style="@style/HomeText" />
 
-        <ImageView
-            android:layout_width="183dp"
-            android:layout_height="206dp"
-            android:id="@+id/imageView"
-            android:src="@drawable/whmore"
-            android:layout_weight="1"
-            android:layout_gravity="right" />
     </LinearLayout>
 
     <LinearLayout
         android:orientation="horizontal"
-        android:layout_width="fill_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp">
+        android:layout_gravity="right"
+        android:layout_marginTop="15dp">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="本月电费"
-            android:id="@+id/textView11"
-            android:layout_weight="1"
-            android:layout_gravity="center_vertical"
-            android:gravity="center_horizontal" />
-
-        <ImageView
-            android:layout_width="183dp"
-            android:layout_height="206dp"
-            android:id="@+id/imageView1"
-            android:src="@drawable/whmore"
-            android:layout_weight="1"
+            android:text="总计: "
+            android:id="@+id/textView25"
             android:layout_gravity="right" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="New Text"
+            android:id="@+id/totalmoney"
+            android:layout_gravity="right" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" 元"
+            android:id="@+id/textView26" />
     </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/Linechart"
+        android:layout_marginTop="15dp">
+
+        <com.github.mikephil.charting.charts.LineChart
+            android:layout_width="360dp"
+            android:layout_height="223dp"
+            android:id="@+id/Linechart_charge" />
+    </LinearLayout>
+
 
 </LinearLayout>

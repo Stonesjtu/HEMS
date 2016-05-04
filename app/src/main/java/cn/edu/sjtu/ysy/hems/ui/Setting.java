@@ -3,7 +3,6 @@ package cn.edu.sjtu.ysy.hems.ui;
 
 import android.app.ActionBar;
 import android.os.Bundle;
-import android.preference.ListPreference;
 import android.preference.PreferenceActivity;
 import android.preference.SwitchPreference;
 import android.view.MenuItem;
@@ -14,19 +13,16 @@ import cn.edu.sjtu.ysy.hems.R;
  * Created by YSY on 2016/4/16.
  */
 public class Setting  extends PreferenceActivity {
-    private ListPreference model;
+
     private SwitchPreference sunny;
-    public String workmodel;
-    public boolean weathermodel;
+    public static boolean ynyouhua;
 
     @Override
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         addPreferencesFromResource(R.xml.pref_setting);
-        model=(ListPreference)findPreference("if_work");
         sunny=(SwitchPreference)findPreference("if_sunny");
-        workmodel=model.getValue();
-        weathermodel=sunny.isChecked();
+        ynyouhua=sunny.isChecked();
         setupActionBar();
 
     }

@@ -1,8 +1,13 @@
 package cn.edu.sjtu.ysy.hems.ui;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.StrictMode;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -16,6 +21,10 @@ import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.utils.ColorTemplate;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
 
 import cn.edu.sjtu.ysy.hems.R;
@@ -39,6 +48,10 @@ public class KongtiaoActivity extends Activity{
     public BarDataSet dataset;
     public ArrayList<String> labels=new ArrayList<String>();
 
+    EditText starttime;
+    EditText overtime;
+    EditText tset;
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -52,123 +65,103 @@ public class KongtiaoActivity extends Activity{
         show();
         setTitle(R.string.kongtiaotitle);
 
+        starttime = (EditText) findViewById(R.id.starttime);
+        overtime = (EditText) findViewById(R.id.overtime);
+        tset = (EditText) findViewById(R.id.Tset);
+
         TextView mingcheng=(TextView)findViewById(R.id.mingcheng);
         mingcheng.setText(aname[index]);
         TextView ratedpower=(TextView)findViewById(R.id.rated_power);
         ratedpower.setText(apower[index]);
         TextView duration=(TextView)findViewById(R.id.duration);
         duration.setText(aduraion[index]);
+        LinearLayout LinLayTset=(LinearLayout)findViewById(R.id.LinLayTset);
+        LinearLayout LinLayappcat=(LinearLayout)findViewById(R.id.LinLayappcat);
 
-        //隐藏edittext和Tset
-        if (index==1 || index==2){
-            LinearLayout LinLayappcat=(LinearLayout)findViewById(R.id.LinLayappcat);
-            LinLayappcat.setVisibility(View.GONE);
+        // 显示开始时间和结束时间
+        switch (index){
+            case 0:
+                starttime.setText("" + MainActivity.Kongtiao.getStarttime());
+                overtime.setText("" + MainActivity.Kongtiao.getOvertime());
+                tset.setText("" + MainActivity.Kongtiao.getTset());
+                break;
+            case 3:
+                starttime.setText("" + MainActivity.Reshuiqi.getStarttime());
+                overtime.setText("" + MainActivity.Reshuiqi.getOvertime());
+                tset.setText("" + MainActivity.Reshuiqi.getTset());
+                break;
+            case 4:
+                LinLayTset.setVisibility(View.GONE);
+                starttime.setText("" + MainActivity.Xiyiji.getStarttime());
+                overtime.setText("" + MainActivity.Xiyiji.getOvertime());
+                break;
+            case 5:
+                LinLayTset.setVisibility(View.GONE);
+                starttime.setText("" + MainActivity.Xiwanji.getStarttime());
+                overtime.setText("" + MainActivity.Xiwanji.getOvertime());
+                break;
+            case 6:
+                TextView temp=(TextView)findViewById(R.id.temp);
+                temp.setText("设置充电量");
+                tset.setHint("输入百分制,如80");
+                tset.setText("80");
+                starttime.setText("" + MainActivity.Dianche.getStarttime());
+                overtime.setText("" + MainActivity.Dianche.getOvertime());
+                tset.setText("" + MainActivity.Dianche.getTset());
+                break;
+            case 7:
+                starttime.setText("" + MainActivity.Kongjing.getStarttime());
+                overtime.setText("" + MainActivity.Kongjing.getOvertime());
+                tset.setText("" + MainActivity.Kongjing.getTset());
+                break;
+            default:
+                //隐藏edittext和Tset
+                LinLayappcat.setVisibility(View.GONE);
+                break;
         }
-        //隐藏Tset
-         if (index==4 || index==5) {
-            LinearLayout LinLayTset=(LinearLayout)findViewById(R.id.LinLayTset);
-            LinLayTset.setVisibility(View.GONE);
-            EditText starttime = (EditText) findViewById(R.id.starttime);
-            starttimeint[index] = Integer.parseInt(starttime.getText().toString());
-            EditText overtime = (EditText) findViewById(R.id.overtime);
-            overtimeint[index] = Integer.parseInt(overtime.getText().toString());
-            if (index==4){
-                MainActivity.Xiyiji.setStarttime(starttimeint[index]);
-                MainActivity.Xiyiji.setOvertime(overtimeint[index]);
+        //jump
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
+        String strurl="http://45.62.118.181/ysy?name=kongtiao";
+        try {
+            URL url=new URL(strurl);
+            HttpURLConnection urlConn=(HttpURLConnection)url.openConnection();
+            InputStreamReader in =new InputStreamReader(urlConn.getInputStream());
+            BufferedReader bufferReader= new BufferedReader(in);
+            String result="";
+            String readline=null;
+            while ((readline=bufferReader.readLine())!=null){
+                result +=readline;
             }
-            if(index==5){
-                MainActivity.Xiwanji.setStarttime(starttimeint[index]);
-                MainActivity.Xiwanji.setOvertime(overtimeint[index]);
-            }
+            in.close();
+            urlConn.disconnect();
+            Toast.makeText(getApplicationContext(),result,Toast.LENGTH_LONG).show();
+
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        if (index==0 || index==3 || index==7){
-            EditText starttime = (EditText) findViewById(R.id.starttime);
-            starttimeint[index] = Integer.parseInt(starttime.getText().toString());
-            EditText overtime = (EditText) findViewById(R.id.overtime);
-            overtimeint[index] = Integer.parseInt(overtime.getText().toString());
-            EditText tset = (EditText) findViewById(R.id.Tset);
-            Tset[index] = Integer.parseInt(tset.getText().toString());
-            switch (index){
-                case 0:;
-                    MainActivity.Kongtiao.setStarttime(starttimeint[index]);
-                    MainActivity.Kongtiao.setOvertime(overtimeint[index]);
-                    MainActivity.Kongtiao.setTset(Tset[index]);
-                    break;
-                case 3:
-                    MainActivity.Reshuiqi.setStarttime(starttimeint[index]);
-                    MainActivity.Reshuiqi.setOvertime(overtimeint[index]);
-                    MainActivity.Reshuiqi.setTset(Tset[index]);
-                    break;
-//                case 6:
-//                    MainActivity.Dianche.setStarttime(starttimeint[index]);
-//                    MainActivity.Dianche.setOvertime(overtimeint[index]);
-//                    MainActivity.Dianche.setTset(Tset[index]);
-//                    break;
-                case 7:
-                    MainActivity.Kongjing.setStarttime(starttimeint[index]);
-                    MainActivity.Kongjing.setOvertime(overtimeint[index]);
-                    MainActivity.Kongjing.setTset(Tset[index]);
-                    break;
-                default:break;
-
-            }
-
-        }
-        //电动汽车将设置温度改为设置预期充电量
-        if (index==6)
-        {
-            TextView temp=(TextView)findViewById(R.id.temp);
-            temp.setText("设置充电量");
-            EditText tset = (EditText) findViewById(R.id.Tset);
-            tset.setHint("输入百分制,如80");
-            EditText starttime = (EditText) findViewById(R.id.starttime);
-            starttimeint[index] = Integer.parseInt(starttime.getText().toString());
-            EditText overtime = (EditText) findViewById(R.id.overtime);
-            overtimeint[index] = Integer.parseInt(overtime.getText().toString());
-            Tset[index] = Integer.parseInt(tset.getText().toString());
-
-            MainActivity.Dianche.setStarttime(starttimeint[index]);
-            MainActivity.Dianche.setOvertime(overtimeint[index]);
-            MainActivity.Dianche.setTset(Tset[index]);
-
-        }
-
-
-
-//        ImageView dqmore=(ImageView)findViewById(R.id.dqmore);
-//        switch (index){
-//            case 0:
-//                dqmore.setImageResource(R.drawable.acmore);
-//                break;
-//            case 3:
-//                dqmore.setImageResource(R.drawable.whmore);
-//                break;
-//            case 5:
-//                dqmore.setImageResource(R.drawable.bowlmore);
-//                break;
-//            default:dqmore.setImageResource(R.drawable.evmore);
-//
-//        }
     }
 
 
 
     public void initEntriesData() {
-        Toast.makeText(getApplicationContext(),"   "+index,Toast.LENGTH_LONG).show();
-        for (int i=0;i<24;i++)
+        for (int i=6;i<24;i++)
         {
             switch (index){
 
-                case 0: entries.add(new BarEntry(MainActivity.Kongtiao.getState()[i],i));break;
-                case 1: entries.add(new BarEntry(MainActivity.Bingxiang.getState()[i],i));break;
-                case 2: entries.add(new BarEntry(MainActivity.Dianshi.getState()[i],i));break;
-                case 3: entries.add(new BarEntry(MainActivity.Reshuiqi.getState()[i],i));break;
-                case 4: entries.add(new BarEntry(MainActivity.Xiyiji.getState()[i],i));break;
-                case 5: entries.add(new BarEntry(MainActivity.Xiwanji.getState()[i],i));break;
-                case 6: entries.add(new BarEntry(MainActivity.Dianche.getState()[i],i));break;
-                case 7: entries.add(new BarEntry(MainActivity.Kongjing.getState()[i],i));break;
+                case 0: entries.add(new BarEntry(MainActivity.Kongtiao.getPower()[i-6],i));break;
+                case 1: entries.add(new BarEntry(MainActivity.Bingxiang.getPower()[i-6],i));break;
+                case 2: entries.add(new BarEntry(MainActivity.Dianshi.getPower()[i-6],i));break;
+                case 3: entries.add(new BarEntry(MainActivity.Reshuiqi.getPower()[i-6],i));break;
+                case 4: entries.add(new BarEntry(MainActivity.Xiyiji.getPower()[i-6],i));break;
+                case 5: entries.add(new BarEntry(MainActivity.Xiwanji.getPower()[i-6],i));break;
+                case 6: entries.add(new BarEntry(MainActivity.Dianche.getPower()[i-6],i));break;
+                case 7: entries.add(new BarEntry(MainActivity.Kongjing.getPower()[i-6],i));break;
                 default:break;
             }
+            }
+        for (int j=18;j<24;j++){
+            entries.add(new BarEntry(MainActivity.appliances[index].getPower()[j],j-18));
 
         }
 //        entries.add(new BarEntry(4f, 0));
@@ -193,7 +186,7 @@ public class KongtiaoActivity extends Activity{
 //        labels.add("12");
     }
     public void show(){
-        dataset= new BarDataSet(entries,"每小时平均用电功率");
+        dataset= new BarDataSet(entries,"每小时平均用电功率（W）");
         dataset.setColors(ColorTemplate.LIBERTY_COLORS);
         BarData data=new BarData(labels,dataset);
       //  LimitLine line=new LimitLine(10f);
@@ -205,5 +198,116 @@ public class KongtiaoActivity extends Activity{
         barChart.getAxisRight().setEnabled(false);
         barChart.setDescription("时刻");
     }
+
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_app, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_back) {
+            finish();
+            return true;
+        }
+        else  if (id == R.id.action_save) {
+            //判断输入是否合法，若合法，存入对象和数据库中，否则弹出对话框,缺少空指针处理
+            if (index!=1 && index!=2) {
+                starttimeint[index] = Integer.parseInt(starttime.getText().toString());
+                overtimeint[index] = Integer.parseInt(overtime.getText().toString());
+                if (starttimeint[index] > 24 || starttimeint[index] < 0 || overtimeint[index] > 24
+                        || overtimeint[index] < 0 )
+                    showDialog();
+                else
+                    switch (index) {
+                        case 0:
+                            Tset[index]=Integer.parseInt(tset.getText().toString());
+                            if(Tset[index]>32 || Tset[index]<16){
+                                Toast.makeText(getApplicationContext(),"您输入的温度范围无法实现",Toast.LENGTH_LONG).show();
+                                break;
+                            }
+                            MainActivity.Kongtiao.setStarttime(starttimeint[index]);
+                            MainActivity.Kongtiao.setOvertime(overtimeint[index]);
+                            MainActivity.Kongtiao.setTset(Tset[index]);
+                            MainActivity.Kongtiao.savetoDB();
+                            break;
+                        case 3:
+                            Tset[index]=Integer.parseInt(tset.getText().toString());
+                            if(Tset[index]>70 || Tset[index]<10){
+                                Toast.makeText(getApplicationContext(),"您输入的温度范围无法实现",Toast.LENGTH_LONG).show();
+                                break;
+                            }
+                            MainActivity.Reshuiqi.setStarttime(starttimeint[index]);
+                            MainActivity.Reshuiqi.setOvertime(overtimeint[index]);
+                            MainActivity.Reshuiqi.setTset(Tset[index]);
+                            MainActivity.Reshuiqi.savetoDB();
+                            break;
+                        case 4:
+                            MainActivity.Xiyiji.setStarttime(starttimeint[index]);
+                            MainActivity.Xiyiji.setOvertime(overtimeint[index]);
+                            MainActivity.Xiyiji.savetoDB();
+                            break;
+                        case 5:
+                            MainActivity.Xiwanji.setStarttime(starttimeint[index]);
+                            MainActivity.Xiwanji.setOvertime(overtimeint[index]);
+                            MainActivity.Xiwanji.savetoDB();
+                            break;
+                        case 6:
+                            Tset[index]=Integer.parseInt(tset.getText().toString());
+                            if(Tset[index]>100 || Tset[index]<1){
+                                Toast.makeText(getApplicationContext(),"您输入的充电量范围无法实现",Toast.LENGTH_LONG).show();
+                                break;
+                            }
+                            MainActivity.Dianche.setStarttime(starttimeint[index]);
+                            MainActivity.Dianche.setOvertime(overtimeint[index]);
+                            MainActivity.Dianche.setTset(Tset[index]);
+                            MainActivity.Dianche.savetoDB();
+                        case 7:
+                            Tset[index]=Integer.parseInt(tset.getText().toString());
+                            if(Tset[index]>70 || Tset[index]<10){
+                                Toast.makeText(getApplicationContext(),"您输入的温度范围无法实现",Toast.LENGTH_LONG).show();
+                                break;
+                            }
+                            MainActivity.Kongjing.setStarttime(starttimeint[index]);
+                            MainActivity.Kongjing.setOvertime(overtimeint[index]);
+                            MainActivity.Kongjing.setTset(Tset[index]);
+                            MainActivity.Kongjing.savetoDB();
+                            break;
+                        default:break;
+                    };
+                finish();
+
+            }
+
+            return true;
+        }
+
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    private void showDialog() {
+        AlertDialog dialog;
+        AlertDialog.Builder builder = new AlertDialog.Builder(
+                KongtiaoActivity.this);
+        builder.setTitle("消息").setIcon(android.R.drawable.stat_notify_error);
+        builder.setMessage("您输入的格式不合法，请修改");
+        builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                // TODO Auto-generated method stub
+            }
+        });
+        dialog = builder.create();
+        dialog.show();
+    }
+
 
 }

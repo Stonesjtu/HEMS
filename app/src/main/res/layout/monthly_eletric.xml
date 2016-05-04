@@ -6,102 +6,84 @@
     android:visibility="visible"
     android:measureWithLargestChild="false">
 
-    <DatePicker
-        android:layout_width="fill_parent"
+
+    <TextView
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/monthPicker"
-        android:spinnersShown="true"
-        android:calendarViewShown="false"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="20dp" />
+        android:text="昨日发电"
+        android:id="@+id/textView12"
+        style="@style/HomeText"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="30dp" />
 
     <LinearLayout
-        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_gravity="center_horizontal">
+        android:orientation="horizontal"
+        android:layout_marginBottom="30dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp">
 
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="总用电(度)"
-                android:id="@+id/meletotal"
-                android:layout_weight="1"
-                android:gravity="center_horizontal"
-                android:textSize="18dp"
-                android:textStyle="bold" />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="风机发电"
+            android:id="@+id/fenji"
+            android:layout_weight="1"
+            android:background="@color/green"
+            android:textColor="@color/white"
+            android:layout_marginRight="5dp" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="峰电(度)"
-                android:id="@+id/melepeak"
-                android:layout_weight="1"
-                android:gravity="center_horizontal"
-                android:textSize="18dp"
-                android:textStyle="bold" />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="光伏电池"
+            android:id="@+id/guangfu"
+            android:layout_weight="1"
+            android:textColor="@color/white"
+            android:background="@color/green"
+            android:layout_marginLeft="5dp" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="谷电(度)"
-                android:id="@+id/melevalley"
-                android:layout_weight="1"
-                android:textSize="18dp"
-                android:textStyle="bold"
-                android:gravity="center_horizontal" />
-        </LinearLayout>
     </LinearLayout>
 
 
     <LinearLayout
-        android:orientation="vertical"
+        android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp">
+        android:layout_height="wrap_content">
 
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="额定功率  "
+            android:id="@+id/textView15"
+            android:textSize="@dimen/text_size_medium"
+            android:layout_weight="1"
+            android:gravity="end" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="34"
-                android:id="@+id/mtotalkwh"
-                android:layout_weight="1"
-                android:textSize="18dp"
-                android:textStyle="bold"
-                android:gravity="center_horizontal" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="****"
+            android:id="@+id/maxpower"
+            android:textSize="@dimen/text_size_medium"/>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="10"
-                android:id="@+id/mpeakkwh"
-                android:layout_weight="1"
-                android:gravity="center_horizontal"
-                android:textSize="18dp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="14"
-                android:id="@+id/mvalleykwh"
-                android:layout_weight="1"
-                android:gravity="center_horizontal"
-                android:textSize="18dp"
-                android:textStyle="bold" />
-        </LinearLayout>
-
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="  W"
+            android:id="@+id/textView20"
+            android:textSize="@dimen/text_size_medium"
+            android:layout_weight="1" />
     </LinearLayout>
+
+    <com.github.mikephil.charting.charts.LineChart
+            android:layout_width="360dp"
+            android:layout_height="223dp"
+            android:id="@+id/Linechart_generator"
+            android:layout_gravity="center_horizontal"
+        android:layout_marginTop="30dp" />
+
 
 </LinearLayout>

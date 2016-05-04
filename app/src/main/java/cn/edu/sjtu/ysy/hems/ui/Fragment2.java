@@ -37,7 +37,7 @@ public class Fragment2 extends Fragment {
                         startActivity(intent);
                         break;
                     case R.id.btn_bullish:
-                        Intent intent1 = new Intent(getActivity(), Electric.class);
+                        Intent intent1 = new Intent(getActivity(), Generator.class);
                         intent1.putExtra("eletric",1);
                         startActivity(intent1);
                         break;
@@ -46,7 +46,7 @@ public class Fragment2 extends Fragment {
                         startActivity(intent2);
                         break;
                     case R.id.btn_power:
-                        Intent intent3 = new Intent(getActivity(),Comfort.class);
+                        Intent intent3 = new Intent(getActivity(),PowerActivity.class);
                         startActivity(intent3);
                         break;
 

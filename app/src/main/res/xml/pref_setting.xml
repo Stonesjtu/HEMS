@@ -1,15 +1,8 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
     <!-- These settings headers are only used on tablets. -->
-    <PreferenceCategory android:title="优化模式设置">
-    <ListPreference
-        android:defaultValue="-1"
-        android:entries="@array/pref_work"
-        android:entryValues="@array/pref_work_values"
-        android:key="if_work"
-        android:negativeButtonText="@null"
-        android:positiveButtonText="@null"
-        android:title="选择情景模式" />
+    <PreferenceCategory android:title="优化设置">
+
 
     <SwitchPreference
         android:defaultValue="true"

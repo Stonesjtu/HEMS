@@ -15,7 +15,7 @@ public class Appliance {
     public final static int DEFAULT=2;
     public final static double PEAK = 0.977;
     public final static double VALLEY = 0.487;
-   protected String name;
+   public String name;
     protected String id;
     public int  power;
     public int[] state = {0,0,0,0,0,0,0,0,0,
@@ -23,36 +23,29 @@ public class Appliance {
             0,0,0,0};
     public final int kind;
 
-    public  Appliance(int kin){
-        kind=kin;
-    }
-    public Appliance(String id, String name, int ratedpower,int cat) {
-        this.id = id;
-        this.name = name;
-        this.power = ratedpower;
-        this.kind=cat;
-        Database connection = new Database();
-        SQLiteDatabase db = connection.getDatabase();
-        String sql = "INSERT INTO appliance(id,name,power,kind)"
-                + "VALUES('" + id
-                + "','" + name + "','" + ratedpower +"','" + cat + "' )";
-        db.execSQL(sql);
-        db.close();
+    public  Appliance(String id,int kin){
+        this.id=id;
+        this.kind=kin;
     }
 
+//    public Appliance(String id, String name, int ratedpower,int cat) {
+//        this.id = id;
+//        this.name = name;
+//        this.power = ratedpower;
+//        this.kind=cat;
+//        Database connection = new Database();
+//        SQLiteDatabase db = connection.getDatabase();
+//        String sql = "INSERT INTO appliance(id,name,power,kind)"
+//                + "VALUES('" + id
+//                + "','" + name + "','" + ratedpower +"','" + cat + "' )";
+//        db.execSQL(sql);
+//        db.close();
+//    }
+//
     //不带kind的构造函数，默认=2
-    public Appliance(String id, String name, int ratedpower) {
+    public Appliance(String id) {
         this.id = id;
-        this.name = name;
-        this.power = ratedpower;
         this.kind=DEFAULT;
-        Database connection = new Database();
-        SQLiteDatabase db = connection.getDatabase();
-        String sql = "INSERT INTO appliance(id,name,power,kind)"
-                + "VALUES('" + id
-                + "','" + name + "','" + ratedpower +  "','" + 2 +"' )";
-        db.execSQL(sql);
-        db.close();
     }
 
     public int[] getState() {
@@ -60,11 +53,7 @@ public class Appliance {
     }
 
     public int[] getPower(){
-          int[] nowpower=new int[24];
-        for (int i=0;i<24;i++){
-           nowpower[i]= power * getState()[i];
-        }
-        return nowpower;
+        return state;
     }
 
     public int getSumPower(){
@@ -78,10 +67,10 @@ public class Appliance {
     public double[] getPrice(){
         double[] nowprice =new double[24];
         for (int i=0;i<16;i++){
-            nowprice[i]= PEAK * getPower()[i];
+            nowprice[i]= PEAK/1000 * getPower()[i];
         }
         for (int i=16;i<24;i++){
-            nowprice[i]= VALLEY * getPower()[i];
+            nowprice[i]= VALLEY/1000 * getPower()[i];
         }
         return nowprice;
     }
@@ -90,7 +79,7 @@ public class Appliance {
     public double getSumPrice(){
         int sumprice=0;
         for (int i=0;i<24;i++){
-            sumprice+=getPower()[i];
+            sumprice+=getPrice()[i];
         }
         return sumprice;
     }
@@ -102,9 +91,10 @@ public class Appliance {
         this.state = hstate;
         Database connection = new Database();
         SQLiteDatabase db = connection.getDatabase();
-        String sql = "UPDATE appliance SET ";
-        for (int i=1;i>24;i++) {
-            sql = sql + "state" + i +"="+hstate[i-1]+"where id=" +id;
+
+        for (int i=1;i<24;i++) {
+            String sql = "UPDATE appliance SET ";
+            sql = sql + "state" + i +"="+hstate[i-1]+" where id=" +id;
             db.execSQL(sql);
         }
         db.close();
@@ -119,7 +109,7 @@ public class Appliance {
         Database connection = new Database();
         SQLiteDatabase db = connection.getDatabase();
         ContentValues values = new ContentValues();
-        for (int i=1;i>24;i++){
+        for (int i=1;i<24;i++){
             values.put("state" + i, state[i-1]);
         }
         db.update("appliance", values, "id=?", new String[]{id});
@@ -127,7 +117,6 @@ public class Appliance {
     }
 
    public void loadfromDB(){
-       //select-assign;
        Database connection = new Database();
        SQLiteDatabase db = connection.getDatabase();
        Cursor cur = db.rawQuery("select * from appliance where id=?",new String[]{id});
@@ -145,11 +134,4 @@ public class Appliance {
    }
 
 
-//    public double getRatedpower() {
-//        return power;
-//    }
-//
-//    public void setRatedpower(double ratedpower) {
-//        this.power = ratedpower;
-//    }
 }
