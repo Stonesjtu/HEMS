@@ -4,6 +4,15 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/scrollView2">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
     <LinearLayout
         android:orientation="vertical"
@@ -121,7 +130,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="期望开启时间(最晚)"
+            android:text="期望开启时间(最早)"
             android:id="@+id/starttime1"
             android:textSize="18sp"
             android:layout_gravity="center_horizontal|bottom"
@@ -153,7 +162,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="期望关闭时间(最早)"
+                android:text="可接受工作时长(最长)"
                 android:id="@+id/overtime1"
                 android:textSize="18sp"
                 android:layout_gravity="center_horizontal|bottom"
@@ -167,12 +176,12 @@
                 android:inputType="time"
                 android:ems="10"
                 android:id="@+id/overtime"
-                android:hint="输入24时制整点,如18"
+                android:hint="输入整数，以小时为单位"
                 android:layout_gravity="bottom|end"
                 android:textSize="14sp"
                 android:layout_marginRight="5sp"
                 android:layout_weight="1"
-                android:text="23" />
+                android:text="10" />
 
         </LinearLayout>
         <LinearLayout
@@ -231,5 +240,9 @@
             android:id="@+id/barchart_kongtiao"
             android:layout_gravity="center_horizontal" />
     </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
 
 </LinearLayout>
+

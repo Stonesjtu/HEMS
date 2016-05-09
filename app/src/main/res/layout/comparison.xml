@@ -18,7 +18,9 @@
         android:layout_height="wrap_content"
         android:background="@android:color/black"
         android:layout_marginTop="50dp"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp">
 
         <TableRow
             android:layout_width="match_parent"

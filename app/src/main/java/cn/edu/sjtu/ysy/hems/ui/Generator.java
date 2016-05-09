@@ -16,14 +16,12 @@ import com.github.mikephil.charting.data.LineDataSet;
 import java.util.ArrayList;
 
 import cn.edu.sjtu.ysy.hems.R;
-import model.Appliance;
 
 /**
  * Created by YSY on 2016/5/4.
  */
 public class Generator extends Activity {
-    public static Appliance Fengji;
-    public static Appliance Guangfu;
+
 
     public LineChart lineChart;
     public ArrayList<String> x=new ArrayList<String>();
@@ -37,16 +35,7 @@ public class Generator extends Activity {
         // setContentView(R.layout.daily_eletric);
         setTitle(R.string.Generatortitle);
         setContentView(R.layout.monthly_eletric);
-        Fengji = new Appliance("11");
-        Guangfu = new Appliance("12");
-        Fengji.loadfromDB();
-        Guangfu.loadfromDB();
-        int[] gfstate = {0, 0, 0, 0, 0, 800, 1500, 2000, 2500, 2800, 3000, 3800, 3800, 3600, 3000, 2500, 1600, 500, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};//1-24hour
-        int[] fjstate = {3000, 3000, 3000, 2800, 2400, 2700, 2500, 1900, 1700, 1500, 1200, 1100, 1500, 1800, 2200, 2400, 2400, 2200, 2100, 2700, 3000, 3000, 3000, 3000};
-        Fengji.setState(fjstate);
-        Guangfu.setState(gfstate);
-        Fengji.savetoDB();
-        Guangfu.savetoDB();
+
 
         Button btn_fj = (Button) findViewById(R.id.fenji);
         Button btn_gf = (Button) findViewById(R.id.guangfu);
@@ -56,7 +45,7 @@ public class Generator extends Activity {
             @Override
             public void onClick(View v) {
                 TextView maxpower = (TextView) findViewById(R.id.maxpower);
-                maxpower.setText(""+Fengji.power);
+                maxpower.setText(""+MainActivity.Fengji.power);
                 //画折线图
                 lineChart = (LineChart) findViewById(R.id.Linechart_generator);
                 LineData resultLineData = getLineData(24,true);
@@ -69,7 +58,7 @@ public class Generator extends Activity {
             @Override
             public void onClick(View v) {
                 TextView maxpower = (TextView) findViewById(R.id.maxpower);
-                maxpower.setText(""+Guangfu.power);
+                maxpower.setText(""+MainActivity.Guangfu.power);
                 //画折线图
                 lineChart = (LineChart) findViewById(R.id.Linechart_generator);
                 LineData resultLineData = getLineData(24,false);
@@ -91,10 +80,10 @@ public class Generator extends Activity {
         for(int i=0;i<count;i++){//y轴的数据
             int result=0;
             if (flag==true){
-                result=Fengji.getState()[i];
+                result=MainActivity.Fengji.getState()[i];
             }
             else {
-                result =Guangfu.getState()[i];
+                result =MainActivity.Guangfu.getState()[i];
             }
             y.add(new Entry((float)result,i));
         }

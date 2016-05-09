@@ -68,6 +68,9 @@ public class KongtiaoActivity extends Activity{
         starttime = (EditText) findViewById(R.id.starttime);
         overtime = (EditText) findViewById(R.id.overtime);
         tset = (EditText) findViewById(R.id.Tset);
+        starttime.clearFocus();
+        overtime.clearFocus();
+        tset.clearFocus();
 
         TextView mingcheng=(TextView)findViewById(R.id.mingcheng);
         mingcheng.setText(aname[index]);
@@ -78,17 +81,20 @@ public class KongtiaoActivity extends Activity{
         LinearLayout LinLayTset=(LinearLayout)findViewById(R.id.LinLayTset);
         LinearLayout LinLayappcat=(LinearLayout)findViewById(R.id.LinLayappcat);
 
+        String strurl="http://10.189.170.2:800/ysy";
         // 显示开始时间和结束时间
         switch (index){
             case 0:
                 starttime.setText("" + MainActivity.Kongtiao.getStarttime());
                 overtime.setText("" + MainActivity.Kongtiao.getOvertime());
                 tset.setText("" + MainActivity.Kongtiao.getTset());
+                strurl+="?name=kongtiao";
                 break;
             case 3:
                 starttime.setText("" + MainActivity.Reshuiqi.getStarttime());
                 overtime.setText("" + MainActivity.Reshuiqi.getOvertime());
                 tset.setText("" + MainActivity.Reshuiqi.getTset());
+                strurl+="?name=reshuiqi";
                 break;
             case 4:
                 LinLayTset.setVisibility(View.GONE);
@@ -122,7 +128,7 @@ public class KongtiaoActivity extends Activity{
         //jump
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
-        String strurl="http://45.62.118.181/ysy?name=kongtiao";
+
         try {
             URL url=new URL(strurl);
             HttpURLConnection urlConn=(HttpURLConnection)url.openConnection();

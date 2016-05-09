@@ -19,7 +19,9 @@
     <TableLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:background="@android:color/black">
+        android:background="@android:color/black"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp">
 
         <TableRow
             android:layout_width="match_parent"
@@ -37,7 +39,6 @@
                 android:layout_weight="1"
                 android:background="@android:color/white"
                 android:gravity="center_horizontal"
-                android:layout_marginRight="1dp"
                 android:textSize="19dp"
                 android:textStyle="bold" />
 
@@ -55,18 +56,14 @@
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginBottom="1dp"
-            android:layout_marginRight="1dp"
-            android:layout_marginLeft="1dp">
+            style="@style/Tablerow"
+            android:background="@color/light_blue">
 
             <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/app1"
-                android:layout_weight="1"
-                android:background="@android:color/white"
-                android:gravity="center_horizontal"
-                android:layout_marginRight="1dp"
+                style="@style/Tabletext"
                 android:textSize="18dp" />
 
             <TextView
@@ -74,7 +71,6 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/rpwer_kongtiao"
                 android:layout_weight="1"
-                android:background="@android:color/white"
                 android:gravity="center_horizontal"
                 android:textSize="18dp" />
         </TableRow>
@@ -82,8 +78,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
             android:layout_marginBottom="1dp"
-            android:layout_marginRight="1dp"
-            android:layout_marginLeft="1dp">
+            android:layout_marginLeft="1dp"
+            android:layout_marginRight="1dp">
 
         <TextView
             android:layout_width="fill_parent"
@@ -92,7 +88,6 @@
             android:layout_weight="1"
             android:background="@android:color/white"
             android:gravity="center_horizontal"
-            android:layout_marginRight="1dp"
             android:textSize="18dp"/>
 
         <TextView
@@ -109,14 +104,14 @@
             android:layout_height="match_parent"
             android:layout_marginBottom="1dp"
             android:layout_marginLeft="1dp"
-            android:layout_marginRight="1dp">
+            android:layout_marginRight="1dp"
+            android:background="@color/light_blue">
 
             <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/app3"
                 android:layout_weight="1"
-                android:background="@android:color/white"
                 android:gravity="center_horizontal"
                 android:layout_marginRight="1dp"
                 android:textSize="18dp"/>
@@ -126,7 +121,6 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/rpwer_dianshi"
                 android:layout_weight="1"
-                android:background="@android:color/white"
                 android:gravity="center_horizontal"
                 android:textSize="18dp"/>
         </TableRow>
@@ -144,7 +138,6 @@
                 android:layout_weight="1"
                 android:background="@android:color/white"
                 android:gravity="center_horizontal"
-                android:layout_marginRight="1dp"
                 android:textSize="18dp"/>
 
             <TextView
@@ -161,14 +154,14 @@
             android:layout_height="match_parent"
             android:layout_marginBottom="1dp"
             android:layout_marginRight="1dp"
-            android:layout_marginLeft="1dp">
+            android:layout_marginLeft="1dp"
+            android:background="@color/light_blue">
 
             <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/app5"
                 android:layout_weight="1"
-                android:background="@android:color/white"
                 android:gravity="center_horizontal"
                 android:layout_marginRight="1dp"
                 android:textSize="18dp"/>
@@ -178,7 +171,6 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/rpwer_xiyiji"
                 android:layout_weight="1"
-                android:background="@android:color/white"
                 android:gravity="center_horizontal"
                 android:textSize="18dp"/>
         </TableRow>
@@ -196,7 +188,6 @@
                 android:layout_weight="1"
                 android:background="@android:color/white"
                 android:gravity="center_horizontal"
-                android:layout_marginRight="1dp"
                 android:textSize="18dp"/>
 
             <TextView
@@ -213,14 +204,14 @@
             android:layout_height="match_parent"
             android:layout_marginBottom="1dp"
             android:layout_marginLeft="1dp"
-            android:layout_marginRight="1dp">
+            android:layout_marginRight="1dp"
+            android:background="@color/light_blue">
 
             <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/app7"
                 android:layout_weight="1"
-                android:background="@android:color/white"
                 android:gravity="center_horizontal"
                 android:layout_marginRight="1dp"
                 android:textSize="18dp"/>
@@ -230,7 +221,6 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/rpwer_dianche"
                 android:layout_weight="1"
-                android:background="@android:color/white"
                 android:gravity="center_horizontal"
                 android:textSize="18dp"/>
         </TableRow>
@@ -248,7 +238,6 @@
                 android:layout_weight="1"
                 android:background="@android:color/white"
                 android:gravity="center_horizontal"
-                android:layout_marginRight="1dp"
                 android:textSize="18dp"/>
 
             <TextView
@@ -266,14 +255,14 @@
             android:layout_height="match_parent"
             android:layout_marginBottom="1dp"
             android:layout_marginLeft="1dp"
-            android:layout_marginRight="1dp">
+            android:layout_marginRight="1dp"
+            android:background="@color/light_blue">
 
             <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:text="总计"
                 android:layout_weight="1"
-                android:background="@android:color/white"
                 android:gravity="center_horizontal"
                 android:layout_marginRight="1dp"
                 android:textSize="18dp"/>
@@ -283,7 +272,6 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/rpwer_total"
                 android:layout_weight="1"
-                android:background="@android:color/white"
                 android:gravity="center_horizontal"
                 android:textSize="18dp"/>
 

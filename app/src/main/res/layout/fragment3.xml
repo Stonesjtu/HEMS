@@ -16,7 +16,9 @@
             android:id="@+id/tabrow1"
             android:layout_marginTop="15dp"
             android:elevation="5dp"
-            android:background="#ffffff">
+            android:background="#ffffff"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp">
 
 
 
@@ -53,7 +55,9 @@
             android:id="@+id/tabrow2"
            android:layout_marginTop="30dp"
             android:elevation="2dp"
-            android:background="#ffffff">
+            android:background="#ffffff"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp">
 
             <ImageView
                 android:layout_width="50dp"
@@ -85,7 +89,9 @@
             android:layout_height="match_parent"
             android:id="@+id/tabrow3"
             android:elevation="5dp"
-            android:background="#ffffff">
+            android:background="#ffffff"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp">
 
             <ImageView
                 android:layout_width="50dp"
@@ -118,7 +124,9 @@
             android:layout_marginTop="30dp"
             android:id="@+id/tabrow4"
             android:elevation="5dp"
-            android:background="#ffffff">
+            android:background="#ffffff"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp">
 
             <ImageView
                 android:layout_width="50dp"

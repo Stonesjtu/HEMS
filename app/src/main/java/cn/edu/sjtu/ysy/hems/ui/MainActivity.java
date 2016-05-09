@@ -18,6 +18,7 @@ import android.view.ViewGroup;
 import java.util.Locale;
 
 import cn.edu.sjtu.ysy.hems.R;
+import control.Optimize;
 import db.Database;
 import model.Appliance;
 import model.ApplianceDelay;
@@ -57,8 +58,12 @@ public class MainActivity extends Activity implements ActionBar.TabListener {
     public static ApplianceTher Reshuiqi;
     public static ApplianceTher Kongjing;
     public static ApplianceTher Dianche;
+    public static Appliance Fengji;
+    public static Appliance Guangfu;
 
     public static Appliance[] appliances;
+
+    public static Optimize youhua=new Optimize();
 
 
     @Override
@@ -102,15 +107,29 @@ public class MainActivity extends Activity implements ActionBar.TabListener {
         Reshuiqi.setState(trystatersq);
         int trstate1[]={0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,1,1,0,0,0};
         Xiyiji.setState(trstate1);
-        int trstate2[]={0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,11,0,0,0};
+        int trstate2[]={0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0};
         Xiwanji.setState(trstate2);
         int trystateev[]={0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3000,3000,3000,3000,3000,3000,0,0,0};
         Dianche.setState(trystateev);
         Kongjing.setState(trystatebx);
 
+        Fengji = new Appliance("11");
+        Guangfu = new Appliance("12");
+        Fengji.loadfromDB();
+        Guangfu.loadfromDB();
+        int[] gfstate = {0, 0, 0, 0, 0, 800, 1500, 2000, 2500, 2800, 3000, 3800, 3800, 3600, 3000, 2500, 1600, 500, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};//1-24hour
+        int[] fjstate = {3000, 3000, 3000, 2800, 2400, 2700, 2500, 1900, 1700, 1500, 1200, 1100, 1500, 1800, 2200, 2400, 2400, 2200, 2100, 2700, 3000, 3000, 3000, 3000};
+        Fengji.setState(fjstate);
+        Guangfu.setState(gfstate);
+        Fengji.savetoDB();
+        Guangfu.savetoDB();
+
         for (int i=0;i<8;i++){
             appliances[i].savetoDB();
         }
+
+
+        youhua.main();
 
 
 

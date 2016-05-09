@@ -26,7 +26,7 @@ public class ResultActivity extends Activity {
     public ArrayList<BarEntry> entries=new ArrayList<BarEntry>();
     public BarDataSet dataset;
     public ArrayList<String> labels=new ArrayList<String>();
-    public int[] Total=new int[]{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}; //每个电器总功率
+   // public int[] Total=new int[]{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}; //每个电器总功率
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -35,11 +35,11 @@ public class ResultActivity extends Activity {
         setTitle(R.string.resulttitle);
         barChart= (BarChart)findViewById(R.id.barchart_result);
 
-        for (int i=0;i<8;i++){
-            for (int h=0;h<24;h++) {
-                Total[h] += MainActivity.appliances[i].getPower()[h];
-            }
-        }
+//        for (int i=0;i<8;i++){
+//            for (int h=0;h<24;h++) {
+//                Total[h] += MainActivity.appliances[i].getPower()[h];
+//            }
+//        }
 
         Spinner chooseapp =(Spinner)findViewById(R.id.spinner2);
         chooseapp.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -60,7 +60,7 @@ public class ResultActivity extends Activity {
         });
     }
         public void initEntriesData(int index){
-            if(index!=8) {
+            if(index==1 || index==2) {
                 for (int i = 6; i < 24; i++) {
                     entries.add(new BarEntry(MainActivity.appliances[index].getPower()[i - 6], i));
                 }
@@ -68,12 +68,12 @@ public class ResultActivity extends Activity {
                     entries.add(new BarEntry(MainActivity.appliances[index].getPower()[j], j - 18));
                 }
             }
-            else{
+            else {
                     for (int i = 6; i < 24; i++) {
-                        entries.add(new BarEntry(Total[i - 6], i));
+                        entries.add(new BarEntry(MainActivity.youhua.Appliances[index].getPower()[i-6], i));
                     }
                     for (int j = 18; j < 24; j++) {
-                        entries.add(new BarEntry(Total[j], j - 18));
+                        entries.add(new BarEntry(MainActivity.youhua.Appliances[index].getPower()[j], j - 18));
                     }
                 }
             }

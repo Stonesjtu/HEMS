@@ -8,6 +8,8 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.DecimalFormat;
+
 import cn.edu.sjtu.ysy.hems.R;
 
 /**
@@ -29,6 +31,8 @@ public class Electric extends Activity {
         final TextView valleykwh=(TextView)findViewById(R.id.valleykwh);
         Spinner chooseapp=(Spinner)findViewById(R.id.spinner);
 
+
+
         for (int j = 0; j < 8; j++) {
             for (int i = 0; i < 16; i++) {
                 peak[j] +=( MainActivity.appliances[j].getPower()[i]/1000.0);
@@ -42,14 +46,15 @@ public class Electric extends Activity {
         chooseapp.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                DecimalFormat decimalFormat=new DecimalFormat("0.00");//把小数位数设为2位
 
                 if (position != 8) {
-                    peakkwh.setText("" + peak[position]);
-                    valleykwh.setText("" + valley[position]);
+                    peakkwh.setText(decimalFormat.format(peak[position]));
+                    valleykwh.setText(decimalFormat.format(valley[position]));
                 }
                 else{
-                        peakkwh.setText("" + peaktotal);
-                        valleykwh.setText("" + valleytotal);
+                        peakkwh.setText(decimalFormat.format(peaktotal));
+                        valleykwh.setText(decimalFormat.format(valleytotal));
                     }
                 }
 
