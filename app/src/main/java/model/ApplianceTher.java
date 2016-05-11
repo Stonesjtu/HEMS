@@ -41,21 +41,20 @@ public class ApplianceTher extends Appliance{
         this.Tset = t;
     }
 
-    @Override
-    public void setState( int[] hstate) {
-
-        this.state = hstate;
-        Database connection = new Database();
-        SQLiteDatabase db = connection.getDatabase();
-
-        for (int i=1;i<24;i++) {
-            String sql = "UPDATE appliancether SET ";
-            sql = sql + "state" + i +"="+hstate[i-1]+" where id=" +id;
-            db.execSQL(sql);
-        }
-        db.close();
-
-    }
+//    @Override
+//    public void setState( int[] hstate) {
+//
+//        this.state = hstate;
+////        Database connection = new Database();
+////        SQLiteDatabase db = connection.getDatabase();
+////
+////        for (int i=1;i<24;i++) {
+////            String sql = "UPDATE appliancether SET ";
+////            sql = sql + "state" + i +"="+hstate[i-1]+" where id=" +id;
+////            db.execSQL(sql);
+////        }
+////        db.close();
+//    }
 
 
 

@@ -89,17 +89,19 @@ public class Appliance {
 
 
     public void setState( int[] hstate) {
+        for(int i =0;i<24;i++){
+            this.state[i]=hstate[i];
 
-        this.state = hstate;
-        Database connection = new Database();
-        SQLiteDatabase db = connection.getDatabase();
-
-        for (int i=1;i<24;i++) {
-            String sql = "UPDATE appliance SET ";
-            sql = sql + "state" + i +"="+hstate[i-1]+" where id=" +id;
-            db.execSQL(sql);
         }
-        db.close();
+//        Database connection = new Database();
+//        SQLiteDatabase db = connection.getDatabase();
+//
+//        for (int i=1;i<24;i++) {
+//            String sql = "UPDATE appliance SET ";
+//            sql = sql + "state" + i +"="+hstate[i-1]+" where id=" +id;
+//            db.execSQL(sql);
+//        }
+//        db.close();
 
     }
 

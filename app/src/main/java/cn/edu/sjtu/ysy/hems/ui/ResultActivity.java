@@ -6,10 +6,8 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.github.mikephil.charting.charts.BarChart;
-import com.github.mikephil.charting.components.LimitLine;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
@@ -44,15 +42,17 @@ public class ResultActivity extends Activity {
         optm=new Optimize();
         textTest.setText(""+optm.Reshuiqi.getTset());
         textTest1.setText(""+optm.Kongtiao.getOvertime());
-        Toast.makeText(getApplicationContext(),""+optm.Dianche.getState(), Toast.LENGTH_LONG).show();
+        textTest2.setText(""+optm.Dianche.getState()[7]);
+       // Toast.makeText(getApplicationContext(),""+optm.Dianche.getState(), Toast.LENGTH_LONG).show();
+        optm.optim();
 
-       // youhua.main();
+
 //        for (int i=0;i<8;i++){
 //            for (int h=0;h<24;h++) {
 //                Total[h] += MainActivity.appliances[i].getPower()[h];
 //            }
 //        }
-        optm.optim();
+
         Spinner chooseapp =(Spinner)findViewById(R.id.spinner2);
         chooseapp.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -99,10 +99,11 @@ public class ResultActivity extends Activity {
             dataset= new BarDataSet(entries,"每小时预测功率（W）");
             dataset.setColors(ColorTemplate.COLORFUL_COLORS);
             BarData data=new BarData(labels,dataset);
-            LimitLine line=new LimitLine(6000f);
+         //   LimitLine line=new LimitLine(6000f);
             barChart.setData(data);
 //        chart.animateXY(5000,5000);
 //        chart.animateX(5000);
+            barChart.getAxisRight().setEnabled(false);
             barChart.animateY(3000);
             barChart.setDescription("时刻");
         }
