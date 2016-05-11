@@ -18,7 +18,7 @@ public class Appliance {
    public String name;
     protected String id;
     public int  power;
-    public int[] state = {0,0,0,0,0,0,0,0,0,
+    public int[] state = {0,0,0,0,0,0,0,0,0,   //from0o'clock——23o'clock, hour=index
                   0,0,0,0,0,0,0,0,0,0,0,
             0,0,0,0};
     public final int kind;
@@ -66,12 +66,14 @@ public class Appliance {
 
     public double[] getPrice(){
         double[] nowprice =new double[24];
-        for (int i=0;i<16;i++){
+        for (int i=6;i<22;i++){
             nowprice[i]= PEAK/1000 * getPower()[i];
         }
-        for (int i=16;i<24;i++){
+        for (int i=0;i<6;i++){
             nowprice[i]= VALLEY/1000 * getPower()[i];
         }
+        nowprice[22]=VALLEY/1000 * getPower()[22];
+        nowprice[23]=VALLEY/1000 * getPower()[23];
         return nowprice;
     }
 
@@ -87,17 +89,19 @@ public class Appliance {
 
 
     public void setState( int[] hstate) {
+        for(int i =0;i<24;i++){
+            this.state[i]=hstate[i];
 
-        this.state = hstate;
-        Database connection = new Database();
-        SQLiteDatabase db = connection.getDatabase();
-
-        for (int i=1;i<24;i++) {
-            String sql = "UPDATE appliance SET ";
-            sql = sql + "state" + i +"="+hstate[i-1]+" where id=" +id;
-            db.execSQL(sql);
         }
-        db.close();
+//        Database connection = new Database();
+//        SQLiteDatabase db = connection.getDatabase();
+//
+//        for (int i=1;i<24;i++) {
+//            String sql = "UPDATE appliance SET ";
+//            sql = sql + "state" + i +"="+hstate[i-1]+" where id=" +id;
+//            db.execSQL(sql);
+//        }
+//        db.close();
 
     }
 

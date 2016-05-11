@@ -116,17 +116,17 @@ public class  Database extends SQLiteOpenHelper {
         String sqlfj =" INSERT INTO appliance(id,name,power,kind) VALUES('11','风力发电',3000,2)";
         String sqlgf =" INSERT INTO appliance(id,name,power,kind) VALUES('12','光伏电池',3800,2)";
         String sqlac =" INSERT INTO appliancether(id,name,power,kind,starttime,overtime,Tset) " +
-                "VALUES('1','空调',2500,1,19,7,22)";
+                "VALUES('1','空调',2500,1,19,9,22)";
         String sqlwh =" INSERT INTO appliancether(id,name,power,kind,starttime,overtime,Tset)" +
-                " VALUES('4','热水器',300,1,19,7,55)";
+                " VALUES('4','热水器',15300,1,19,9,55)";
         String sqlev =" INSERT INTO appliancether(id,name,power,kind,starttime,overtime,Tset)" +
-                " VALUES('7','电动汽车',300,1,19,7,90)";
+                " VALUES('7','电动汽车',3000,1,19,9,90)";
         String sqlxy =" INSERT INTO appliancedelay(id,name,power,duration,kind,starttime,overtime)" +
-                " VALUES('5','洗衣机',300,2,0,20,24)";
+                " VALUES('5','洗衣机',600,2,0,20,3)";
         String sqlxw =" INSERT INTO appliancedelay(id,name,power,duration,kind,starttime,overtime)" +
-                " VALUES('6','洗碗机',300,1,0,20,24)";
+                " VALUES('6','洗碗机',1000,1,0,20,3)";
         String sqlkj =" INSERT INTO appliancether(id,name,power,kind,starttime,overtime,Tset) " +
-                "VALUES('8','空气净化器',300,1,19,7,20)";
+                "VALUES('8','空气净化器',300,1,19,9,20)";
 
 
         db.execSQL(sql);

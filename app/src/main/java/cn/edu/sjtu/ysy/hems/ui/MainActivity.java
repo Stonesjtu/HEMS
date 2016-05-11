@@ -18,7 +18,6 @@ import android.view.ViewGroup;
 import java.util.Locale;
 
 import cn.edu.sjtu.ysy.hems.R;
-import control.Optimize;
 import db.Database;
 import model.Appliance;
 import model.ApplianceDelay;
@@ -63,7 +62,7 @@ public class MainActivity extends Activity implements ActionBar.TabListener {
 
     public static Appliance[] appliances;
 
-    public static Optimize youhua=new Optimize();
+
 
 
     @Override
@@ -117,8 +116,8 @@ public class MainActivity extends Activity implements ActionBar.TabListener {
         Guangfu = new Appliance("12");
         Fengji.loadfromDB();
         Guangfu.loadfromDB();
-        int[] gfstate = {0, 0, 0, 0, 0, 800, 1500, 2000, 2500, 2800, 3000, 3800, 3800, 3600, 3000, 2500, 1600, 500, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};//1-24hour
-        int[] fjstate = {3000, 3000, 3000, 2800, 2400, 2700, 2500, 1900, 1700, 1500, 1200, 1100, 1500, 1800, 2200, 2400, 2400, 2200, 2100, 2700, 3000, 3000, 3000, 3000};
+        int[] gfstate = {0,0, 0, 0, 0, 0, 800, 1500, 2000, 2500, 2800, 3000, 3800, 3800, 3600, 3000, 2500, 1600, 500, 0, 0, 0, 0, 0};//1-24hour
+        int[] fjstate = {3000,3000, 3000, 3000, 2800, 2400, 2700, 2500, 1900, 1700, 1500, 1200, 1100, 1500, 1800, 2200, 2400, 2400, 2200, 2100, 2700, 3000, 3000, 3000};
         Fengji.setState(fjstate);
         Guangfu.setState(gfstate);
         Fengji.savetoDB();
@@ -129,7 +128,7 @@ public class MainActivity extends Activity implements ActionBar.TabListener {
         }
 
 
-        youhua.main();
+
 
 
 

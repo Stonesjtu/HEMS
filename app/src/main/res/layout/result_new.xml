@@ -11,30 +11,48 @@
         android:id="@+id/textView18"
         android:text="选择电器"
         style="@style/HomeText"
-        android:layout_marginTop="50dp" />
+        android:layout_marginTop="50dp"
+        android:layout_marginBottom="30dp" />
 
     <Spinner
         android:layout_width="100dp"
         android:layout_height="62dp"
-        android:id="@+id/spinner2"
         android:spinnerMode="dropdown"
+        android:layout_weight="0"
+        android:id="@+id/spinner2"
         android:entries="@array/choose_app"
-        style="@style/HomeText"
-        android:background="@color/foreground1"
-        android:clickable="false"
-        android:gravity="center_horizontal"
-        android:paddingLeft="50dp"
-        android:popupBackground="@color/background1"
-        android:paddingRight="50dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginBottom="50dp"
-        android:layout_marginLeft="50dp"
-        android:layout_marginRight="50dp" />
+        android:layout_gravity="center_horizontal"
+        android:background="@color/background2" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="testText"
+            android:id="@+id/testText" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="New Text"
+            android:id="@+id/testText1" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="New Text"
+            android:id="@+id/testText2" />
+    </LinearLayout>
 
     <com.github.mikephil.charting.charts.BarChart
         android:layout_width="360dp"
         android:layout_height="223dp"
         android:id="@+id/barchart_result"
-        android:layout_gravity="center_horizontal" />
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="30dp" />
 
 </LinearLayout>

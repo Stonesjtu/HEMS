@@ -5,7 +5,6 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.StrictMode;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -21,11 +20,8 @@ import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.utils.ColorTemplate;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 import cn.edu.sjtu.ysy.hems.R;
 
@@ -42,6 +38,7 @@ public class KongtiaoActivity extends Activity{
     public int[] overtimeint = new int[24];
     public int[] Tset = new int[24];
     public int index;
+    public int hour;
 
     public BarChart barChart;
     public ArrayList<BarEntry> entries=new ArrayList<BarEntry>();
@@ -60,10 +57,13 @@ public class KongtiaoActivity extends Activity{
         Intent intent=getIntent();
         index=intent.getIntExtra("dianqi", -1);
         barChart= (BarChart) findViewById(R.id.barchart_kongtiao);
+        Calendar c=Calendar.getInstance();
+        hour=c.get(Calendar.HOUR_OF_DAY);
         initEntriesData();
         initLableData();
         show();
         setTitle(R.string.kongtiaotitle);
+
 
         starttime = (EditText) findViewById(R.id.starttime);
         overtime = (EditText) findViewById(R.id.overtime);
@@ -72,6 +72,8 @@ public class KongtiaoActivity extends Activity{
         overtime.clearFocus();
         tset.clearFocus();
 
+        TextView hour_of_day=(TextView)findViewById(R.id.hour_of_day_k);
+        hour_of_day.setText("" + hour);
         TextView mingcheng=(TextView)findViewById(R.id.mingcheng);
         mingcheng.setText(aname[index]);
         TextView ratedpower=(TextView)findViewById(R.id.rated_power);
@@ -81,20 +83,20 @@ public class KongtiaoActivity extends Activity{
         LinearLayout LinLayTset=(LinearLayout)findViewById(R.id.LinLayTset);
         LinearLayout LinLayappcat=(LinearLayout)findViewById(R.id.LinLayappcat);
 
-        String strurl="http://10.189.170.2:800/ysy";
+      //  String strurl="http://10.189.170.2:800/ysy";
         // 显示开始时间和结束时间
         switch (index){
             case 0:
                 starttime.setText("" + MainActivity.Kongtiao.getStarttime());
                 overtime.setText("" + MainActivity.Kongtiao.getOvertime());
                 tset.setText("" + MainActivity.Kongtiao.getTset());
-                strurl+="?name=kongtiao";
+              //  strurl+="?name=kongtiao";
                 break;
             case 3:
                 starttime.setText("" + MainActivity.Reshuiqi.getStarttime());
                 overtime.setText("" + MainActivity.Reshuiqi.getOvertime());
                 tset.setText("" + MainActivity.Reshuiqi.getTset());
-                strurl+="?name=reshuiqi";
+              //  strurl+="?name=reshuiqi";
                 break;
             case 4:
                 LinLayTset.setVisibility(View.GONE);
@@ -126,49 +128,42 @@ public class KongtiaoActivity extends Activity{
                 break;
         }
         //jump
-        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-        StrictMode.setThreadPolicy(policy);
-
-        try {
-            URL url=new URL(strurl);
-            HttpURLConnection urlConn=(HttpURLConnection)url.openConnection();
-            InputStreamReader in =new InputStreamReader(urlConn.getInputStream());
-            BufferedReader bufferReader= new BufferedReader(in);
-            String result="";
-            String readline=null;
-            while ((readline=bufferReader.readLine())!=null){
-                result +=readline;
-            }
-            in.close();
-            urlConn.disconnect();
-            Toast.makeText(getApplicationContext(),result,Toast.LENGTH_LONG).show();
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+//        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+//        StrictMode.setThreadPolicy(policy);
+//
+//        try {
+//            URL url=new URL(strurl);
+//            HttpURLConnection urlConn=(HttpURLConnection)url.openConnection();
+//            InputStreamReader in =new InputStreamReader(urlConn.getInputStream());
+//            BufferedReader bufferReader= new BufferedReader(in);
+//            String result="";
+//            String readline=null;
+//            while ((readline=bufferReader.readLine())!=null){
+//                result +=readline;
+//            }
+//            in.close();
+//            urlConn.disconnect();
+//            Toast.makeText(getApplicationContext(),result,Toast.LENGTH_LONG).show();
+//
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
     }
 
 
 
     public void initEntriesData() {
-        for (int i=6;i<24;i++)
-        {
-            switch (index){
-
-                case 0: entries.add(new BarEntry(MainActivity.Kongtiao.getPower()[i-6],i));break;
-                case 1: entries.add(new BarEntry(MainActivity.Bingxiang.getPower()[i-6],i));break;
-                case 2: entries.add(new BarEntry(MainActivity.Dianshi.getPower()[i-6],i));break;
-                case 3: entries.add(new BarEntry(MainActivity.Reshuiqi.getPower()[i-6],i));break;
-                case 4: entries.add(new BarEntry(MainActivity.Xiyiji.getPower()[i-6],i));break;
-                case 5: entries.add(new BarEntry(MainActivity.Xiwanji.getPower()[i-6],i));break;
-                case 6: entries.add(new BarEntry(MainActivity.Dianche.getPower()[i-6],i));break;
-                case 7: entries.add(new BarEntry(MainActivity.Kongjing.getPower()[i-6],i));break;
-                default:break;
+        if (hour!=0) {
+            for (int i = 0; i < hour; i++) {
+                entries.add(new BarEntry(MainActivity.appliances[index].getPower()[i], i));
             }
+            for (int j = hour; j < 24; j++) {
+                entries.add(new BarEntry(0, j));
             }
-        for (int j=18;j<24;j++){
-            entries.add(new BarEntry(MainActivity.appliances[index].getPower()[j],j-18));
-
+        }
+        else
+        for(int j=0;j<24;j++)
+            entries.add(new BarEntry(0, j));
         }
 //        entries.add(new BarEntry(4f, 0));
 //        entries.add(new BarEntry(8f, 1));
@@ -176,7 +171,7 @@ public class KongtiaoActivity extends Activity{
 //        entries.add(new BarEntry(12f, 3));
 //        entries.add(new BarEntry(18f, 4));
 //        entries.add(new BarEntry(9f, 5));
-    }
+
 
     public void initLableData(){
         for (int i=0;i<24;i++){

@@ -14,6 +14,7 @@ import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 import cn.edu.sjtu.ysy.hems.R;
 
@@ -28,6 +29,7 @@ public class Generator extends Activity {
     public ArrayList<Entry> y=new ArrayList<Entry>();
     public ArrayList<LineDataSet> lineDataSets=new ArrayList<LineDataSet>();
     public LineData lineData=null;
+    int hour;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -35,6 +37,12 @@ public class Generator extends Activity {
         // setContentView(R.layout.daily_eletric);
         setTitle(R.string.Generatortitle);
         setContentView(R.layout.monthly_eletric);
+
+        Calendar c=Calendar.getInstance();
+        hour=c.get(Calendar.HOUR_OF_DAY);
+
+        TextView hour_of_day=(TextView)findViewById(R.id.hour_of_day_g);
+        hour_of_day.setText("" + hour);
 
 
         Button btn_fj = (Button) findViewById(R.id.fenji);
@@ -48,7 +56,7 @@ public class Generator extends Activity {
                 maxpower.setText(""+MainActivity.Fengji.power);
                 //画折线图
                 lineChart = (LineChart) findViewById(R.id.Linechart_generator);
-                LineData resultLineData = getLineData(24,true);
+                LineData resultLineData = getLineData(hour,true);
                 showChart(lineChart, resultLineData, Color.rgb(110, 190, 224));
             }
         });
@@ -61,7 +69,7 @@ public class Generator extends Activity {
                 maxpower.setText(""+MainActivity.Guangfu.power);
                 //画折线图
                 lineChart = (LineChart) findViewById(R.id.Linechart_generator);
-                LineData resultLineData = getLineData(24,false);
+                LineData resultLineData = getLineData(hour,false);
                 showChart(lineChart, resultLineData, Color.rgb(110, 190, 224));
             }
         });
@@ -74,8 +82,9 @@ public class Generator extends Activity {
     public LineData getLineData(int count,boolean flag){
         x.clear();
         y.clear();
-        for(int i=0;i<count;i++){  //X轴显示的数据
+        for(int i=0;i<24;i++){  //X轴显示的数据
             x.add(i+"");
+            if(count==0)  y.add(new Entry(0,i));
         }
         for(int i=0;i<count;i++){//y轴的数据
             int result=0;
@@ -87,8 +96,10 @@ public class Generator extends Activity {
             }
             y.add(new Entry((float)result,i));
         }
+
+
         LineDataSet lineDataSet=new LineDataSet(y,"折线图");//y轴数据集合
-        lineDataSet.setLineWidth(1f);//线宽
+        lineDataSet.setLineWidth(3f);//线宽
         lineDataSet.setCircleSize(2f);//现实圆形大小
         lineDataSet.setColor(Color.RED);//现实颜色
         lineDataSet.setCircleSize(Color.BLUE);//圆形颜色

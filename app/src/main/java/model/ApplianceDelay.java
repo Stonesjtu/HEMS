@@ -52,21 +52,21 @@ public class ApplianceDelay extends Appliance {
         this.starttime = hour;
     }
 
-    @Override
-    public void setState( int[] hstate) {
-
-        this.state = hstate;
-        Database connection = new Database();
-        SQLiteDatabase db = connection.getDatabase();
-
-        for (int i=1;i<24;i++) {
-            String sql = "UPDATE appliancedelay SET ";
-            sql = sql + "state" + i +"="+hstate[i-1]+" where id=" +id;
-            db.execSQL(sql);
-        }
-        db.close();
-
-    }
+//    @Override
+//    public void setState( int[] hstate) {
+//
+//        this.state = hstate;
+////        Database connection = new Database();
+////        SQLiteDatabase db = connection.getDatabase();
+//
+////        for (int i=1;i<24;i++) {
+////            String sql = "UPDATE appliancedelay SET ";
+////            sql = sql + "state" + i +"="+hstate[i-1]+" where id=" +id;
+////            db.execSQL(sql);
+////        }
+////        db.close();
+//
+//    }
 
     @Override
    public void  savetoDB() {

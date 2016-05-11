@@ -15,15 +15,15 @@ public class Optimize {
     public Appliance Dianyuan;
     public  Appliance Chudian;
     public  Appliance Fuhe; //total power of consume
-    public static ApplianceDelay Xiyiji;
-    public static ApplianceDelay Xiwanji;
-    public static ApplianceTher Kongtiao;
-    public static ApplianceTher Reshuiqi;
-    public static ApplianceTher Dianche;
-    public static ApplianceTher Kongjing;
-    public static Appliance[] Appliances;
+    public ApplianceDelay Xiyiji;
+    public  ApplianceDelay Xiwanji;
+    public  ApplianceTher Kongtiao;
+    public  ApplianceTher Reshuiqi;
+    public  ApplianceTher Dianche;
+    public  ApplianceTher Kongjing;
+    public  Appliance[] Appliances;
 
-    public static double[] Tout={27,27,28,29,30,31,32,32,33,31,30,30,29,28,28,27,26,25,25,25,24,25,26,26};
+    public static double[] Tout={25,25,24,25,26,26,27,27,28,29,30,31,32,32,33,31,30,30,29,28,28,27,26,25};
     public double[] Tin=new double[24];
     public  double[] Tset=new double[24]; //优化后实际变化的Tset
     public  double dT=3;
@@ -31,11 +31,15 @@ public class Optimize {
     public double[] Wset=new double[24];
     public double dW=5;
 
+
+    public final static double SELL = 0.44;
+    public final static double SUBSIDY = 0.42;
+    //all zero array generator
+    public static int[] ZERO() { return new int[]{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};}
     private static final double r=0.9;
     private static final double q=-0.009;
     private static final double R=0.2;
     private static final double Q=13;
-    private static final int[] ZERO= {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
     private static final int Pchmax=3000;
     private static  final int Pdismax=-3000;
     private  static final double SOCmax=6000;
@@ -44,32 +48,53 @@ public class Optimize {
     private static  final double gdis=0.93;//放电效率
 
     public int[] genpower=new int[48];
-    private  int[] conpower=ZERO;
-    public  int[] buypower=ZERO;
-    public  int[] selpower=ZERO;
-    private int[] chupower=ZERO;
+    private  int[] conpower=ZERO();
+    public  int[] buypower=ZERO();
+    public  int[] selpower=ZERO();
+    private int[] chupower=ZERO();
 
     public double peakFee;
     public double valleyFee;
-    public double[] Fee;
-    public double[] sell;
+    public double[] Fee=new double[24];
+    public double[] sell=new double[24];
     public double sellFee;
 
 
 
     public Optimize(){
-        Kongtiao=MainActivity.Kongtiao;
-        Kongtiao.setState(ZERO);
+
+        Kongtiao=new ApplianceTher("21");
+        Reshuiqi=new ApplianceTher("24");
+        Xiyiji=new ApplianceDelay("25");
+        Xiwanji=new ApplianceDelay("26");
+        Dianche=new ApplianceTher("27");
+        Kongjing=new ApplianceTher("28");
+        Chudian=new Appliance("15");
         Fuhe=new Appliance("13");
         Dianyuan=new Appliance("14");
+
+      //  Kongtiao.setState(ZERO);
+        Kongtiao.setTset(MainActivity.Kongtiao.getTset());
+        Kongtiao.setStarttime(MainActivity.Kongtiao.getStarttime());
+        Kongtiao.setOvertime(MainActivity.Kongtiao.getOvertime());
+      //  Reshuiqi.setState(ZERO);
+        Reshuiqi.setTset(MainActivity.Reshuiqi.getTset());
+        Reshuiqi.setStarttime(MainActivity.Reshuiqi.getStarttime());
+        Reshuiqi.setOvertime(MainActivity.Reshuiqi.getOvertime());
+        Xiyiji.setStarttime(MainActivity.Xiyiji.getStarttime());
+        Xiyiji.setOvertime(MainActivity.Xiyiji.getOvertime());
+        Xiwanji.setStarttime(MainActivity.Xiwanji.getStarttime());
+        Xiwanji.setOvertime(MainActivity.Xiwanji.getOvertime());
+        Dianche.setTset(MainActivity.Dianche.getTset());
+        Dianche.setStarttime(MainActivity.Dianche.getStarttime());
+        Dianche.setOvertime(MainActivity.Dianche.getOvertime());
         Fuhe.setState(addState(MainActivity.Bingxiang.getState(),MainActivity.Dianshi.getState()));
         Dianyuan.setState(addState(MainActivity.Fengji.getState(),MainActivity.Guangfu.getState()));
         Appliances = new Appliance[] {Kongtiao,Fuhe,Dianyuan,Reshuiqi,Xiyiji,Xiwanji,Dianche,Kongjing};
 
-        for (int i=3;i<8;i++){
-            Appliances[i]=MainActivity.appliances[i];
-            Appliances[i].setState(ZERO);
-        }
+//        for (int i=4;i<8;i++){
+//            Appliances[i].setState(ZERO);
+//        }
 
         for(int i=0;i<24;i++){
             genpower[i]=Dianyuan.getState()[i];
@@ -90,7 +115,7 @@ public class Optimize {
     }
 
     public int[] addState(int[]state1,int[]state2){
-        int[] stateTT=ZERO;
+        int[] stateTT=ZERO();
         for(int i=0;i<24;i++){
             stateTT[i]=state1[i]+state2[i];
         }
@@ -98,7 +123,7 @@ public class Optimize {
     }
 
     public int[] minusState(int[]state1,int[]state2){
-        int[] stateTT=ZERO;
+        int[] stateTT=ZERO();
         for(int i=0;i<24;i++){
             stateTT[i]=state1[i]-state2[i];
         }
@@ -158,7 +183,7 @@ public class Optimize {
         return index;
     }
 
-    public  void main() {
+    public  void optim() {
 
         //>>>>>>电动汽车优化，从starttime到overtime时间段中找出Dianyuan功率最大的时间排序，按顺序消耗
         int SEV0 = 0;  //假定到家是电动汽车的剩余量为0
@@ -258,7 +283,7 @@ public class Optimize {
 
 
         //>>>>>>空调按照设定的准确温度运行时
-        int[] exactstate = ZERO;
+        int[] exactstate = ZERO();
         indexend = (Kongtiao.starttime + Kongtiao.overtime - 6);
         if ((Kongtiao.starttime + Kongtiao.overtime) > 23) {
             for (int i = Kongtiao.starttime - 6; i < 24; i++) {
@@ -277,7 +302,7 @@ public class Optimize {
             Tin[i] = calTroom(Tin[i - 1], Tout[i], exactstate[i], 1);
         }
         MainActivity.Kongtiao.setState(exactstate);
-        MainActivity.Kongtiao.savetoDB();
+      //  MainActivity.Kongtiao.savetoDB();
 
         //>>>>>>空调优化
         for (int i = 1; i < 24; i++) {
@@ -302,7 +327,7 @@ public class Optimize {
 
 
         //>>>>>>热水器按照设定的准确温度运行时
-        int[] exactstate2 = ZERO;
+        int[] exactstate2 = ZERO();
         indexend = (Reshuiqi.starttime + Reshuiqi.overtime - 6);
         if ((Reshuiqi.starttime + Reshuiqi.overtime) > 23) {
             for (int i = Reshuiqi.starttime - 6; i < 24; i++) {
@@ -317,7 +342,7 @@ public class Optimize {
             }
         }
         MainActivity.Reshuiqi.setState(exactstate2);
-        MainActivity.Reshuiqi.savetoDB();
+      //  MainActivity.Reshuiqi.savetoDB();
         Win[0] = (1 - R) * Reshuiqi.Tset;
         for (int i = 1; i < 24; i++) {
             Win[i] = calTroom(Win[i - 1], Tout[i], exactstate2[i], 0);
@@ -384,16 +409,21 @@ public class Optimize {
 
     }
     public void calCharge(){
-        for (int i=0;i<16;i++){
-            Fee[i]=buypower[i] * Appliance.PEAK /1000.0;
-            sell[i]=selpower[i]*Calculate.SELL/1000.0;
-        }
-        for (int i=16;i<24;i++){
+        for (int i=0;i<6;i++){
             Fee[i]=buypower[i] * Appliance.VALLEY /1000.0;
-            sell[i]=selpower[i]*Calculate.SELL/1000.0;
+            sell[i]=selpower[i]*SELL/1000.0;
         }
-        peakFee=sum24(Fee,0,15);
-        valleyFee=sum24(Fee,16,23);
+        for (int i=6;i<22;i++){
+            Fee[i]=buypower[i] * Appliance.PEAK /1000.0;
+            sell[i]=selpower[i]*SELL/1000.0;
+        }
+        for (int i=22;i<24;i++){
+            Fee[i]=buypower[i] * Appliance.VALLEY /1000.0;
+            sell[i]=selpower[i]*SELL/1000.0;
+        }
+
+        peakFee=sum24(Fee,6,21);
+        valleyFee=sum24(Fee,0,5)+sum24(Fee,22,23);
         sellFee=sum24(sell,0,23);
     }
 

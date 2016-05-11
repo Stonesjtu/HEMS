@@ -12,9 +12,12 @@ import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 import cn.edu.sjtu.ysy.hems.R;
+import control.Calculate;
 
 /**
  * Created by YSY on 2016/4/11.
@@ -26,6 +29,7 @@ public class Elecharge extends Activity {
     public ArrayList<Entry> y=new ArrayList<Entry>();
     public ArrayList<LineDataSet> lineDataSets=new ArrayList<LineDataSet>();
     public LineData lineData=null;
+    public int hour;
 
     @Nullable
     @Override
@@ -33,18 +37,25 @@ public class Elecharge extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.elecharge);
         setTitle(R.string.elechargetitle);
+        Calendar c=Calendar.getInstance();
+        hour=c.get(Calendar.HOUR_OF_DAY);
+        TextView hour_of_day=(TextView)findViewById(R.id.hour_of_day_c);
+        hour_of_day.setText(""+hour);
 
         TextView totalmoney=(TextView)findViewById(R.id.totalmoney);
-        int total=0;
-        for (int i=0;i<24;i++){
-          for(int j=0;j<8;j++){
-              total+=MainActivity.appliances[j].getPrice()[i];
-           }
+        double total=0;
+        if(hour!=0) {
+            for (int i=0;i<hour;i++) {
+                for (int j= 0; j < 8; j++) {
+                    total += MainActivity.appliances[j].getPrice()[i];
+                }
+            }
         }
-        totalmoney.setText(""+total);
+        DecimalFormat decimalFormat=new DecimalFormat("0.00");
+        totalmoney.setText(decimalFormat.format(total));
 
         lineChart= (LineChart)findViewById(R.id.Linechart_charge);
-        LineData resultLineData=getLineData(24);
+        LineData resultLineData=getLineData(hour);
         showChart(lineChart, resultLineData, Color.rgb(110, 190, 224));
 
     }
@@ -54,18 +65,26 @@ public class Elecharge extends Activity {
      * count 表示坐标点个数，range表示等下y值生成的范围
      */
     public LineData getLineData(int count){
-        for(int i=0;i<count;i++){  //X轴显示的数据
-            x.add(i+"");
+        double[] result={0,0,0,0,0,0,0,0};
+        double sumresult=0;
+        for(int i=0;i<24;i++) {  //X轴显示的数据
+            x.add(i + "");
+            if (count==0) y.add(new Entry((float) sumresult, i));
         }
-        for(int i=0;i<count;i++){//y轴的数据
-            double result=0;
-            for(int j=0;j<8;j++){
-                result+=MainActivity.appliances[j].getPrice()[i];
+        if(count!=0) {
+            for (int i = 0; i < count; i++) {
+                for (int j = 0; j < 8; j++) {
+                    result[j] = Calculate.sum(MainActivity.appliances[j].getPrice(), 0, i);
+                }
+                sumresult = Calculate.sum(result, 0, 7);
+                y.add(new Entry((float) sumresult, i));
             }
-            y.add(new Entry((float)result,i));
         }
+
+
+
         LineDataSet lineDataSet=new LineDataSet(y,"折线图");//y轴数据集合
-        lineDataSet.setLineWidth(1f);//线宽
+        lineDataSet.setLineWidth(3f);//线宽
         lineDataSet.setCircleSize(2f);//现实圆形大小
         lineDataSet.setColor(Color.YELLOW);//现实颜色
         lineDataSet.setCircleSize(Color.BLUE);//圆形颜色

@@ -32,14 +32,9 @@ public class PowerActivity extends Activity {
         rpower[7]=(TextView)findViewById(R.id.rpwer_kongjing);
         rpower[8]=(TextView)findViewById(R.id.rpwer_total);
         for(int i=0;i<8;i++){
-            if(hour>=6 && hour<24) {
-                rpower[i].setText("" + MainActivity.appliances[i].state[hour-6]);
-                total += MainActivity.appliances[i].state[hour-6];
-            }
-            else {
-                rpower[i].setText("" + MainActivity.appliances[i].state[hour+18]);
-                total += MainActivity.appliances[i].state[hour+18];
-            }
+
+                rpower[i].setText("" + MainActivity.appliances[i].getPower()[hour]);
+                total += MainActivity.appliances[i].getPower()[hour];
         }
         rpower[8].setText("" +total);
 
