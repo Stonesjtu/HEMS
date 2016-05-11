@@ -222,7 +222,7 @@ public class Optimize {
         }
 
         Set<Integer> set_user =new HashSet<Integer>();
-        for (int i =indexstart;i!=indexend+1;i++){
+        for (int i =indexstart;i!=indexend;i++){
             set_user.add(i%24);
         }
         Set<Integer> intersection = new HashSet<>(set_low);
@@ -231,7 +231,7 @@ public class Optimize {
         Random rand = new Random();
         int ablestart = (abletimexy[0] + Xiyiji.starttime ) % 24;
 
-        if (genpower[ablestart] > Xiyiji.power) {
+        if (genpower[ablestart] >+ Xiyiji.power) {
             Xiyiji.state[ablestart] = 1;
             Xiyiji.state[ablestart + 1] = 1;
             genpower[ablestart] -= Xiyiji.power;
@@ -250,13 +250,16 @@ public class Optimize {
                 //random
                 for (Integer i : intersection){
                     if (intersection.contains((i+1) % 24)){
-                       randNum=i;
+                        randNum=i;
                         break;
                     }
                     randNum=i;
                 }
+                if (randNum==indexend-1)
+                    randNum--;
+
             } else {
-                randNum = rand.nextInt(Xiyiji.overtime) + indexstart;
+                randNum = rand.nextInt(Xiyiji.overtime - 1) + indexstart;
             }
             Xiyiji.state[randNum % 24] = 1;
             Xiyiji.state[(randNum+1) % 24] = 1;
@@ -272,21 +275,30 @@ public class Optimize {
         int[] abletimexw = calMax(indexstart, indexend);
         ablestart = (abletimexw[0] + Xiwanji.starttime ) % 24;
 
-        if (genpower[ablestart] > Xiwanji.power) {
+        set_user =new HashSet<Integer>();
+        for (int i =indexstart;i!=indexend;i++){
+            set_user.add(i%24);
+        }
+
+        if (false/*genpower[ablestart] >= Xiwanji.power*/) {
             Xiwanji.state[ablestart] = 1;
             genpower[ablestart] -= Xiwanji.power;
             // Fuhe.state[ablestart] += Xiwanji.power;
         } else {
             int randnum = 0;
-            if (indexend > 15 && indexstart < 24) {//可以在谷价22：00——6：00，index16——23买电
-                //random
-                if (indexstart < 16) {
-                    if (indexend > 24) randnum = rand.nextInt(8) + 16;
-                    else randnum = rand.nextInt(indexend - 16) + 16;
-                } else {
-                    if (indexend > 24) randnum = rand.nextInt(24 - indexstart) + 16;
-                    else randnum = rand.nextInt(indexend - indexstart) + 16;
-                }
+            set_user.retainAll(set_low);
+            if (!set_user.isEmpty()){
+                randnum=set_user.iterator().next();
+
+//            if (indexend > 15 && indexstart < 24) {//可以在谷价22：00——6：00，index16——23买电
+//                //random
+//                if (indexstart < 16) {
+//                    if (indexend > 24) randnum = rand.nextInt(8) + 16;
+//                    else randnum = rand.nextInt(indexend - 16) + 16;
+//                } else {
+//                    if (indexend > 24) randnum = rand.nextInt(24 - indexstart) + 16;
+//                    else randnum = rand.nextInt(indexend - indexstart) + 16;
+//                }
             } else {
                 randnum = rand.nextInt(Xiwanji.overtime) + indexstart;
             }
