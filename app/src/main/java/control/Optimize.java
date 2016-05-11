@@ -1,7 +1,9 @@
 package control;
 
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.Random;
+import java.util.Set;
 
 import cn.edu.sjtu.ysy.hems.ui.MainActivity;
 import model.Appliance;
@@ -74,6 +76,7 @@ public class Optimize {
         Dianyuan=new Appliance("14");
 
       //  Kongtiao.setState(ZERO);
+        Kongtiao.power=MainActivity.Kongtiao.power;
         Kongtiao.setTset(MainActivity.Kongtiao.getTset());
         Kongtiao.setStarttime(MainActivity.Kongtiao.getStarttime());
         Kongtiao.setOvertime(MainActivity.Kongtiao.getOvertime());
@@ -92,9 +95,9 @@ public class Optimize {
         Dianyuan.setState(addState(MainActivity.Fengji.getState(),MainActivity.Guangfu.getState()));
         Appliances = new Appliance[] {Kongtiao,Fuhe,Dianyuan,Reshuiqi,Xiyiji,Xiwanji,Dianche,Kongjing};
 
-//        for (int i=4;i<8;i++){
-//            Appliances[i].setState(ZERO);
-//        }
+        for (int i=3;i<8;i++){
+            Appliances[i].power=MainActivity.appliances[i].power;
+        }
 
         for(int i=0;i<24;i++){
             genpower[i]=Dianyuan.getState()[i];
@@ -192,10 +195,10 @@ public class Optimize {
             Hev = Dianche.overtime;
         }
         //不管峰谷，先满足发出来的电先用掉
-        int[] abletime = calMax(Dianche.starttime - 6, Dianche.starttime + Dianche.overtime - 6);
+        int[] abletime = calMax(Dianche.starttime, Dianche.starttime + Dianche.overtime); //计算充电期间，电源的最大出力顺序
         int index = 0;
         for (int i = 0; i < Hev; i++) {
-            index = (abletime[i] + Dianche.starttime - 6) % 24;
+            index = (abletime[i] + Dianche.starttime ) % 24;  //几点功率最大——小
             if (Dianyuan.getState()[index] > Dianche.power) {
                 Dianche.state[index] = Dianche.power;
                 genpower[index] -= Dianche.power;
@@ -211,11 +214,22 @@ public class Optimize {
         //>>>>>>蓄电池储能
 
         //>>>>>>洗衣机2小时优化
-        int indexstart = Xiyiji.starttime - 6;
-        int indexend = Xiyiji.starttime + Xiyiji.overtime - 6;
+        int indexstart = Xiyiji.starttime ;
+        int indexend = Xiyiji.starttime + Xiyiji.overtime ;
+        Set<Integer> set_low = new HashSet<Integer>();//储存谷价的小时编号
+        for (int i=22;i!=30;i++){
+            set_low.add(i%24);
+        }
+
+        Set<Integer> set_user =new HashSet<Integer>();
+        for (int i =indexstart;i!=indexend+1;i++){
+            set_user.add(i%24);
+        }
+        Set<Integer> intersection = new HashSet<>(set_low);
+        intersection.retainAll(set_user);
         int[] abletimexy = calMax(indexstart, indexend);
         Random rand = new Random();
-        int ablestart = (abletimexy[0] + Xiyiji.starttime - 6) % 24;
+        int ablestart = (abletimexy[0] + Xiyiji.starttime ) % 24;
 
         if (genpower[ablestart] > Xiyiji.power) {
             Xiyiji.state[ablestart] = 1;
@@ -232,31 +246,31 @@ public class Optimize {
             //Fuhe.state[ablestart + 1] += Xiyiji.power;
         } else {
             int randNum = 0;
-            if (indexend > 16 && indexstart < 22) {//可以在谷价22：00——6：00，index16——23买电
+            if (!intersection.isEmpty()) {//可以在谷价22：00——6：00，index16——23买电
                 //random
-                if (indexstart < 16) {
-                    if (indexend > 23) randNum = rand.nextInt(7) + 16;
-                    else randNum = rand.nextInt(indexend - 16) + 16;
-                } else {
-                    if (indexend > 23) randNum = rand.nextInt(23 - indexstart) + 16;
-                    else randNum = rand.nextInt(indexend - indexstart) + 16;
+                for (Integer i : intersection){
+                    if (intersection.contains((i+1) % 24)){
+                       randNum=i;
+                        break;
+                    }
+                    randNum=i;
                 }
             } else {
                 randNum = rand.nextInt(Xiyiji.overtime) + indexstart;
             }
             Xiyiji.state[randNum % 24] = 1;
-            Xiyiji.state[randNum % 24 + 1] = 1;
+            Xiyiji.state[(randNum+1) % 24] = 1;
             buypower[randNum % 24] += Xiyiji.power;
-            buypower[randNum % 24 + 1] += Xiyiji.power;
+            buypower[(randNum+1) % 24 ] += Xiyiji.power;
             //Fuhe.state[randNum % 24] += Xiyiji.power;
             //Fuhe.state[randNum % 24 + 1] += Xiyiji.power;
         }
 
         //>>>>>>洗碗机1小时优化
-        indexstart = Xiwanji.starttime - 6;
-        indexend = Xiwanji.starttime + Xiwanji.overtime - 6;
+        indexstart = Xiwanji.starttime ;
+        indexend = Xiwanji.starttime + Xiwanji.overtime ;
         int[] abletimexw = calMax(indexstart, indexend);
-        ablestart = (abletimexw[0] + Xiwanji.starttime - 6) % 24;
+        ablestart = (abletimexw[0] + Xiwanji.starttime ) % 24;
 
         if (genpower[ablestart] > Xiwanji.power) {
             Xiwanji.state[ablestart] = 1;
@@ -284,16 +298,16 @@ public class Optimize {
 
         //>>>>>>空调按照设定的准确温度运行时
         int[] exactstate = ZERO();
-        indexend = (Kongtiao.starttime + Kongtiao.overtime - 6);
+        indexend = (Kongtiao.starttime + Kongtiao.overtime );
         if ((Kongtiao.starttime + Kongtiao.overtime) > 23) {
-            for (int i = Kongtiao.starttime - 6; i < 24; i++) {
+            for (int i = Kongtiao.starttime; i < 24; i++) {
                 exactstate[i] = calTherpower(Kongtiao.Tset, Kongtiao.Tset, Tout[i], 1);
             }
             for (int i = 0; i < (indexend % 24); i++) {
                 exactstate[i] = calTherpower(Kongtiao.Tset, Kongtiao.Tset, Tout[i], 1);
             }
         } else {
-            for (int i = Kongtiao.starttime - 6; i < indexend; i++) {
+            for (int i = Kongtiao.starttime ; i < indexend; i++) {
                 exactstate[i] = calTherpower(Kongtiao.Tset, Kongtiao.Tset, Tout[i], 1);
             }
         }
@@ -328,16 +342,16 @@ public class Optimize {
 
         //>>>>>>热水器按照设定的准确温度运行时
         int[] exactstate2 = ZERO();
-        indexend = (Reshuiqi.starttime + Reshuiqi.overtime - 6);
+        indexend = (Reshuiqi.starttime + Reshuiqi.overtime );
         if ((Reshuiqi.starttime + Reshuiqi.overtime) > 23) {
-            for (int i = Reshuiqi.starttime - 6; i < 24; i++) {
+            for (int i = Reshuiqi.starttime ; i < 24; i++) {
                 exactstate2[i] = calTherpower(Reshuiqi.Tset, Reshuiqi.Tset, Tout[i], 0);
             }
             for (int i = 0; i < (indexend % 24); i++) {
                 exactstate2[i] = calTherpower(Reshuiqi.Tset, Reshuiqi.Tset, Tout[i], 0);
             }
         } else {
-            for (int i = Reshuiqi.starttime - 6; i < indexend; i++) {
+            for (int i = Reshuiqi.starttime; i < indexend; i++) {
                 exactstate2[i] = calTherpower(Reshuiqi.Tset, Reshuiqi.Tset, Tout[i], 0);
             }
         }
