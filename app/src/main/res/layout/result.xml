@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_weight="1"
+    android:id="@+id/scrollView3">
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:divider="@color/foreground1"
+        android:showDividers="end">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/imageView6"
+            android:src="@mipmap/appliance_12"/>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="空调"
+                android:id="@+id/textView16"
+                android:textStyle="bold"
+                android:textColor="#2400a5"
+                android:textSize="18dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="10dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="将设置温度智能随气温变化"
+                android:id="@+id/textView17"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="10dp" />
+
+            <ImageView
+                android:layout_width="172dp"
+                android:layout_height="172dp"
+                android:id="@+id/imageView7"
+                android:src="@drawable/whmore"
+                android:layout_marginLeft="10dp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:showDividers="end"
+        android:divider="@color/foreground1">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/appliance_38"/>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="热水器"
+                android:textStyle="bold"
+                android:textColor="#2400a5"
+                android:textSize="18dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="10dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="到家后启动开启加热"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="10dp" />
+
+            <ImageView
+                android:layout_width="172dp"
+                android:layout_height="172dp"
+                android:src="@drawable/whmore"
+                android:layout_marginLeft="10dp" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:showDividers="end"
+        android:divider="@color/foreground1">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/appliance_35"/>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="冰箱"
+                android:textStyle="bold"
+                android:textColor="#2400a5"
+                android:textSize="18dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="10dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="将开启时间转移至晚上谷电期"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="10dp" />
+
+            <ImageView
+                android:layout_width="172dp"
+                android:layout_height="172dp"
+                android:src="@drawable/whmore"
+                android:layout_marginLeft="10dp" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:showDividers="end"
+        android:divider="@color/foreground1">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/transport_37"/>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="电动汽车"
+                android:textStyle="bold"
+                android:textColor="#2400a5"
+                android:textSize="18dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="10dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="将充电时间转移至谷电期"
+                android:id="@+id/textView19"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="10dp" />
+
+            <ImageView
+                android:layout_width="172dp"
+                android:layout_height="172dp"
+                android:id="@+id/imageView9"
+                android:src="@drawable/whmore"
+                android:layout_marginLeft="10dp" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+
+  </LinearLayout>
+</ScrollView>
+

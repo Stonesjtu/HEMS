@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:weightSum="1">
+
+
+    <ImageView
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:src= "@mipmap/ic_hems"
+        android:id="@+id/imageView4"
+        android:layout_marginTop="20dp"
+        android:layout_weight="0.08"
+        android:layout_gravity="center_horizontal" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/app_name"
+        android:id="@+id/textView13"
+        android:layout_marginTop="20dp"
+        android:gravity="center_horizontal"
+        android:textColor="#34b5e5"
+        android:textStyle="bold"
+        android:textSize="40dp" />
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="本软件于2016年4月期间研发\n于上海交通大学\n作者杨思渊\n指导老师为艾芊\n感谢电子信息与电气工程学院"
+        android:id="@+id/about"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="40dp"
+        android:textSize="20dp"
+        android:singleLine="false" />
+
+</LinearLayout>

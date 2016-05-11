@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+    android:background="@color/background2">
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:layout_marginTop="15dp">
+
+                <Button
+                    android:id="@+id/btn_chart"
+                    style="@style/HomeButton"
+                    android:drawableTop="@drawable/ic_chart_h"
+                    android:onClick="onButtonClicker"
+                    android:text="@string/electrictitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/textcolor" />
+
+                <Button
+                    android:id="@+id/btn_bullish"
+                    style="@style/HomeButton"
+                    android:drawableTop="@drawable/ic_bullish_h"
+                    android:onClick="onButtonClicker"
+                    android:text="@string/Generatortitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/textcolor" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:layout_marginTop="15dp">
+
+                <Button
+                    android:id="@+id/btn_survey"
+                    style="@style/HomeButton"
+                    android:drawableTop="@drawable/ic_survey_h"
+                    android:onClick="onButtonClicker"
+                    android:text="@string/elechargetitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/textcolor" />
+
+                <Button
+                    android:id="@+id/btn_power"
+                    style="@style/HomeButton"
+                    android:drawableTop="@drawable/ic_power_h"
+                    android:onClick="onButtonClicker"
+                    android:text="@string/comforttitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/textcolor" />
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+

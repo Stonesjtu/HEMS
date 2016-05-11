@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="优化前后费用比较"
+        android:id="@+id/textView32"
+        style="@style/HomeText"
+        android:layout_marginTop="50dp" />
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/black"
+        android:layout_marginTop="50dp"
+        android:orientation="vertical"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            style="@style/Tablerow">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="      "
+                android:id="@+id/textView22"
+                android:textSize="@dimen/text_size_medium"
+                style="@style/Tabletext"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="优化前"
+                android:id="@+id/textView21"
+                android:textSize="19dp"
+                android:textStyle="bold"
+                style="@style/Tabletext"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="优化后"
+                android:id="@+id/textView35"
+                android:textSize="19dp"
+                android:textStyle="bold"
+                style="@style/Tabletext"/>
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            style="@style/Tablerow"
+            android:background="@color/light_blue">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="峰时段"
+                android:id="@+id/textView23"
+                android:textSize="19dp"
+                android:textStyle="bold"
+                style="@style/Tabletext"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="New Text"
+                android:id="@+id/peak_before"
+                android:textSize="@dimen/text_size_medium"
+                style="@style/Tabletext"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="New Text"
+                android:id="@+id/peak_after"
+                android:textSize="@dimen/text_size_medium"
+                style="@style/Tabletext"/>
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            style="@style/Tablerow">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="谷时段"
+                android:id="@+id/textView28"
+                android:textSize="19dp"
+                android:textStyle="bold"
+                style="@style/Tabletext"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="New Text"
+                android:id="@+id/valley_before"
+                android:textSize="@dimen/text_size_medium"
+                style="@style/Tabletext"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="New Text"
+                android:id="@+id/valley_after"
+                android:textSize="@dimen/text_size_medium"
+                style="@style/Tabletext"/>
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            style="@style/Tablerow"
+            android:background="@color/light_blue">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="发电补贴"
+                android:id="@+id/textView29"
+                android:textSize="19dp"
+                android:textStyle="bold"
+                style="@style/Tabletext"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="New Text"
+                android:id="@+id/gen_before"
+                android:textSize="@dimen/text_size_medium"
+                style="@style/Tabletext"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="New Text"
+                android:id="@+id/gen_after"
+                android:textSize="@dimen/text_size_medium"
+                style="@style/Tabletext"/>
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            style="@style/Tablerow">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="总计收入"
+                android:id="@+id/textView33"
+                android:textSize="19dp"
+                android:textStyle="bold"
+                style="@style/Tabletext"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="New Text"
+                android:id="@+id/total_before"
+                android:textSize="@dimen/text_size_medium"
+                style="@style/Tabletext"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="New Text"
+                android:id="@+id/total_after"
+                android:textSize="@dimen/text_size_medium"
+                style="@style/Tabletext"/>
+        </TableRow>
+    </TableLayout>
+
+</LinearLayout>

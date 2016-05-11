@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="E:\MY_file\STUDY\FOUR_2\APP\YHEMS\app\build\intermediates\exploded-aar\com.android.support\support-v13\23.1.1\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="5ddf5f4817565c9db82613c16093f76640a54e15">
+        <dex dex="E:\MY_file\STUDY\FOUR_2\APP\YHEMS\app\build\intermediates\pre-dexed\debug\classes-b6f3fde34c9771b7233d8361506019bd8d4a0659.jar" />
+    </item>
+    <item
+        jar="E:\MY_file\STUDY\FOUR_2\APP\YHEMS\app\build\intermediates\exploded-aar\YHEMS\mplib\unspecified\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="d2d0ce8ccf5b0e1009dfc4a808a1886d6b8256c8">
+        <dex dex="E:\MY_file\STUDY\FOUR_2\APP\YHEMS\app\build\intermediates\pre-dexed\debug\classes-b097cb983a93ce9188425cd8d84e41d378f9f0ce.jar" />
+    </item>
+    <item
+        jar="D:\Android\SDK\extras\android\m2repository\com\android\support\support-annotations\23.1.1\support-annotations-23.1.1.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="8d680ba5a623724d1fb0e81c36a790f023a6cede">
+        <dex dex="E:\MY_file\STUDY\FOUR_2\APP\HEMS\app\build\intermediates\pre-dexed\debug\support-annotations-23.1.1-3af62365efa68590026d6e6d134363a491168d36.jar" />
+    </item>
+    <item
+        jar="E:\MY_file\STUDY\FOUR_2\APP\YHEMS\app\build\intermediates\exploded-aar\com.android.support\support-v13\23.1.1\jars\libs\internal_impl-23.1.1.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="f4d7a07120e76988f3a15403838d323c2400db83">
+        <dex dex="E:\MY_file\STUDY\FOUR_2\APP\YHEMS\app\build\intermediates\pre-dexed\debug\internal_impl-23.1.1-de670be1f62b26e7935b86fd17f69329365ad6b8.jar" />
+    </item>
+    <item
+        jar="E:\MY_file\STUDY\FOUR_2\APP\HEMS\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.1.1\jars\libs\internal_impl-23.1.1.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="a4de9c81ae239414e1ed0f86441b02abaf29bca9">
+        <dex dex="E:\MY_file\STUDY\FOUR_2\APP\HEMS\app\build\intermediates\pre-dexed\debug\internal_impl-23.1.1-3a934975d76e6ce287a1a1565dd57fb250aaf558.jar" />
+    </item>
+    <item
+        jar="E:\MY_file\STUDY\FOUR_2\APP\HEMS\app\build\intermediates\exploded-aar\com.android.support\support-v13\23.1.1\jars\libs\internal_impl-23.1.1.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="f4d7a07120e76988f3a15403838d323c2400db83">
+        <dex dex="E:\MY_file\STUDY\FOUR_2\APP\HEMS\app\build\intermediates\pre-dexed\debug\internal_impl-23.1.1-5020cd5f75ff31ecf021e74af9bb283422a74d27.jar" />
+    </item>
+    <item
+        jar="E:\MY_file\STUDY\FOUR_2\APP\HEMS\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.1.1\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="6cbc7773921fcfedbe55657578f0cbfe614778dc">
+        <dex dex="E:\MY_file\STUDY\FOUR_2\APP\HEMS\app\build\intermediates\pre-dexed\debug\classes-0929b84829ac161c11dd8408bfbc9e7cbbd37ba9.jar" />
+    </item>
+    <item
+        jar="E:\MY_file\STUDY\FOUR_2\APP\YHEMS\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.1.1\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="6cbc7773921fcfedbe55657578f0cbfe614778dc">
+        <dex dex="E:\MY_file\STUDY\FOUR_2\APP\YHEMS\app\build\intermediates\pre-dexed\debug\classes-86eb5fa3349d5708809c259194165eae64dda491.jar" />
+    </item>
+    <item
+        jar="E:\MY_file\STUDY\FOUR_2\APP\YHEMS\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.1.1\jars\libs\internal_impl-23.1.1.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="a4de9c81ae239414e1ed0f86441b02abaf29bca9">
+        <dex dex="E:\MY_file\STUDY\FOUR_2\APP\YHEMS\app\build\intermediates\pre-dexed\debug\internal_impl-23.1.1-dd20ed43dc9ebea8e70ca3e2e6599a4a5b2b29f8.jar" />
+    </item>
+    <item
+        jar="E:\MY_file\STUDY\FOUR_2\APP\HEMS\app\build\intermediates\exploded-aar\com.android.support\support-v13\23.1.1\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="5ddf5f4817565c9db82613c16093f76640a54e15">
+        <dex dex="E:\MY_file\STUDY\FOUR_2\APP\HEMS\app\build\intermediates\pre-dexed\debug\classes-67dddc7ca63bfd0900dc286f53bd0ff0ca1b744f.jar" />
+    </item>
+
+</items>

@@ -1,0 +1,16 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- These settings headers are only used on tablets. -->
+    <PreferenceCategory android:title="优化设置">
+
+
+    <SwitchPreference
+        android:defaultValue="true"
+        android:key="if_sunny"
+        android:summary="@string/pref_weather_description"
+        android:title="@string/pref_weather" />
+    </PreferenceCategory>
+
+
+
+    </PreferenceScreen>
