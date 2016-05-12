@@ -77,7 +77,7 @@ public class ResultActivity extends Activity {
                 if (position==0){
                     textTin.setVisibility(View.VISIBLE);
                     lineChart.setVisibility(View.VISIBLE);
-                    textTin.setText("预测室温"+optm.Kongtiao.getState()[23]);
+                    textTin.setText("预测室温");
                     LineData resultLineData=getLineData(position);
                     showChart(lineChart, resultLineData, Color.rgb(110, 190, 224));
                 }

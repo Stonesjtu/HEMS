@@ -109,24 +109,25 @@ public class  Database extends SQLiteOpenHelper {
                 + "starttime   INTEGER	,"
                 + "overtime  INTEGER	 ,"
                 + "Tset   REAL	,"
+                + "dT   REAL	,"
                 +"kind INTEGER );";
 
         String sqlbx =" INSERT INTO appliance(id,name,power,kind) VALUES('2','冰箱',300,2)";
         String sqltv =" INSERT INTO appliance(id,name,power,kind) VALUES('3','电视',150,2)";
         String sqlfj =" INSERT INTO appliance(id,name,power,kind) VALUES('11','风力发电',3000,2)";
         String sqlgf =" INSERT INTO appliance(id,name,power,kind) VALUES('12','光伏电池',3800,2)";
-        String sqlac =" INSERT INTO appliancether(id,name,power,kind,starttime,overtime,Tset) " +
-                "VALUES('1','空调',2500,1,19,9,22)";
-        String sqlwh =" INSERT INTO appliancether(id,name,power,kind,starttime,overtime,Tset)" +
-                " VALUES('4','热水器',1500,1,19,9,55)";
-        String sqlev =" INSERT INTO appliancether(id,name,power,kind,starttime,overtime,Tset)" +
-                " VALUES('7','电动汽车',3000,1,19,9,90)";
+        String sqlac =" INSERT INTO appliancether(id,name,power,kind,starttime,overtime,Tset,dT) " +
+                "VALUES('1','空调',2500,1,19,9,22,3)";
+        String sqlwh =" INSERT INTO appliancether(id,name,power,kind,starttime,overtime,Tset,dT)" +
+                " VALUES('4','热水器',1500,1,19,9,50,5)";
+        String sqlev =" INSERT INTO appliancether(id,name,power,kind,starttime,overtime,Tset,dT)" +
+                " VALUES('7','电动汽车',3000,1,19,9,90,0)";
         String sqlxy =" INSERT INTO appliancedelay(id,name,power,duration,kind,starttime,overtime)" +
                 " VALUES('5','洗衣机',600,2,0,20,3)";
         String sqlxw =" INSERT INTO appliancedelay(id,name,power,duration,kind,starttime,overtime)" +
                 " VALUES('6','洗碗机',1000,1,0,20,3)";
-        String sqlkj =" INSERT INTO appliancether(id,name,power,kind,starttime,overtime,Tset) " +
-                "VALUES('8','空气净化器',300,1,19,9,20)";
+        String sqlkj =" INSERT INTO appliancether(id,name,power,kind,starttime,overtime,Tset,dT) " +
+                "VALUES('8','空气净化器',300,1,19,9,20,0)";
 
 
         db.execSQL(sql);

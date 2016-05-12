@@ -9,8 +9,13 @@
         android:key="if_sunny"
         android:summary="@string/pref_weather_description"
         android:title="@string/pref_weather" />
-    </PreferenceCategory>
 
+    <SwitchPreference
+        android:defaultValue="true"
+        android:key="if_control"
+        android:summary="@string/pref_youhua_description"
+        android:title="@string/pref_youhua" />
+</PreferenceCategory>
 
 
     </PreferenceScreen>

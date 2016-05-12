@@ -12,18 +12,27 @@ import cn.edu.sjtu.ysy.hems.R;
 /**
  * Created by YSY on 2016/4/16.
  */
+
+
 public class Setting  extends PreferenceActivity {
 
     private SwitchPreference sunny;
-    public static boolean ynyouhua;
+    private SwitchPreference control;
+//    public static boolean ynoptm;
+//    public static boolean yncontrol;
+//    SharedPreferences shp = PreferenceManager.getDefaultSharedPreferences(this);
+//    public static boolean ynyouhua=shp.getBoolean("if_sunny",true);
 
     @Override
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         addPreferencesFromResource(R.xml.pref_setting);
         sunny=(SwitchPreference)findPreference("if_sunny");
-        ynyouhua=sunny.isChecked();
+//        ynoptm=sunny.isChecked();
+        control=(SwitchPreference)findPreference("if_control");
+//        yncontrol=control.isChecked();
         setupActionBar();
+
 
     }
 

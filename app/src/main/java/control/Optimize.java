@@ -91,9 +91,14 @@ public class Optimize {
         Dianche.setTset(MainActivity.Dianche.getTset());
         Dianche.setStarttime(MainActivity.Dianche.getStarttime());
         Dianche.setOvertime(MainActivity.Dianche.getOvertime());
-        Fuhe.setState(addState(MainActivity.Bingxiang.getState(),MainActivity.Dianshi.getState()));
-        Dianyuan.setState(addState(MainActivity.Fengji.getState(),MainActivity.Guangfu.getState()));
+        Fuhe.setState(addState(MainActivity.Bingxiang.getState(), MainActivity.Dianshi.getState()));
+        Dianyuan.setState(addState(MainActivity.Fengji.getState(), MainActivity.Guangfu.getState()));
         Appliances = new Appliance[] {Kongtiao,Fuhe,Dianyuan,Reshuiqi,Xiyiji,Xiwanji,Dianche,Kongjing};
+
+        Kongtiao.setdT(MainActivity.Kongtiao.dT);
+        Reshuiqi.setdT(MainActivity.Reshuiqi.dT);
+        dT=Kongtiao.dT;
+        dW=Reshuiqi.dT;
 
         for (int i=3;i<8;i++){
             Appliances[i].power=MainActivity.appliances[i].power;
@@ -316,29 +321,29 @@ public class Optimize {
         indexend = (Kongtiao.starttime + Kongtiao.overtime );
         indexstart=Kongtiao.starttime;
         if (indexend > 24) {
-            for (int i = Kongtiao.starttime; i < 24; i++) {
+            for (int i = indexstart; i < 24; i++) {
                 exactstate[i] = calTherpower(Kongtiao.Tset, Kongtiao.Tset, Tout[i], 1);
             }
             for (int i = 0; i < (indexend % 24); i++) {
                 exactstate[i] = calTherpower(Kongtiao.Tset, Kongtiao.Tset, Tout[i], 1);
             }
         } else {
-            for (int i = Kongtiao.starttime ; i < indexend; i++) {
+            for (int i = indexstart ; i < indexend; i++) {
                 exactstate[i] = calTherpower(Kongtiao.Tset, Kongtiao.Tset, Tout[i], 1);
             }
         }
         //万一starttime时，即空调刚启动时的功率超过其额定功率
-        exactstate[Kongtiao.getStarttime()] = calTherpower(Kongtiao.Tset,Tin[Kongtiao.getStarttime()], Tout[Kongtiao.getStarttime()], 1);
-        if (exactstate[Kongtiao.getStarttime()]>MainActivity.Kongtiao.power){
-            exactstate[Kongtiao.getStarttime()]=MainActivity.Kongtiao.power;
+        exactstate[indexstart] = calTherpower(Kongtiao.Tset,Tin[indexstart], Tout[indexstart], 1);
+        if (exactstate[Kongtiao.getStarttime()]>Kongtiao.power){
+            exactstate[Kongtiao.getStarttime()]=Kongtiao.power;
         }
 
         //state[5],表示5点到6点的功率，Tin6可用state[5]算得
-        for (int i = Kongtiao.getStarttime()+1; i < indexend+1; i++) {
+        for (int i =indexstart+1; i < indexend+1; i++) {
             Tin[i%24] = calTroom(Tin[(i-1)%24], Tout[i%24], exactstate[(i-1)%24], 1);
         }
         Kongtiao.setState(exactstate);
-        MainActivity.Kongtiao.setState(exactstate);
+       // MainActivity.Kongtiao.setState(exactstate);
       //  MainActivity.Kongtiao.savetoDB()
 
         //>>>>>>空调优化,，考虑int i从starttime开始，到indexend结束,优化以后，Tin没有重算
@@ -349,6 +354,9 @@ public class Optimize {
                 if ((Tin[i%24] - Kongtiao.Tset) > dT) {
                     Tin[i%24] = Kongtiao.Tset + dT;
                     Kongtiao.state[i%24] = calTherpower(Tin[i%24], Tin[(i - 1)%24], Tout[i%24], 1);
+                    if (Kongtiao.state[i%24]>Kongtiao.power){
+                        Kongtiao.state[i%24]=Kongtiao.power;
+                    }
                     buypower[i%24]=Kongtiao.state[i%24]-genpower[i%24];
                     genpower[i%24]=0;
                 } else {
@@ -359,6 +367,7 @@ public class Optimize {
                 genpower[i%24]-=Kongtiao.state[i%24];
             }
             Tset[i%24] = Tin[i%24];
+            Tin[i%24] = calTroom(Tin[(i - 1)%24], Tout[i%24], Kongtiao.state[i%24], 1);
             //Fuhe.state[i]=Kongtiao.state[i];
         }
 
@@ -368,51 +377,55 @@ public class Optimize {
         for(int i=0;i<24;i++){
             Win[i]=(1-R)*Tout[i];
         }
-
         indexend = (Reshuiqi.starttime + Reshuiqi.overtime );
+        indexstart=Reshuiqi.getStarttime();
         if (indexend > 24) {
-            for (int i = Reshuiqi.starttime ; i < 24; i++) {
+            for (int i = indexstart ; i < 24; i++) {
                 exactstate2[i] = calTherpower(Reshuiqi.Tset, Reshuiqi.Tset, Tout[i], 0);
             }
             for (int i = 0; i < (indexend % 24); i++) {
                 exactstate2[i] = calTherpower(Reshuiqi.Tset, Reshuiqi.Tset, Tout[i], 0);
             }
         } else {
-            for (int i = Reshuiqi.starttime ; i < indexend; i++) {
+            for (int i = indexstart ; i < indexend; i++) {
                 exactstate2[i] = calTherpower(Reshuiqi.Tset, Reshuiqi.Tset, Tout[i], 0);
             }
         }
-        exactstate2[Reshuiqi.getStarttime()] = calTherpower(Reshuiqi.Tset,Win[Reshuiqi.getStarttime()], Tout[Reshuiqi.getStarttime()], 0);
+        exactstate2[indexstart] = calTherpower(Reshuiqi.Tset,Win[indexstart], Tout[indexstart], 0);
         //热水器刚启动时的功率可能大于额定功率
-        if (exactstate2[Reshuiqi.getStarttime()]>MainActivity.Reshuiqi.power){
-            exactstate2[Reshuiqi.getStarttime()]=MainActivity.Reshuiqi.power;
+        if (exactstate2[Reshuiqi.getStarttime()]>Reshuiqi.power){
+            exactstate2[Reshuiqi.getStarttime()]=Reshuiqi.power;
         }
-       // MainActivity.Reshuiqi.setState(exactstate2);
-      //MainActivity.Reshuiqi.savetoDB();
-
-        for (int i = Reshuiqi.getStarttime()+1; i < indexend+1; i++) {
+        for (int i = indexstart+1; i < indexend+1; i++) {
             Win[i%24] = calTroom(Win[(i-1)%24], Tout[i%24], exactstate2[(i-1)%24], 0);
         }
         Reshuiqi.setState(exactstate2);
+        // MainActivity.Reshuiqi.setState(exactstate2);
+        //MainActivity.Reshuiqi.savetoDB();
+
 
         //>>>>>>热水器优化
-        for (int i = 1; i < 24; i++) {
-            if (exactstate2[i] > genpower[i]) {
-                Win[i] = calTroom(Win[i - 1], Tout[i], genpower[i], 0);
-                if ((Win[i] - Reshuiqi.Tset) > dW) {
-                    Win[i] = Reshuiqi.Tset + dW;
-                    Reshuiqi.state[i] = calTherpower(Win[i], Win[i - 1], Tout[i], 0);
-                    buypower[i]=Reshuiqi.state[i]-genpower[i];
-                    genpower[i]=0;
+        for (int i = indexstart; i <indexend; i++) {
+            if (exactstate2[i%24] > genpower[i%24]) {
+                Win[i%24] = calTroom(Win[(i-1)%24], Tout[i%24], genpower[i%24], 0);
+                if (Math.abs(Win[i%24] - Reshuiqi.Tset) > dW) {
+                    Win[i%24] = Reshuiqi.Tset - dW;
+                    Reshuiqi.state[i%24] = calTherpower(Win[i%24], Win[(i-1)%24], Tout[i%24], 0);
+                    if (Reshuiqi.state[i%24] > Reshuiqi.power){
+                        Reshuiqi.state[i%24]=Reshuiqi.power;
+                    }
+                    buypower[i%24]=Reshuiqi.state[i%24]-genpower[i%24];
+                    genpower[i%24]=0;
                 } else {
-                   Reshuiqi.state[i] = genpower[i];
+                   Reshuiqi.state[i%24] = genpower[i%24];
                 }
 
             } else {
                // Reshuiqi.state[i] = exactstate2[i];
-                genpower[i]-=Reshuiqi.state[i];
+                genpower[i%24]-=Reshuiqi.state[i%24];
             }
-             Wset[i] = Win[i];
+             Wset[i%24] = Win[i%24];
+             Win[i%24] = calTroom(Win[(i-1)%24], Tout[i%24],Reshuiqi.state[i%24], 0);
              //Fuhe.state[i]=Reshuiqi.state[i];
         }
         getBattery();

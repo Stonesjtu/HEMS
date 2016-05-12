@@ -113,6 +113,8 @@
         <item>1</item>
         <item>0</item>
     </string-array>
-    <string name="pref_weather">是否优化</string>
-    <string name="pref_weather_description">根据优化计划自动控制智能电器</string>
+    <string name="pref_weather">开启优化模式</string>
+    <string name="pref_weather_description">在电器管理界面中自定义参数</string>
+    <string name="pref_youhua">开启控制模式</string>
+    <string name="pref_youhua_description">根据优化计划自动控制智能电器</string>
 </resources>

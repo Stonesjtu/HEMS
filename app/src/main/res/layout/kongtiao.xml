@@ -144,7 +144,7 @@
                 android:inputType="time"
                 android:ems="10"
                 android:id="@+id/starttime"
-                android:hint="输入24时制整点,如14"
+                android:hint="输入24时制整点,0—23"
                 android:layout_gravity="bottom|end"
                 android:textSize="14sp"
                 android:layout_marginRight="5sp"
@@ -175,7 +175,7 @@
                 android:inputType="time"
                 android:ems="10"
                 android:id="@+id/overtime"
-                android:hint="输入整数，以小时为单位"
+                android:hint="输入整数，0—23"
                 android:layout_gravity="bottom|end"
                 android:textSize="14sp"
                 android:layout_marginRight="5sp"
@@ -188,8 +188,7 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:id="@+id/LinLayTset"
-            android:layout_marginTop="5sp"
-            android:layout_marginBottom="10sp">
+            android:layout_marginTop="5sp">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -214,6 +213,38 @@
                 android:layout_marginRight="5sp"
                 android:layout_weight="0.12"
                 android:text="22" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:id="@+id/LinLaydT"
+            android:layout_marginTop="5sp"
+            android:layout_marginBottom="10sp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="设置可接受温差 ±"
+                android:id="@+id/TextdT"
+                android:textSize="18sp"
+                android:layout_marginLeft="5sp"
+                android:layout_gravity="bottom"
+                android:layout_weight="1"
+                android:gravity="center_horizontal" />
+
+            <EditText
+                android:layout_width="187dp"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:ems="10"
+                android:id="@+id/dT"
+                android:hint="输入正整数，如3"
+                android:layout_gravity="bottom|end"
+                android:textSize="14sp"
+                android:layout_marginRight="5sp"
+                android:layout_weight="0.12"
+                android:text="3" />
         </LinearLayout>
 
     </LinearLayout>

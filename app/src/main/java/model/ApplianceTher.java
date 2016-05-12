@@ -13,6 +13,7 @@ public class ApplianceTher extends Appliance{
     public int Tset;
     public int starttime;
     public int overtime;
+    public int dT;
 
 
     public ApplianceTher(String id) {
@@ -21,6 +22,9 @@ public class ApplianceTher extends Appliance{
 
     public int getTset() {
         return Tset;
+    }
+    public int getdT() {
+        return dT;
     }
     public int getStarttime() {
         return starttime;
@@ -40,6 +44,10 @@ public class ApplianceTher extends Appliance{
     public void setTset(int t) {
         this.Tset = t;
     }
+    public void setdT(int t) {
+        this.dT = t;
+    }
+
 
 //    @Override
 //    public void setState( int[] hstate) {
@@ -69,6 +77,7 @@ public class ApplianceTher extends Appliance{
         values.put("Tset",Tset);
         values.put("starttime",starttime);
         values.put("overtime",overtime);
+        values.put("dT",dT);
         db.update("appliancether", values, "id=?", new String[]{id});
         db.close();
     }
@@ -82,6 +91,7 @@ public class ApplianceTher extends Appliance{
             name=cur.getString(cur.getColumnIndex("name"));
             power=cur.getInt(cur.getColumnIndex("power"));
             Tset=cur.getInt(cur.getColumnIndex("Tset"));
+            dT=cur.getInt(cur.getColumnIndex("dT"));
             starttime=cur.getInt(cur.getColumnIndex("starttime"));
             overtime=cur.getInt(cur.getColumnIndex("overtime"));
             int[] state=new int[24];
