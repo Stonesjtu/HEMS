@@ -32,11 +32,11 @@ public class Calculate {
     }
 
     public static int sum24(int[] state){
-        return sum(state,0,24);
+        return sum(state,0,23);
     }
 
     public static double sum24(double[] state){
-        return sum(state,0,24);
+        return sum(state,0,23);
     }
 }
 

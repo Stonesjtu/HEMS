@@ -1,6 +1,7 @@
 package cn.edu.sjtu.ysy.hems.ui;
 
 import android.app.Activity;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -8,9 +9,14 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.github.mikephil.charting.charts.BarChart;
+import com.github.mikephil.charting.charts.LineChart;
+import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
+import com.github.mikephil.charting.data.Entry;
+import com.github.mikephil.charting.data.LineData;
+import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.utils.ColorTemplate;
 
 import java.util.ArrayList;
@@ -28,6 +34,12 @@ public class ResultActivity extends Activity {
     public ArrayList<BarEntry> entries=new ArrayList<BarEntry>();
     public BarDataSet dataset;
     public ArrayList<String> labels=new ArrayList<String>();
+
+    public LineChart lineChart;
+    public ArrayList<String> x=new ArrayList<String>();
+    public ArrayList<Entry> y=new ArrayList<Entry>();
+    public ArrayList<LineDataSet> lineDataSets=new ArrayList<LineDataSet>();
+    public LineData lineData=null;
    // public int[] Total=new int[]{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}; //每个电器总功率
 
     @Override
@@ -36,13 +48,9 @@ public class ResultActivity extends Activity {
         setContentView(R.layout.result_new);
         setTitle(R.string.resulttitle);
         barChart= (BarChart)findViewById(R.id.barchart_result);
-        TextView textTest=(TextView)findViewById(R.id.testText);
-        TextView textTest1=(TextView)findViewById(R.id.testText1);
-        TextView textTest2=(TextView)findViewById(R.id.testText2);
+
         optm=new Optimize();
-        textTest.setText(""+optm.Reshuiqi.getTset());
-        textTest1.setText(""+optm.Kongtiao.getOvertime());
-        textTest2.setText(""+optm.Dianche.getState()[7]);
+
        // Toast.makeText(getApplicationContext(),""+optm.Dianche.getState(), Toast.LENGTH_LONG).show();
         optm.optim();
 
@@ -62,6 +70,24 @@ public class ResultActivity extends Activity {
                 initEntriesData(position);
                 initLableData();
                 show();
+                TextView textTin=(TextView)findViewById(R.id.pred_Tin);
+                textTin.setVisibility(View.GONE);
+                lineChart= (LineChart)findViewById(R.id.linechart_result);
+                lineChart.setVisibility(View.GONE);
+                if (position==0){
+                    textTin.setVisibility(View.VISIBLE);
+                    lineChart.setVisibility(View.VISIBLE);
+                    textTin.setText("预测室温"+optm.Kongtiao.getState()[23]);
+                    LineData resultLineData=getLineData(position);
+                    showChart(lineChart, resultLineData, Color.rgb(110, 190, 224));
+                }
+                else if (position==3){
+                    textTin.setVisibility(View.VISIBLE);
+                    lineChart.setVisibility(View.VISIBLE);
+                    textTin.setText("预测水温");
+                    LineData resultLineData=getLineData(position);
+                    showChart(lineChart, resultLineData, Color.rgb(110, 190, 224));
+                }
 
             }
 
@@ -108,4 +134,47 @@ public class ResultActivity extends Activity {
             barChart.setDescription("时刻");
         }
 
+    public LineData getLineData(int count) {
+        x.clear();
+        y.clear();
+        if (count == 0) {
+            for (int i = 0; i < 24; i++) {  //X轴显示的数据
+                x.add(i + "");
+                y.add(new Entry((float) optm.Tin[i], i));
+            }
+        }
+        else if(count==3){
+            for (int i = 0; i < 24; i++) {  //X轴显示的数据
+                x.add(i + "");
+                y.add(new Entry((float) optm.Win[i], i));
+            }
+        }
+
+        LineDataSet lineDataSet = new LineDataSet(y, "折线图");//y轴数据集合
+        lineDataSet.setLineWidth(3f);//线宽
+        lineDataSet.setCircleSize(2f);//现实圆形大小
+        lineDataSet.setColor(Color.DKGRAY);//现实颜色
+        lineDataSet.setCircleSize(Color.BLUE);//圆形颜色
+        lineDataSet.setHighLightColor(Color.WHITE);//高度线的颜色
+        lineDataSets.clear();
+        lineDataSets.add(lineDataSet);
+        lineData = new LineData(x, lineDataSets);
+        return lineData;
+    }
+    /**
+     * 设置样式
+     */
+    public void showChart(com.github.mikephil.charting.charts.LineChart lineChart,LineData lineData,int color){
+        lineChart.setDrawBorders(false);//是否添加边框
+        lineChart.setDescription("每小时预测温度");//数据描述
+        lineChart.setNoDataTextDescription("我需要数据");//没数据显示
+        lineChart.setDrawGridBackground(true);//是否显示表格颜色
+        lineChart.setBackgroundColor(Color.CYAN);//背景颜色
+        lineChart.setData(lineData);//设置数据
+        Legend legend=lineChart.getLegend();//设置比例图片标示，就是那一组Y的value
+        legend.setForm(Legend.LegendForm.SQUARE);//样式
+        legend.setFormSize(6f);//字体
+        legend.setTextColor(Color.WHITE);//设置颜色
+        lineChart.animateX(3000);//X轴的动画
+    }
 }

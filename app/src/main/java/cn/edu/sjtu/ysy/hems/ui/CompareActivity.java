@@ -56,7 +56,7 @@ public class CompareActivity extends Activity {
 
         youhua=new Optimize();
         youhua.optim();
-       youhua.calCharge();
+        youhua.calCharge();
        peak_after.setText("-" + decimalFormat.format(youhua.peakFee));
        valley_after.setText("-"+decimalFormat.format(youhua.valleyFee));
        gen_after.setText(decimalFormat.format(youhua.sellFee+genbefore));

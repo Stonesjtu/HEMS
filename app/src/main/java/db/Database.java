@@ -118,7 +118,7 @@ public class  Database extends SQLiteOpenHelper {
         String sqlac =" INSERT INTO appliancether(id,name,power,kind,starttime,overtime,Tset) " +
                 "VALUES('1','空调',2500,1,19,9,22)";
         String sqlwh =" INSERT INTO appliancether(id,name,power,kind,starttime,overtime,Tset)" +
-                " VALUES('4','热水器',15300,1,19,9,55)";
+                " VALUES('4','热水器',1500,1,19,9,55)";
         String sqlev =" INSERT INTO appliancether(id,name,power,kind,starttime,overtime,Tset)" +
                 " VALUES('7','电动汽车',3000,1,19,9,90)";
         String sqlxy =" INSERT INTO appliancedelay(id,name,power,duration,kind,starttime,overtime)" +

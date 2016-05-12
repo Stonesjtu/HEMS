@@ -31,7 +31,7 @@ import cn.edu.sjtu.ysy.hems.R;
 public class KongtiaoActivity extends Activity{
 
     public static final String[] aname={"空 调","冰 箱","电 视","热水器","洗衣机","洗碗机","电动汽车","空气净化器"};
-    public static final String[] apower={"2500","300","150","1500","600","1000","3000","100"};
+  //  public static final String[] apower={"2500","300","150","1500","600","1000","3000","100"};
     public static final String[] aduraion={"不定","全天","不定","不定","1","1","6—10","不定"};
 
     public int[] starttimeint = new int[24];
@@ -77,7 +77,7 @@ public class KongtiaoActivity extends Activity{
         TextView mingcheng=(TextView)findViewById(R.id.mingcheng);
         mingcheng.setText(aname[index]);
         TextView ratedpower=(TextView)findViewById(R.id.rated_power);
-        ratedpower.setText(apower[index]);
+        ratedpower.setText(""+MainActivity.appliances[index].power);
         TextView duration=(TextView)findViewById(R.id.duration);
         duration.setText(aduraion[index]);
         LinearLayout LinLayTset=(LinearLayout)findViewById(R.id.LinLayTset);

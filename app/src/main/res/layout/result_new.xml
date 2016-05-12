@@ -4,6 +4,16 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/scrollView4">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
 
     <TextView
         android:layout_width="wrap_content"
@@ -12,11 +22,11 @@
         android:text="选择电器"
         style="@style/HomeText"
         android:layout_marginTop="50dp"
-        android:layout_marginBottom="30dp" />
+        android:layout_marginBottom="20dp" />
 
     <Spinner
         android:layout_width="100dp"
-        android:layout_height="62dp"
+        android:layout_height="50dp"
         android:spinnerMode="dropdown"
         android:layout_weight="0"
         android:id="@+id/spinner2"
@@ -24,35 +34,47 @@
         android:layout_gravity="center_horizontal"
         android:background="@color/background2" />
 
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="testText"
-            android:id="@+id/testText" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="预测功率"
+                android:id="@+id/pred_power"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="15dp"
+                android:textSize="@dimen/text_size_medium" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="New Text"
-            android:id="@+id/testText1" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="New Text"
-            android:id="@+id/testText2" />
-    </LinearLayout>
-
-    <com.github.mikephil.charting.charts.BarChart
+            <com.github.mikephil.charting.charts.BarChart
         android:layout_width="360dp"
         android:layout_height="223dp"
         android:id="@+id/barchart_result"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="30dp" />
+        android:layout_marginTop="15dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="预测室温"
+                android:id="@+id/pred_Tin"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="15dp"
+                android:textSize="@dimen/text_size_medium" />
+
+            <com.github.mikephil.charting.charts.LineChart
+            android:layout_width="360dp"
+            android:layout_height="223dp"
+            android:id="@+id/linechart_result"
+           android:layout_gravity="center_horizontal"
+           android:layout_marginTop="15dp"
+                android:layout_marginBottom="30dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp" />
+
+        </LinearLayout>
+
+    </ScrollView>
 
 </LinearLayout>
