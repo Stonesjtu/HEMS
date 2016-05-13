@@ -46,7 +46,7 @@ public class Elecharge extends Activity {
         double total=0;
         if(hour!=0) {
             for (int i=0;i<hour;i++) {
-                for (int j= 0; j < 8; j++) {
+                for (int j= 0; j < 7; j++) {
                     total += MainActivity.appliances[j].getPrice()[i];
                 }
             }
@@ -73,10 +73,10 @@ public class Elecharge extends Activity {
         }
         if(count!=0) {
             for (int i = 0; i < count; i++) {
-                for (int j = 0; j < 8; j++) {
+                for (int j = 0; j < 7; j++) {
                     result[j] = Calculate.sum(MainActivity.appliances[j].getPrice(), 0, i);
                 }
-                sumresult = Calculate.sum(result, 0, 7);
+                sumresult = Calculate.sum(result, 0, 6);
                 y.add(new Entry((float) sumresult, i));
             }
         }

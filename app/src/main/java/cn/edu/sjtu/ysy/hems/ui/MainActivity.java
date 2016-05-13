@@ -55,7 +55,7 @@ public class MainActivity extends Activity implements ActionBar.TabListener {
     public static ApplianceDelay Xiwanji;
     public static ApplianceTher Kongtiao;
     public static ApplianceTher Reshuiqi;
-    public static ApplianceTher Kongjing;
+   // public static ApplianceTher Kongjing;
     public static ApplianceTher Dianche;
     public static Appliance Fengji;
     public static Appliance Guangfu;
@@ -77,11 +77,11 @@ public class MainActivity extends Activity implements ActionBar.TabListener {
         Xiyiji=new ApplianceDelay("5");
         Xiwanji=new ApplianceDelay("6");
         Dianche=new ApplianceTher("7");
-        Kongjing=new ApplianceTher("8");
+      //  Kongjing=new ApplianceTher("8");
 
-        appliances = new Appliance[] {Kongtiao,Bingxiang,Dianshi,Reshuiqi,Xiyiji,Xiwanji,Dianche,Kongjing};
+        appliances = new Appliance[] {Kongtiao,Bingxiang,Dianshi,Reshuiqi,Xiyiji,Xiwanji,Dianche};
 
-        for (int i=0;i<8;i++){
+        for (int i=0;i<7;i++){
             appliances[i].loadfromDB();
         }
 //
@@ -110,7 +110,6 @@ public class MainActivity extends Activity implements ActionBar.TabListener {
         Xiwanji.setState(trstate2);
         int trystateev[]={0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3000,3000,3000,3000,3000,3000,0,0,0};
         Dianche.setState(trystateev);
-        Kongjing.setState(trystatebx);
 
         Fengji = new Appliance("11");
         Guangfu = new Appliance("12");
@@ -123,7 +122,7 @@ public class MainActivity extends Activity implements ActionBar.TabListener {
         Fengji.savetoDB();
         Guangfu.savetoDB();
 
-        for (int i=0;i<8;i++){
+        for (int i=0;i<7;i++){
             appliances[i].savetoDB();
         }
 

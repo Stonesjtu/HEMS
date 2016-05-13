@@ -15,12 +15,10 @@ import control.Optimize;
  */
 public class CompareActivity extends Activity {
 
-    double peakbefore=0;
-    double valleybefore=0;
-    double totalbefore=0;
     double genbefore=0;
 
-    public Optimize youhua;
+    public Optimize youhuahou;
+    public Optimize youhuaqian;
     //在control或执行优化算法的程序中，在存入数据库之前，共享优化前后的state,假设
 
     public void onCreate(Bundle savedInstanceState) {
@@ -40,27 +38,24 @@ public class CompareActivity extends Activity {
         TextView total_after =(TextView)findViewById(R.id.total_after);
 
         Calculate Cal=new Calculate();
-        for (int i=0;i<8;i++) {
-            peakbefore+= Cal.sum(MainActivity.appliances[i].getPrice(),6,21);
-            valleybefore+=Cal.sum(MainActivity.appliances[i].getPrice(),0,5);
-            valleybefore+=Cal.sum(MainActivity.appliances[i].getPrice(),22,23);
-            totalbefore+=MainActivity.appliances[i].getSumPrice();
-        }
-
         genbefore=(MainActivity.Fengji.getSumPower()+MainActivity.Guangfu.getSumPower())*Optimize.SUBSIDY/1000;
-        peak_before.setText("-"+decimalFormat.format(peakbefore));
-        valley_before.setText("-"+decimalFormat.format( valleybefore));
-        gen_before.setText(decimalFormat.format(genbefore));
-        double total=genbefore-totalbefore;
+
+        youhuaqian=new Optimize();
+        youhuaqian.initial();
+        youhuaqian.calCharge();
+        peak_before.setText("-"+decimalFormat.format(youhuaqian.peakFee));
+        valley_before.setText("-"+decimalFormat.format(youhuaqian.valleyFee));
+        gen_before.setText(decimalFormat.format(youhuaqian.sellFee+genbefore));
+        double total=youhuaqian.sellFee+genbefore-Cal.sum24(youhuaqian.Fee);
         total_before.setText(decimalFormat.format(total));
 
-        youhua=new Optimize();
-        youhua.optim();
-        youhua.calCharge();
-       peak_after.setText("-" + decimalFormat.format(youhua.peakFee));
-       valley_after.setText("-"+decimalFormat.format(youhua.valleyFee));
-       gen_after.setText(decimalFormat.format(youhua.sellFee+genbefore));
-       total=youhua.sellFee+genbefore-Cal.sum24(youhua.Fee);
+        youhuahou=new Optimize();
+        youhuahou.optim();
+        youhuahou.calCharge();
+       peak_after.setText("-" + decimalFormat.format(youhuahou.peakFee));
+       valley_after.setText("-"+decimalFormat.format(youhuahou.valleyFee));
+       gen_after.setText(decimalFormat.format(youhuahou.sellFee+genbefore));
+       total=youhuahou.sellFee+genbefore-Cal.sum24(youhuahou.Fee);
        total_after.setText(decimalFormat.format(total));
 
     }

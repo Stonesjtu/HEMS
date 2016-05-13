@@ -18,8 +18,8 @@ import control.Calculate;
  * Created by YSY on 2016/4/11.
  */
 public class Electric extends Activity {
-    float[] peak = new float[]{0, 0, 0, 0, 0, 0, 0, 0};
-    float[] valley = new float[]{0, 0, 0, 0, 0, 0, 0, 0};
+    float[] peak = new float[]{0, 0, 0, 0, 0, 0, 0};
+    float[] valley = new float[]{0, 0, 0, 0, 0, 0, 0};
     float peaktotal = 0;
     float valleytotal = 0;
     int hour;
@@ -38,7 +38,7 @@ public class Electric extends Activity {
         TextView hour_of_day=(TextView)findViewById(R.id.hour_of_day);
         hour_of_day.setText(""+hour);
 
-        for (int j=0;j<8;j++){
+        for (int j=0;j<7;j++){
             if (hour<6)  {
                 valley[j]= Calculate.sum(MainActivity.appliances[j].getPower(),0,hour);
             }
@@ -61,7 +61,7 @@ public class Electric extends Activity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 DecimalFormat decimalFormat=new DecimalFormat("0.00");//把小数位数设为2位
 
-                if (position != 8) {
+                if (position != 7) {
                     peakkwh.setText(decimalFormat.format(peak[position]/1000));
                     valleykwh.setText(decimalFormat.format(valley[position]/1000));
                 }

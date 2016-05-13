@@ -302,45 +302,45 @@
                 android:layout_margin="5dp" />
         </TableRow>
 
-        <View
-            android:layout_height="5dip"
-            android:background="#2333"
-            android:orientation="vertical" />
+        <!--<View-->
+            <!--android:layout_height="5dip"-->
+            <!--android:background="#2333"-->
+            <!--android:orientation="vertical" />-->
 
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/white"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp">
+        <!--<TableRow-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:background="@color/white"-->
+            <!--android:layout_marginLeft="10dp"-->
+            <!--android:layout_marginRight="10dp">-->
 
-            <ImageView
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:src="@mipmap/appliance_17"
-                android:layout_weight="1"
-                android:layout_marginLeft="5dp" />
+            <!--<ImageView-->
+                <!--android:layout_width="fill_parent"-->
+                <!--android:layout_height="fill_parent"-->
+                <!--android:src="@mipmap/appliance_17"-->
+                <!--android:layout_weight="1"-->
+                <!--android:layout_marginLeft="5dp" />-->
 
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="空气净化器"
-                android:singleLine="true"
-                android:gravity="center"
-                android:layout_weight="8" />
+            <!--<TextView-->
+                <!--android:layout_width="fill_parent"-->
+                <!--android:layout_height="fill_parent"-->
+                <!--android:textAppearance="?android:attr/textAppearanceLarge"-->
+                <!--android:text="空气净化器"-->
+                <!--android:singleLine="true"-->
+                <!--android:gravity="center"-->
+                <!--android:layout_weight="8" />-->
 
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="fill_parent"
-                android:id="@+id/airbutton"
-                android:background="@android:drawable/ic_menu_info_details"
-                android:layout_marginBottom="15dp"
-                android:layout_marginTop="15dp"
-                android:layout_marginLeft="15dp"
-                android:layout_marginRight="15dp"
-                android:layout_margin="5dp" />
-        </TableRow>
+            <!--<Button-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="fill_parent"-->
+                <!--android:id="@+id/airbutton"-->
+                <!--android:background="@android:drawable/ic_menu_info_details"-->
+                <!--android:layout_marginBottom="15dp"-->
+                <!--android:layout_marginTop="15dp"-->
+                <!--android:layout_marginLeft="15dp"-->
+                <!--android:layout_marginRight="15dp"-->
+                <!--android:layout_margin="5dp" />-->
+        <!--</TableRow>-->
 
 
     </TableLayout>

@@ -30,7 +30,7 @@ public class Fragment1 extends Fragment
         Button xiyijiobtn = (Button) view.findViewById(R.id.xiyijibutton);
         Button xiwanjiobtn = (Button) view.findViewById(R.id.xiwanjibutton);
         Button evbtn = (Button) view.findViewById(R.id.evbutton);
-        Button airbtn = (Button) view.findViewById(R.id.airbutton);
+      //  Button airbtn = (Button) view.findViewById(R.id.airbutton);
 
 
         class ButtonListener implements View.OnClickListener {
@@ -73,11 +73,11 @@ public class Fragment1 extends Fragment
                         intent6.putExtra("dianqi",6);
                         startActivity(intent6);
                         break;
-                    case R.id.airbutton:
+                  /*  case R.id.airbutton:
                         Intent intent7 = new Intent(getActivity(), KongtiaoActivity.class);
                         intent7.putExtra("dianqi",7);
                         startActivity(intent7);
-                        break;
+                        break;*/
                    default:break;
 
                 }
@@ -93,7 +93,7 @@ public class Fragment1 extends Fragment
         xiyijiobtn.setOnClickListener(buttonListener);
         xiwanjiobtn.setOnClickListener(buttonListener);
         evbtn.setOnClickListener(buttonListener);
-        airbtn.setOnClickListener(buttonListener);
+       // airbtn.setOnClickListener(buttonListener);
 
         return view;
     }

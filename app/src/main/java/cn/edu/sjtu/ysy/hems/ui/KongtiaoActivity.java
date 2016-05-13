@@ -32,9 +32,9 @@ import cn.edu.sjtu.ysy.hems.R;
  */
 public class KongtiaoActivity extends Activity{
 
-    public static final String[] aname={"空 调","冰 箱","电 视","热水器","洗衣机","洗碗机","电动汽车","空气净化器"};
+    public static final String[] aname={"空 调","冰 箱","电 视","热水器","洗衣机","洗碗机","电动汽车"};
   //  public static final String[] apower={"2500","300","150","1500","600","1000","3000","100"};
-    public static final String[] aduraion={"不定","全天","不定","不定","1","1","6—10","不定"};
+    public static final String[] aduraion={"不定","全天","不定","不定","2","1","6—10"};
 
     public int[] starttimeint = new int[8];
     public int[] overtimeint = new int[8];
@@ -137,12 +137,12 @@ public class KongtiaoActivity extends Activity{
                     overtime.setText("" + MainActivity.Dianche.getOvertime());
                     tset.setText("" + MainActivity.Dianche.getTset());
                     break;
-                case 7:
+             /*   case 7:
                     LinLaydT.setVisibility(View.GONE);
                     starttime.setText("" + MainActivity.Kongjing.getStarttime());
                     overtime.setText("" + MainActivity.Kongjing.getOvertime());
                     tset.setText("" + MainActivity.Kongjing.getTset());
-                    break;
+                    break;*/
                 default:
                     //隐藏edittext和Tset
                     LinLayappcat.setVisibility(View.GONE);
@@ -304,7 +304,7 @@ public class KongtiaoActivity extends Activity{
                                 MainActivity.Dianche.savetoDB();
                                 finish();
                                 break;
-                            case 7:
+                         /*   case 7:
                                 Tset[index] = Integer.parseInt(tset.getText().toString());
                                 if (Tset[index] > 80 || Tset[index] < 10 || dT[index] < 0 || dT[index] > 10) {
                                     Toast.makeText(getApplicationContext(), "您输入的温度范围无法实现", Toast.LENGTH_LONG).show();
@@ -315,7 +315,7 @@ public class KongtiaoActivity extends Activity{
                                 MainActivity.Kongjing.setTset(Tset[index]);
                                 MainActivity.Kongjing.savetoDB();
                                 finish();
-                                break;
+                                break;*/
                             default:
                                 break;
                         }

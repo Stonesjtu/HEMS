@@ -126,8 +126,8 @@ public class  Database extends SQLiteOpenHelper {
                 " VALUES('5','洗衣机',600,2,0,20,3)";
         String sqlxw =" INSERT INTO appliancedelay(id,name,power,duration,kind,starttime,overtime)" +
                 " VALUES('6','洗碗机',1000,1,0,20,3)";
-        String sqlkj =" INSERT INTO appliancether(id,name,power,kind,starttime,overtime,Tset,dT) " +
-                "VALUES('8','空气净化器',300,1,19,9,20,0)";
+      //  String sqlkj =" INSERT INTO appliancether(id,name,power,kind,starttime,overtime,Tset,dT) " +
+              //  "VALUES('8','空气净化器',300,1,19,9,20,0)";
 
 
         db.execSQL(sql);
@@ -140,7 +140,7 @@ public class  Database extends SQLiteOpenHelper {
         db.execSQL(sqlxy);
         db.execSQL(sqlxw);
         db.execSQL(sqlev);
-        db.execSQL(sqlkj);
+     //   db.execSQL(sqlkj);
         db.execSQL(sqlfj);
         db.execSQL(sqlgf);
 
