@@ -7,6 +7,7 @@ import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.support.v13.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
@@ -14,7 +15,17 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+import org.json.JSONTokener;
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.Locale;
 
 import cn.edu.sjtu.ysy.hems.R;
@@ -95,28 +106,85 @@ public class MainActivity extends Activity implements ActionBar.TabListener {
 //        Kongjing.loadfromDB();
 
     //test code
+        //get info from server
+        //jump
+        String strurl="http://10.189.38.71:800/ysy";
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
+        String result="";
+        try {
+            URL url=new URL(strurl);
+            HttpURLConnection urlConn=(HttpURLConnection)url.openConnection();
+            InputStreamReader in =new InputStreamReader(urlConn.getInputStream());
+            BufferedReader bufferReader= new BufferedReader(in);
+            String readline=null;
+            while ((readline=bufferReader.readLine())!=null){
+                result +=readline;
+            }
+            in.close();
+            urlConn.disconnect();
+            Toast.makeText(getApplicationContext(), result, Toast.LENGTH_LONG).show();
 
-        int trystate[]={451,450,0,0,0,0,0,0,0,0,0,0,0,541,540,451,360,270,270,270,180,270,360,360};
-        Kongtiao.setState(trystate);
-        int trystatebx[]={43,45,52,37,42,41,47,49,50,38,46,31,47,56,51,47,43,49,40,50,52,51,52,53};
-        Bingxiang.setState(trystatebx);
-        int trystatetv[]={0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,147,135,100,70,30,0,0};
-        Dianshi.setState(trystatetv);
-        int trystatersq[]={0,0,0,0,0,0,0,0,0,292,307,384,400,415,415,430,446,461,384,0,0,0,0,0};
-        Reshuiqi.setState(trystatersq);
-        int trstate1[]={0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,1,1,0,0,0};
-        Xiyiji.setState(trstate1);
-        int trstate2[]={0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0};
-        Xiwanji.setState(trstate2);
-        int trystateev[]={0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3000,3000,3000,3000,3000,3000,0,0,0};
-        Dianche.setState(trystateev);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        //json deserialize
+        int [] ktstate = new int [24];
+        int bxstate[]=new int[24];
+        int tvstate[]=new int[24];
+        int rsqstate[]=new int[24];
+        int xyjstate[]=new int[24];
+        int xwjstate[]=new int[24];
+        int evstate[]=new int[24];
+        int fjstate[]=new int[24];
+        int gfstate[]=new int[24];
+        try {
+            JSONObject object = (JSONObject) new JSONTokener(result).nextValue();
+            JSONArray jakt =  object.getJSONArray("Kongtiao");
+            JSONArray jabx =  object.getJSONArray("Bingxiang");
+            JSONArray jatv =  object.getJSONArray("Dianshi");
+            JSONArray jarsq =  object.getJSONArray("Reshuiqi");
+            JSONArray jaxyj =  object.getJSONArray("Xiyiji");
+            JSONArray jaxwj =  object.getJSONArray("Xiwanji");
+            JSONArray jaev =  object.getJSONArray("Dianche");
+            JSONArray jafj =  object.getJSONArray("Fengji");
+            JSONArray jagf =  object.getJSONArray("Guangfu");
+
+            for (int i =0;i!=24;i++){
+                ktstate[i] = jakt.getInt(i);
+                bxstate[i]=jabx.getInt(i);
+                tvstate[i]=jatv.getInt(i);
+                rsqstate[i]=jarsq.getInt(i);
+                xyjstate[i]=jaxyj.getInt(i);
+                xwjstate[i]=jaxwj.getInt(i);
+                evstate[i]=jaev.getInt(i);
+                fjstate[i]=jafj.getInt(i);
+                gfstate[i]=jagf.getInt(i);
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        Kongtiao.setState(ktstate);
+        Bingxiang.setState(bxstate);
+      //  int trystatetv[]={0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,150,150,150,150,0};
+        Dianshi.setState(tvstate);
+       // int trystatersq[]={0,0,0,0,0,250,312,369,385,0,0,0,0,0,0,0,800,800,338,354,369,385,354,310};
+        Reshuiqi.setState(rsqstate);
+      //  int trstate1[]={0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0};
+        Xiyiji.setState(xyjstate);
+      //  int trstate2[]={0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,1,0,0,0,0};
+        Xiwanji.setState(xwjstate);
+      //  int trystateev[]={3000,3000,0,3000,3000,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3000,3000,3000,3000};
+        Dianche.setState(evstate);
 
         Fengji = new Appliance("11");
         Guangfu = new Appliance("12");
         Fengji.loadfromDB();
         Guangfu.loadfromDB();
-        int[] gfstate = {0,0, 0, 0, 0, 0, 800, 1500, 2000, 2500, 2800, 3000, 3800, 3800, 3600, 3000, 2500, 1600, 500, 0, 0, 0, 0, 0};//1-24hour
-        int[] fjstate = {3000,3000, 3000, 3000, 2800, 2400, 2700, 2500, 1900, 1700, 1500, 1200, 1100, 1500, 1800, 2200, 2400, 2400, 2200, 2100, 2700, 3000, 3000, 3000};
+      //  int[] gfstate = {0,0, 0, 0, 0, 0, 800, 1500, 2000, 2500, 2800, 3000, 3800, 3800, 3600, 3000, 2500, 1600, 500, 0, 0, 0, 0, 0};//1-24hour
+      // int[] fjstate = {3000,3000, 3000, 3000, 2800, 2400, 2700, 2500, 1900, 1700, 1500, 1200, 1100, 1500, 1800, 2200, 2400, 2400, 2200, 2100, 2700, 3000, 3000, 3000};
         Fengji.setState(fjstate);
         Guangfu.setState(gfstate);
         Fengji.savetoDB();

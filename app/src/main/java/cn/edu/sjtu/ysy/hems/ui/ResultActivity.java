@@ -103,7 +103,7 @@ public class ResultActivity extends Activity {
                     entries.add(new BarEntry(MainActivity.appliances[index].getPower()[i], i));
                 }
             }
-            else if(index==8){
+            else if(index==7){
                 for (int i = 0; i < 24; i++) {
                     entries.add(new BarEntry(optm.Dianyuan.getPower()[i], i));
                 }
@@ -122,7 +122,7 @@ public class ResultActivity extends Activity {
             }
         }
         public void show(){
-            dataset= new BarDataSet(entries,"每小时预测功率（W）");
+            dataset= new BarDataSet(entries,"优化后每小时功率（W）");
             dataset.setColors(ColorTemplate.COLORFUL_COLORS);
             BarData data=new BarData(labels,dataset);
          //   LimitLine line=new LimitLine(6000f);
@@ -153,8 +153,8 @@ public class ResultActivity extends Activity {
         LineDataSet lineDataSet = new LineDataSet(y, "折线图");//y轴数据集合
         lineDataSet.setLineWidth(3f);//线宽
         lineDataSet.setCircleSize(2f);//现实圆形大小
-        lineDataSet.setColor(Color.DKGRAY);//现实颜色
-        lineDataSet.setCircleSize(Color.BLUE);//圆形颜色
+        lineDataSet.setColor(Color.BLUE);//现实颜色
+        lineDataSet.setCircleSize(Color.LTGRAY);//圆形颜色
         lineDataSet.setHighLightColor(Color.WHITE);//高度线的颜色
         lineDataSets.clear();
         lineDataSets.add(lineDataSet);
@@ -169,12 +169,12 @@ public class ResultActivity extends Activity {
         lineChart.setDescription("每小时预测温度");//数据描述
         lineChart.setNoDataTextDescription("我需要数据");//没数据显示
         lineChart.setDrawGridBackground(true);//是否显示表格颜色
-        lineChart.setBackgroundColor(Color.CYAN);//背景颜色
+        lineChart.setBackgroundColor(Color.WHITE);//背景颜色
         lineChart.setData(lineData);//设置数据
         Legend legend=lineChart.getLegend();//设置比例图片标示，就是那一组Y的value
         legend.setForm(Legend.LegendForm.SQUARE);//样式
         legend.setFormSize(6f);//字体
-        legend.setTextColor(Color.WHITE);//设置颜色
+        legend.setTextColor(Color.DKGRAY);//设置颜色
         lineChart.animateX(3000);//X轴的动画
     }
 }

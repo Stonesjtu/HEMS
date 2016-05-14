@@ -86,8 +86,8 @@ public class Elecharge extends Activity {
         LineDataSet lineDataSet=new LineDataSet(y,"折线图");//y轴数据集合
         lineDataSet.setLineWidth(3f);//线宽
         lineDataSet.setCircleSize(2f);//现实圆形大小
-        lineDataSet.setColor(Color.YELLOW);//现实颜色
-        lineDataSet.setCircleSize(Color.BLUE);//圆形颜色
+        lineDataSet.setColor(Color.RED);//现实颜色
+        lineDataSet.setCircleSize(Color.LTGRAY);//圆形颜色
         lineDataSet.setHighLightColor(Color.WHITE);//高度线的颜色
         lineDataSets.add(lineDataSet);
         lineData=new LineData(x,lineDataSets);
@@ -101,7 +101,7 @@ public class Elecharge extends Activity {
         lineChart.setDescription("每小时用电费用");//数据描述
         lineChart.setNoDataTextDescription("我需要数据");//没数据显示
         lineChart.setDrawGridBackground(true);//是否显示表格颜色
-        lineChart.setBackgroundColor(Color.CYAN);//背景颜色
+        lineChart.setBackgroundColor(Color.LTGRAY);//背景颜色
         lineChart.setData(lineData);//设置数据
         Legend legend=lineChart.getLegend();//设置比例图片标示，就是那一组Y的value
         legend.setForm(Legend.LegendForm.SQUARE);//样式

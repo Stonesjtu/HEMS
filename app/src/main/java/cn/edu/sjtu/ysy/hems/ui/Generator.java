@@ -117,7 +117,7 @@ public class Generator extends Activity {
         lineChart.setDescription("每小时发电功率");//数据描述
         lineChart.setNoDataTextDescription("我需要数据");//没数据显示
         lineChart.setDrawGridBackground(true);//是否显示表格颜色
-        lineChart.setBackgroundColor(Color.YELLOW);//背景颜色
+        lineChart.setBackgroundColor(Color.LTGRAY);//背景颜色
         lineChart.setData(lineData);//设置数据
         Legend legend=lineChart.getLegend();//设置比例图片标示，就是那一组Y的value
         legend.setForm(Legend.LegendForm.CIRCLE);//样式

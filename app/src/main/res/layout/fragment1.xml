@@ -55,9 +55,11 @@
         </TableRow>
 
         <View
-              android:layout_height="5dip"
+              android:layout_height="3dip"
               android:background="#2333"
-             android:orientation="vertical" />
+             android:orientation="vertical"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp" />
 
         <TableRow
             android:layout_width="match_parent"
@@ -98,9 +100,11 @@
         </TableRow>
 
         <View
-            android:layout_height="5dip"
+            android:layout_height="3dip"
             android:background="#2333"
-            android:orientation="vertical" />
+            android:orientation="vertical"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp" />
 
         <TableRow
             android:layout_width="match_parent"
@@ -139,9 +143,11 @@
         </TableRow>
 
         <View
-            android:layout_height="5dip"
+            android:layout_height="3dip"
             android:background="#2333"
-            android:orientation="vertical" />
+            android:orientation="vertical"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp" />
 
         <TableRow
             android:layout_width="match_parent"
@@ -182,9 +188,11 @@
         </TableRow>
 
         <View
-            android:layout_height="5dip"
+            android:layout_height="3dip"
             android:background="#2333"
-            android:orientation="vertical" />
+            android:orientation="vertical"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp" />
 
         <TableRow
             android:layout_width="match_parent"
@@ -223,9 +231,11 @@
                 android:layout_margin="5dp"/>
         </TableRow>
         <View
-            android:layout_height="5dip"
+            android:layout_height="3dip"
             android:background="#2333"
-            android:orientation="vertical" />
+            android:orientation="vertical"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp" />
 
         <TableRow
             android:layout_width="match_parent"
@@ -263,9 +273,11 @@
         </TableRow>
 
         <View
-            android:layout_height="5dip"
+            android:layout_height="3dip"
             android:background="#2333"
-            android:orientation="vertical" />
+            android:orientation="vertical"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp" />
 
         <TableRow
             android:layout_width="match_parent"
