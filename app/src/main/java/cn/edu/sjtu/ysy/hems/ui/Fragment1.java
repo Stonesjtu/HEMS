@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
+import android.widget.TextView;
 
 import cn.edu.sjtu.ysy.hems.R;
 
@@ -21,15 +21,15 @@ public class Fragment1 extends Fragment
                              Bundle savedInstanceState) {
         //return inflater.inflate(R.layout.fragment1, container, false);
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment1, container, false);
+        View view = inflater.inflate(R.layout.fragment4, container, false);
         //在fragment视图中的按钮
-        Button kongtiaobtn = (Button) view.findViewById(R.id.kongtiaobutton);
-        Button bingxiangbtn = (Button) view.findViewById(R.id.bingxiangbutton);
-        Button tvbtn = (Button) view.findViewById(R.id.tvbutton);
-        Button reshuiqibtn = (Button) view.findViewById(R.id.reshuiqibutton);
-        Button xiyijiobtn = (Button) view.findViewById(R.id.xiyijibutton);
-        Button xiwanjiobtn = (Button) view.findViewById(R.id.xiwanjibutton);
-        Button evbtn = (Button) view.findViewById(R.id.evbutton);
+        TextView kongtiaobtn = (TextView) view.findViewById(R.id.kongtiaobutton);
+        TextView bingxiangbtn = (TextView) view.findViewById(R.id.bingxiangbutton);
+        TextView tvbtn = (TextView) view.findViewById(R.id.tvbutton);
+        TextView reshuiqibtn = (TextView) view.findViewById(R.id.reshuiqibutton);
+        TextView xiyijiobtn = (TextView) view.findViewById(R.id.xiyijibutton);
+        TextView xiwanjiobtn = (TextView) view.findViewById(R.id.xiwanjibutton);
+        TextView evbtn = (TextView) view.findViewById(R.id.evbutton);
       //  Button airbtn = (Button) view.findViewById(R.id.airbutton);
 
 

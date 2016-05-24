@@ -23,11 +23,11 @@
 
 
             <ImageView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
                 android:id="@+id/pic_qingjingmoshi"
-                android:src="@mipmap/building_31"
-                android:layout_marginLeft="20dp"/>
+                android:src="@mipmap/qingjingmoshi"
+                android:layout_marginLeft="20dp" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -44,7 +44,7 @@
                 android:id="@+id/ic_arrow_right_1"
                 android:src="@mipmap/ic_arrow_right"
 
-              />
+                android:layout_gravity="center_vertical" />
 
 
         </TableRow>
@@ -60,10 +60,10 @@
             android:layout_marginRight="5dp">
 
             <ImageView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
                 android:id="@+id/pic_youhuajieguo"
-                android:src="@mipmap/education_84"
+                android:src="@mipmap/youhuajieguo"
                 android:layout_marginLeft="20dp"/>
 
             <TextView
@@ -71,7 +71,7 @@
                 android:layout_height="match_parent"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="优化结果"
-                android:id="@+id/text_youhuajieguo"
+                android:id="@+id/text_youhuajieuo"
                 android:gravity="center"
                 android:layout_weight="1" />
 
@@ -80,7 +80,7 @@
                 android:layout_height="50dp"
                 android:id="@+id/ic_arrow_right_2"
                 android:src="@mipmap/ic_arrow_right"
-                />
+                android:layout_gravity="center_vertical" />
 
         </TableRow>
 
@@ -94,10 +94,10 @@
             android:layout_marginRight="5dp">
 
             <ImageView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
                 android:id="@+id/pic_feiyongduibi"
-                android:src="@mipmap/finance_75"
+                android:src="@mipmap/feiyongduibi"
                 android:layout_marginLeft="20dp"/>
 
             <TextView
@@ -114,7 +114,7 @@
                 android:layout_height="50dp"
                 android:id="@+id/ic_arrow_right_3"
                 android:src="@mipmap/ic_arrow_right"
-                />
+                android:layout_gravity="center_vertical" />
 
         </TableRow>
 
@@ -129,10 +129,10 @@
             android:layout_marginRight="5dp">
 
             <ImageView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
                 android:id="@+id/pic_shezhi"
-                android:src="@mipmap/basic_55"
+                android:src="@mipmap/shezhi"
                 android:layout_marginLeft="20dp"/>
 
             <TextView
@@ -149,7 +149,7 @@
                 android:layout_height="50dp"
                 android:id="@+id/ic_arrow_right_4"
                 android:src="@mipmap/ic_arrow_right"
-                />
+                android:layout_gravity="center_vertical" />
 
         </TableRow>
 

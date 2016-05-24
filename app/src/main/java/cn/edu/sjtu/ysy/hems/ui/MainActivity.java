@@ -15,7 +15,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -108,7 +107,7 @@ public class MainActivity extends Activity implements ActionBar.TabListener {
     //test code
         //get info from server
         //jump
-        String strurl="http://10.189.38.71:800/ysy";
+       String strurl="http://45.62.118.181:800/ysy";
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
         String result="";
@@ -123,7 +122,7 @@ public class MainActivity extends Activity implements ActionBar.TabListener {
             }
             in.close();
             urlConn.disconnect();
-            Toast.makeText(getApplicationContext(), result, Toast.LENGTH_LONG).show();
+         //   Toast.makeText(getApplicationContext(), result, Toast.LENGTH_LONG).show();
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -166,17 +165,19 @@ public class MainActivity extends Activity implements ActionBar.TabListener {
             e.printStackTrace();
         }
 
+      //  int[] ktstate={300,0,0,0,400,400,500,450,0,0,0,0,0,0,0,0,0,0,270,312,300,200,100,0};
         Kongtiao.setState(ktstate);
+     //   int[] bxstate={43,45,52,37,42,41,47,49,50,38,46,31,47,56,51,47,43,49,40,50,52,51,52,53};
         Bingxiang.setState(bxstate);
-      //  int trystatetv[]={0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,150,150,150,150,0};
+      //  int tvstate[]={0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,150,150,150,150,0};
         Dianshi.setState(tvstate);
-       // int trystatersq[]={0,0,0,0,0,250,312,369,385,0,0,0,0,0,0,0,800,800,338,354,369,385,354,310};
+      //  int rsqstate[]={0,0,0,0,0,250,312,369,385,0,0,0,0,0,0,0,800,800,338,354,369,385,354,310};
         Reshuiqi.setState(rsqstate);
-      //  int trstate1[]={0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0};
+     //   int xyjstate[]={0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0};
         Xiyiji.setState(xyjstate);
-      //  int trstate2[]={0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,1,0,0,0,0};
+     //   int xwjstate[]={0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,1,0,0,0,0};
         Xiwanji.setState(xwjstate);
-      //  int trystateev[]={3000,3000,0,3000,3000,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3000,3000,3000,3000};
+     //   int evstate[]={3000,3000,0,3000,3000,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3000,3000,3000,3000};
         Dianche.setState(evstate);
 
         Fengji = new Appliance("11");
@@ -184,7 +185,7 @@ public class MainActivity extends Activity implements ActionBar.TabListener {
         Fengji.loadfromDB();
         Guangfu.loadfromDB();
       //  int[] gfstate = {0,0, 0, 0, 0, 0, 800, 1500, 2000, 2500, 2800, 3000, 3800, 3800, 3600, 3000, 2500, 1600, 500, 0, 0, 0, 0, 0};//1-24hour
-      // int[] fjstate = {3000,3000, 3000, 3000, 2800, 2400, 2700, 2500, 1900, 1700, 1500, 1200, 1100, 1500, 1800, 2200, 2400, 2400, 2200, 2100, 2700, 3000, 3000, 3000};
+     //  int[] fjstate = {3000,3000, 3000, 3000, 2800, 2400, 2700, 2500, 1900, 1700, 1500, 1200, 1100, 1500, 1800, 2200, 2400, 2400, 2200, 2100, 2700, 3000, 3000, 3000};
         Fengji.setState(fjstate);
         Guangfu.setState(gfstate);
         Fengji.savetoDB();

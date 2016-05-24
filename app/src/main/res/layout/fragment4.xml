@@ -1,0 +1,303 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/green"
+    android:orientation="vertical">
+
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:id="@+id/scrollView"
+        android:layout_weight="1">
+
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/green">
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/white"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp">
+
+                <ImageView
+                    android:layout_width="75dp"
+                    android:layout_height="75dp"
+                    android:id="@+id/kongtiaoimage"
+                    android:layout_weight="0"
+                    android:src="@drawable/kongtiao2"
+                    android:layout_marginLeft="5dp" />
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="空调"
+                    android:id="@+id/kongtiaobutton"
+                    android:gravity="center"
+                    android:layout_weight="0"
+                    android:background="@color/white"
+                    android:shadowColor="@color/background1"
+                    android:clickable="true" />
+
+                <ImageView
+                    android:layout_width="75dp"
+                    android:layout_height="75dp"
+                    android:id="@+id/bingxiangimage"
+                    android:src="@drawable/bingxiang2"
+                    android:layout_weight="0" />
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="冰箱"
+                    android:id="@+id/bingxiangbutton"
+                    android:singleLine="true"
+                    android:gravity="center"
+                    android:layout_weight="0"
+                    android:background="@color/white"
+                    android:clickable="true" />
+
+                <!--<Button-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="fill_parent"-->
+                    <!--android:id="@+id/kongtiaobutton"-->
+                    <!--android:background="@android:drawable/ic_menu_info_details"-->
+                    <!--android:backgroundTintMode="src_atop"-->
+                    <!--android:layout_marginBottom="15dp"-->
+                    <!--android:layout_marginTop="15dp"-->
+                    <!--android:layout_marginLeft="15dp"-->
+                    <!--android:layout_marginRight="15dp"-->
+                    <!--android:layout_margin="5dp"/>-->
+            </TableRow>
+
+            <View
+                android:layout_height="3dip"
+                android:background="#2333"
+                android:orientation="vertical"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp" />
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/white"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp">
+
+                <ImageView
+                    android:layout_width="75dp"
+                    android:layout_height="75dp"
+                    android:src="@drawable/dianshi2"
+                    android:layout_marginLeft="5dp" />
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="电视"
+                    android:id="@+id/tvbutton"
+                    android:singleLine="true"
+                    android:gravity="center"
+                    android:clickable="true" />
+
+                <ImageView
+                    android:layout_width="75dp"
+                    android:layout_height="75dp"
+                    android:id="@+id/reshuiqiimage"
+                    android:src="@drawable/shower" />
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="热水器"
+                    android:id="@+id/reshuiqibutton"
+                    android:singleLine="true"
+                    android:gravity="center"
+                    android:background="@color/white"
+                    android:clickable="true" />
+
+                <!--<Button-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="fill_parent"-->
+                    <!--android:id="@+id/tvbutton"-->
+                    <!--android:background="@android:drawable/ic_menu_info_details"-->
+                    <!--android:layout_marginBottom="15dp"-->
+                    <!--android:layout_marginTop="15dp"-->
+                    <!--android:layout_marginLeft="15dp"-->
+                    <!--android:layout_marginRight="15dp"-->
+                    <!--android:layout_margin="5dp" />-->
+
+            </TableRow>
+
+            <View
+                android:layout_height="3dip"
+                android:background="#2333"
+                android:orientation="vertical"
+                android:layout_marginRight="10dp"
+                android:layout_marginLeft="10dp" />
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/white"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp">
+
+                <ImageView
+                    android:layout_width="75dp"
+                    android:layout_height="75dp"
+                    android:id="@+id/xiyijiimage"
+                    android:src="@drawable/xiyiji2"
+                    android:layout_marginLeft="5dp" />
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="洗衣机"
+                    android:id="@+id/xiyijibutton"
+                    android:singleLine="true"
+                    android:gravity="center"
+                    android:clickable="true" />
+
+                <ImageView
+                    android:layout_width="75dp"
+                    android:layout_height="75dp"
+                    android:src="@drawable/xiwanji2" />
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="洗碗机"
+                    android:id="@+id/xiwanjibutton"
+                    android:singleLine="true"
+                    android:gravity="center"
+                    android:clickable="true" />
+
+                <!--<Button-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="fill_parent"-->
+                    <!--android:id="@+id/xiyijibutton"-->
+                    <!--android:background="@android:drawable/ic_menu_info_details"-->
+                    <!--android:layout_marginBottom="15dp"-->
+                    <!--android:layout_marginTop="15dp"-->
+                    <!--android:layout_marginLeft="15dp"-->
+                    <!--android:layout_marginRight="15dp"-->
+                    <!--android:layout_margin="5dp"/>-->
+            </TableRow>
+            <View
+                android:layout_height="3dip"
+                android:background="#2333"
+                android:orientation="vertical"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp" />
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@color/white">
+
+                <ImageView
+                    android:layout_width="75dp"
+                    android:layout_height="75dp"
+                    android:src="@drawable/dianche2"
+                    android:layout_marginLeft="5dp" />
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="电动汽车"
+                    android:id="@+id/evbutton"
+                    android:singleLine="true"
+                    android:gravity="center"
+                    android:clickable="true" />
+
+                <!--<Button-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="fill_parent"-->
+                    <!--android:id="@+id/evbutton"-->
+                    <!--android:background="@android:drawable/ic_menu_info_details"-->
+                    <!--android:layout_marginBottom="15dp"-->
+                    <!--android:layout_marginTop="15dp"-->
+                    <!--android:layout_marginLeft="15dp"-->
+                    <!--android:layout_marginRight="15dp"-->
+                    <!--android:layout_margin="5dp" />-->
+                <ImageView
+                    android:layout_width="75dp"
+                    android:layout_height="75dp"
+                    android:src="@drawable/daixu" />
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="点击详细"
+                    android:singleLine="true"
+                    android:gravity="center"
+                    android:clickable="true" />
+            </TableRow>
+
+            <!--<View-->
+            <!--android:layout_height="5dip"-->
+            <!--android:background="#2333"-->
+            <!--android:orientation="vertical" />-->
+
+            <!--<TableRow-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:background="@color/white"-->
+            <!--android:layout_marginLeft="10dp"-->
+            <!--android:layout_marginRight="10dp">-->
+
+            <!--<ImageView-->
+            <!--android:layout_width="fill_parent"-->
+            <!--android:layout_height="fill_parent"-->
+            <!--android:src="@mipmap/appliance_17"-->
+            <!--android:layout_weight="1"-->
+            <!--android:layout_marginLeft="5dp" />-->
+
+            <!--<TextView-->
+            <!--android:layout_width="fill_parent"-->
+            <!--android:layout_height="fill_parent"-->
+            <!--android:textAppearance="?android:attr/textAppearanceLarge"-->
+            <!--android:text="空气净化器"-->
+            <!--android:singleLine="true"-->
+            <!--android:gravity="center"-->
+            <!--android:layout_weight="8" />-->
+
+            <!--<Button-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="fill_parent"-->
+            <!--android:id="@+id/airbutton"-->
+            <!--android:background="@android:drawable/ic_menu_info_details"-->
+            <!--android:layout_marginBottom="15dp"-->
+            <!--android:layout_marginTop="15dp"-->
+            <!--android:layout_marginLeft="15dp"-->
+            <!--android:layout_marginRight="15dp"-->
+            <!--android:layout_margin="5dp" />-->
+            <!--</TableRow>-->
+            <View
+                android:layout_height="3dip"
+                android:background="#2333"
+                android:orientation="vertical"
+                android:layout_marginRight="10dp"
+                android:layout_marginLeft="10dp" />
+
+        </TableLayout>
+
+    </ScrollView>
+
+
+</LinearLayout>
+

@@ -256,7 +256,7 @@ public class Optimize {
         Random rand = new Random();
         int ablestart = (abletimexy[0] + Xiyiji.starttime ) % 24;
 
-        if (genpower[ablestart] >+ Xiyiji.power) {
+        if (genpower[ablestart] >= Xiyiji.power) {
             Xiyiji.state[ablestart] = 1;
             Xiyiji.state[ablestart + 1] = 1;
             genpower[ablestart] -= Xiyiji.power;
@@ -442,8 +442,8 @@ public class Optimize {
         if (Dianche.overtime < Hev) {
             Hev = Dianche.overtime;
         }
-        for (int j=Dianche.starttime;j<=(Dianche.starttime +Hev)%24;j++){
-            DC0.state[j]=Dianche.power;
+        for (int j=Dianche.starttime;j<Dianche.starttime +Hev;j++){
+            DC0.state[j%24]=Dianche.power;
         }
 
         //>>>>>>>>>>>initial洗衣机

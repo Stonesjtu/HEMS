@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2016"
+            android:id="@+id/year"
+            android:layout_gravity="center_vertical"
+            android:textSize="@dimen/text_size_large"
+            android:layout_marginLeft="50dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" 年  "
+            android:id="@+id/textView36"
+            android:layout_gravity="center_vertical"
+            android:textSize="@dimen/text_size_large" />
+
+        <Spinner
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:spinnerMode="dialog"
+            android:entries="@array/month"
+            android:id="@+id/spinner3" />
+
+    </LinearLayout>
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="每日用电费用明细"
+        android:id="@+id/textView34"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="30dp"
+        style="@style/HomeText" />
+
+    <com.github.mikephil.charting.charts.LineChart
+        android:layout_width="360dp"
+        android:layout_height="223dp"
+        android:id="@+id/Linechart_month"
+        android:layout_marginTop="30dp"
+        android:layout_gravity="center_horizontal" />
+
+
+</LinearLayout>

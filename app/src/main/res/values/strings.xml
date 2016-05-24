@@ -15,8 +15,6 @@
     <string name="app8">空气净化器</string>
 
 
-
-
     <string name="hello_world">Hello world!</string>
     <string name="kongtiaotitle">电器详细信息</string>
 
@@ -26,6 +24,8 @@
     <string name="comparetitle">费用对比</string>
     <string name="resulttitle">优化结果</string>
     <string name="Generatortitle">发电信息</string>
+    <string name="monthtitle">每月统计</string>
+    <string name="environmenttitle">环境监测</string>
 
 
     <string name="action_settings">退出</string>
@@ -44,6 +44,20 @@
         <item>总计</item>
     </string-array>
 
+    <string-array name="month">
+        <item>1月</item>
+        <item>2月</item>
+        <item>3月</item>
+        <item>4月</item>
+        <item>5月</item>
+        <item>6月</item>
+        <item>7月</item>
+        <item>8月</item>
+        <item>9月</item>
+        <item>10月</item>
+        <item>11月</item>
+        <item>12月</item>
+    </string-array>
 
 
     <!-- Strings related to Settings -->
@@ -66,10 +80,10 @@
         <item>Never</item>
     </string-array>
     <string-array name="pref_example_list_values">
-    <item>1</item>
-    <item>0</item>
-    <item>-1</item>
-</string-array>
+        <item>1</item>
+        <item>0</item>
+        <item>-1</item>
+    </string-array>
 
     <!-- Example settings for Data & Sync -->
     <string name="pref_header_data_sync">关于</string>
@@ -116,4 +130,6 @@
     <string name="pref_weather_description">可在电器管理界面中自定义参数</string>
     <string name="pref_youhua">开启控制模式</string>
     <string name="pref_youhua_description">根据优化计划自动控制智能电器</string>
+    <string name="title_activity_weather">WeatherActivity</string>
+    <string name="title_activity_month_acitivity">MonthAcitivity</string>
 </resources>

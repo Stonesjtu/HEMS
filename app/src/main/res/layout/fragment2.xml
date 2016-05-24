@@ -20,22 +20,24 @@
                 <Button
                     android:id="@+id/btn_chart"
                     style="@style/HomeButton"
-                    android:drawableTop="@drawable/ic_chart_h"
+                    android:drawableTop="@drawable/ic_chart_ye_m"
                     android:onClick="onButtonClicker"
                     android:text="@string/electrictitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/textcolor" />
+                    android:textColor="@color/textcolor"
+                    android:textSize="@dimen/text_size_large" />
 
                 <Button
                     android:id="@+id/btn_bullish"
                     style="@style/HomeButton"
-                    android:drawableTop="@drawable/ic_bullish_h"
+                    android:drawableTop="@drawable/ic_bullish_gr_m"
                     android:onClick="onButtonClicker"
                     android:text="@string/Generatortitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/textcolor" />
+                    android:textColor="@color/textcolor"
+                    android:textSize="@dimen/text_size_large" />
 
             </LinearLayout>
 
@@ -44,29 +46,62 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:orientation="horizontal"
-                android:layout_marginTop="15dp">
+                android:layout_marginTop="30dp">
 
                 <Button
                     android:id="@+id/btn_survey"
                     style="@style/HomeButton"
-                    android:drawableTop="@drawable/ic_survey_h"
+                    android:drawableTop="@drawable/ic_survey_red_m"
                     android:onClick="onButtonClicker"
                     android:text="@string/elechargetitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/textcolor" />
+                    android:textColor="@color/textcolor"
+                    android:textSize="@dimen/text_size_large" />
 
                 <Button
                     android:id="@+id/btn_power"
                     style="@style/HomeButton"
-                    android:drawableTop="@drawable/ic_power_h"
+                    android:drawableTop="@drawable/ic_power_m"
                     android:onClick="onButtonClicker"
                     android:text="@string/comforttitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/textcolor" />
+                    android:textColor="@color/textcolor"
+                    android:textSize="@dimen/text_size_large" />
 
             </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:layout_marginTop="30dp">
+
+                    <Button
+                        android:id="@+id/btn_monthly"
+                        style="@style/HomeButton"
+                        android:drawableTop="@drawable/ic_coin_ora"
+                        android:onClick="onButtonClicker"
+                        android:text="@string/monthtitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/textcolor"
+                        android:textSize="@dimen/text_size_large" />
+
+                    <Button
+                        android:id="@+id/btn_environment"
+                        style="@style/HomeButton"
+                        android:drawableTop="@drawable/ic_umbrella_pur"
+                        android:onClick="onButtonClicker"
+                        android:text="@string/environmenttitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/textcolor"
+                        android:textSize="@dimen/text_size_large" />
+
+                </LinearLayout>
 
 
         </LinearLayout>

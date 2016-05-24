@@ -25,6 +25,9 @@ public class Fragment2 extends Fragment {
         Button bullbtn = (Button) view.findViewById(R.id.btn_bullish);
         Button surveybtn = (Button) view.findViewById(R.id.btn_survey);
         Button powerbtn = (Button) view.findViewById(R.id.btn_power);
+        Button monthbtn = (Button) view.findViewById(R.id.btn_monthly);
+        Button environbtn = (Button) view.findViewById(R.id.btn_environment);
+
 
         class ButtonListener implements View.OnClickListener {
 
@@ -49,6 +52,14 @@ public class Fragment2 extends Fragment {
                         Intent intent3 = new Intent(getActivity(),PowerActivity.class);
                         startActivity(intent3);
                         break;
+                    case R.id.btn_monthly:
+                        Intent intent4 = new Intent(getActivity(),MonthAcitivity.class);
+                        startActivity(intent4);
+                        break;
+                    case R.id.btn_environment:
+                        Intent intent5 = new Intent(getActivity(),WeatherActivity.class);
+                        startActivity(intent5);
+                        break;
 
 
                 }
@@ -61,6 +72,8 @@ public class Fragment2 extends Fragment {
         bullbtn.setOnClickListener(buttonListener);
         surveybtn.setOnClickListener(buttonListener);
         powerbtn.setOnClickListener(buttonListener);
+        monthbtn.setOnClickListener(buttonListener);
+        environbtn.setOnClickListener(buttonListener);
 
         return view;
     }
