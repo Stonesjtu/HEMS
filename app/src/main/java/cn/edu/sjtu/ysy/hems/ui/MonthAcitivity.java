@@ -30,6 +30,7 @@ public class MonthAcitivity extends Activity {
     public LineData lineData=null;
     int year_now;
     int month_now;
+    int date_now;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +41,7 @@ public class MonthAcitivity extends Activity {
         Calendar c=Calendar.getInstance();
         year_now=c.get(Calendar.YEAR);
         month_now=c.get(Calendar.MONTH);
+        date_now=c.get(Calendar.DATE);
         Spinner choosemonth=(Spinner)findViewById(R.id.spinner3);
         final TextView year=(TextView)findViewById(R.id.year);
 
@@ -49,6 +51,7 @@ public class MonthAcitivity extends Activity {
                 if (position>month_now){
                     year.setText("2015");
                 }
+                else year.setText(""+ year_now);
                 lineChart =(LineChart)findViewById(R.id.Linechart_month);
                 LineData resultLineData=getLineData(position);
                 showChart(lineChart, resultLineData, Color.rgb(110, 190, 224));
@@ -72,8 +75,15 @@ public class MonthAcitivity extends Activity {
         x.clear();
         y.clear();
         double result=0;
-
-        if (count==1) {
+        x.add("0");
+        if (count==month_now){
+            for (int i = 1; i < date_now ; i++) {  //X轴显示的数据
+                x.add(i + "");
+                result=rand.nextInt(40)+20;
+                y.add(new Entry((float)result,i));
+            }
+        }
+       else  if (count==1) {
             for (int i = 1; i < 30; i++) {  //X轴显示的数据
                 x.add(i + "");
                 result=rand.nextInt(40)+20;
@@ -98,7 +108,7 @@ public class MonthAcitivity extends Activity {
         }
 
         LineDataSet lineDataSet=new LineDataSet(y,"折线图");//y轴数据集合
-        lineDataSet.setLineWidth(3f);//线宽
+        lineDataSet.setLineWidth(2f);//线宽
         lineDataSet.setCircleSize(2f);//现实圆形大小
         lineDataSet.setColor(Color.RED);//现实颜色
         lineDataSet.setCircleSize(Color.BLUE);//圆形颜色

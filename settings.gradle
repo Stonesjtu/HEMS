@@ -1,0 +1,3 @@
+include ':app'
+include ':mplib'
+project(':mplib').projectDir=new File('app/libs/mplib')
