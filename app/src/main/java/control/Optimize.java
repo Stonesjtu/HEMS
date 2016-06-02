@@ -518,7 +518,8 @@ public class Optimize {
         for (int i=0;i<6;i++){
             conpower0=addState(conpower0,Appliances0[i].getPower());
         }
-        getBattery(Dianyuan.getPower(),conpower0);
+        buypower = conpower0;
+        selpower = Dianyuan.getPower();
 
     }
 
