@@ -35,7 +35,7 @@ public class Optimize {
     public double dW=5;
 
 
-    public final static double SELL = 0.4048;
+    public final static double SELL = 0.3024;
     public final static double SUBSIDY = 0.42;
     //all zero array generator
     public static int[] ZERO() { return new int[]{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};}
@@ -516,7 +516,7 @@ public class Optimize {
 
         //计算总负荷功率
         for (int i=0;i<6;i++){
-            conpower0=addState(conpower0,Appliances[i].getPower());
+            conpower0=addState(conpower0,Appliances0[i].getPower());
         }
         getBattery(Dianyuan.getPower(),conpower0);
 
