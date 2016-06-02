@@ -114,6 +114,7 @@ public class  Database extends SQLiteOpenHelper {
 
         String sqlbx =" INSERT INTO appliance(id,name,power,kind) VALUES('2','冰箱',300,2)";
         String sqltv =" INSERT INTO appliance(id,name,power,kind) VALUES('3','电视',150,2)";
+        String sqlqt=" INSERT INTO appliance(id,name,power,kind) VALUES('8','其他电器',800,2)";
         String sqlfj =" INSERT INTO appliance(id,name,power,kind) VALUES('11','风力发电',3000,2)";
         String sqlgf =" INSERT INTO appliance(id,name,power,kind) VALUES('12','光伏电池',3800,2)";
         String sqlac =" INSERT INTO appliancether(id,name,power,kind,starttime,overtime,Tset,dT) " +
@@ -126,8 +127,7 @@ public class  Database extends SQLiteOpenHelper {
                 " VALUES('5','洗衣机',600,2,0,20,3)";
         String sqlxw =" INSERT INTO appliancedelay(id,name,power,duration,kind,starttime,overtime)" +
                 " VALUES('6','洗碗机',1000,1,0,20,3)";
-      //  String sqlkj =" INSERT INTO appliancether(id,name,power,kind,starttime,overtime,Tset,dT) " +
-              //  "VALUES('8','空气净化器',300,1,19,9,20,0)";
+
 
 
         db.execSQL(sql);
@@ -140,7 +140,7 @@ public class  Database extends SQLiteOpenHelper {
         db.execSQL(sqlxy);
         db.execSQL(sqlxw);
         db.execSQL(sqlev);
-     //   db.execSQL(sqlkj);
+        db.execSQL(sqlqt);
         db.execSQL(sqlfj);
         db.execSQL(sqlgf);
 

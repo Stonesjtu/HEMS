@@ -242,7 +242,8 @@
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
                     android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:text="点击详细"
+                    android:text="其他电器"
+                    android:id="@+id/qtbutton"
                     android:singleLine="true"
                     android:gravity="center"
                     android:clickable="true" />

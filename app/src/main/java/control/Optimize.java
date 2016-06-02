@@ -23,10 +23,10 @@ public class Optimize {
     public  ApplianceTher Kongtiao;
     public  ApplianceTher Reshuiqi;
     public  ApplianceTher Dianche;
-  //  public  ApplianceTher Kongjing;
+    public  Appliance Qita;
     public  Appliance[] Appliances;
 
-    public static double[] Tout={25,25,24,25,26,26,27,27,28,29,30,31,32,32,33,31,30,30,29,28,28,27,26,25};
+    public static double[] Tout={25,25,25,25,26,26,27,27,28,29,30,31,32,32,33,31,30,30,29,28,28,27,26,25};
     public double[] Tin=new double[24];
     public  double[] Tset=new double[24]; //优化后实际变化的Tset
     public  double dT=3;
@@ -35,20 +35,24 @@ public class Optimize {
     public double dW=5;
 
 
-    public final static double SELL = 0.44;
+    public final static double SELL = 0.4048;
     public final static double SUBSIDY = 0.42;
     //all zero array generator
     public static int[] ZERO() { return new int[]{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};}
-    public static final double r=0.9;
+    public static final double r=0.95;
     public static final double q=-0.009;
     public static final double R=0.2;
     public static final double Q=13;
     public static final int Pchmax=3000;
     public static  final int Pdismax=-3000;
-    public   static final double SOCmax=6000;
-    public static  final double SOCmin=600;
+    public   static final double SOCmax=0.9;
+    public static  final double SOCmin=0.1;
     public static  final double gch=0.92;//充电效率
     public static  final double gdis=0.93;//放电效率
+    public static  final double Eb=6000;//蓄电池Eb=500*12=6000wh
+    public static  final double gev=0.92;//电动汽车充电效率
+    public static  final double Ahev=120;//电动汽车总容量
+    public static  final double Iev=15;//电动汽车充电电流
 
     public int[] genpower=new int[48];
     private  int[] conpower0=ZERO();
@@ -79,7 +83,7 @@ public class Optimize {
         Xiyiji=new ApplianceDelay("25");
         Xiwanji=new ApplianceDelay("26");
         Dianche=new ApplianceTher("27");
-       // Kongjing=new ApplianceTher("28");
+        Qita=new Appliance("28");
         Chudian=new Appliance("15");
         Fuhe=new Appliance("13");
         Dianyuan=new Appliance("14");
@@ -100,7 +104,8 @@ public class Optimize {
         Dianche.setTset(MainActivity.Dianche.getTset());
         Dianche.setStarttime(MainActivity.Dianche.getStarttime());
         Dianche.setOvertime(MainActivity.Dianche.getOvertime());
-        Fuhe.setState(addState(MainActivity.Bingxiang.getState(), MainActivity.Dianshi.getState()));
+        Fuhe.setState(addState(MainActivity.Qita.getState(),
+                addState(MainActivity.Bingxiang.getState(), MainActivity.Dianshi.getState())));
         Dianyuan.setState(addState(MainActivity.Fengji.getState(), MainActivity.Guangfu.getState()));
         Appliances = new Appliance[] {Kongtiao,Fuhe,Dianyuan,Reshuiqi,Xiyiji,Xiwanji,Dianche};
 
@@ -183,7 +188,7 @@ public class Optimize {
     public  int calHev(int SEV0,int Tset){
         int Hev=0;
        double h=0;
-        h=10*(Tset-SEV0)/100.0;
+        h= Ahev*(Tset-SEV0)/(Iev*gev*100.0);
         Hev=(int)Math.rint(h);
         return Hev;
     }
@@ -527,11 +532,11 @@ public class Optimize {
                 if ((Py[i] - Ph[i]) > Pchmax) {
                     chupower[i] = Pchmax;
                 } else chupower[i] = Py[i] - Ph[i];
-                SOC[i + 1] = SOC[i] + gch * chupower[i];
+                SOC[i + 1] = SOC[i] + gch * chupower[i]/Eb;
                 if (SOC[i + 1] > SOCmax) {
                     selpower[i] = Py[i] - Ph[i];  //卖电，卖出为正
                     chupower[i] = 0;
-                    SOC[i + 1] = SOC[i] + gch * chupower[i];
+                    SOC[i + 1] = SOC[i] + gch * chupower[i]/Eb;
                     Chudian.state[i] = 0;
                 } else Chudian.state[i] = 1;
 
@@ -539,11 +544,11 @@ public class Optimize {
                 if ((Py[i] - Ph[i]) < Pdismax) {
                     chupower[i] = Pdismax;
                 } else chupower[i] = Py[i] - Ph[i];
-                SOC[i + 1] = SOC[i] + gdis * chupower[i];
+                SOC[i + 1] = SOC[i] + gdis * chupower[i]/Eb;
                 if (SOC[i + 1] < SOCmin) {
                     buypower[i] = Ph[i] - Py[i];     //买电，买入为正
                     chupower[i] = 0;
-                    SOC[i + 1] = SOC[i] + gdis * chupower[i];
+                    SOC[i + 1] = SOC[i] + gdis * chupower[i]/Eb;
                     Chudian.state[i] = 0;
                 } else Chudian.state[i] = -1;
             }

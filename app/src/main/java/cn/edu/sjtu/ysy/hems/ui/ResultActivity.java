@@ -98,14 +98,18 @@ public class ResultActivity extends Activity {
         });
     }
         public void initEntriesData(int index){
-            if(index==1 || index==2) {
+            int[] totalPower=new int[24];
+            if(index==1 || index==2 || index==7) {
                 for (int i = 0; i < 24; i++) {
                     entries.add(new BarEntry(MainActivity.appliances[index].getPower()[i], i));
                 }
             }
-            else if(index==7){
+            else if(index==8){
                 for (int i = 0; i < 24; i++) {
-                    entries.add(new BarEntry(optm.Dianyuan.getPower()[i], i));
+                    for (int n=0;n<8;n++){
+                         totalPower[i]+=optm.Appliances[index].getPower()[i];
+                         entries.add(new BarEntry(totalPower[i], i));
+                    }
                 }
             }       //total power
             else{

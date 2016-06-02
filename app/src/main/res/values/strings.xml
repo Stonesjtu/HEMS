@@ -2,7 +2,7 @@
     <string name="app_name">家庭能量管理系统</string>
 
     <string name="title_section1">电器管理</string>
-    <string name="title_section2">用电数据</string>
+    <string name="title_section2">能源数据</string>
     <string name="title_section3">智能优化</string>
 
     <string name="app1">空调</string>
@@ -12,7 +12,7 @@
     <string name="app5">洗衣机</string>
     <string name="app6">洗碗机</string>
     <string name="app7">电动汽车</string>
-    <string name="app8">空气净化器</string>
+    <string name="app8">其他电器</string>
 
 
     <string name="hello_world">Hello world!</string>
@@ -41,6 +41,7 @@
         <item>@string/app5</item>
         <item>@string/app6</item>
         <item>@string/app7</item>
+        <item>@string/app8</item>
         <item>总计</item>
     </string-array>
 

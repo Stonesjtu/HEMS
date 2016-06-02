@@ -32,9 +32,9 @@ import cn.edu.sjtu.ysy.hems.R;
  */
 public class KongtiaoActivity extends Activity{
 
-    public static final String[] aname={"空 调","冰 箱","电 视","热水器","洗衣机","洗碗机","电动汽车"};
+    public static final String[] aname={"空 调","冰 箱","电 视","热水器","洗衣机","洗碗机","电动汽车","其他电器"};
   //  public static final String[] apower={"2500","300","150","1500","600","1000","3000","100"};
-    public static final String[] aduraion={"不定","全天","不定","不定","2","1","6—10"};
+    public static final String[] aduraion={"不定","全天","不定","不定","2","1","4—8","全天"};
 
     public int[] starttimeint = new int[8];
     public int[] overtimeint = new int[8];
@@ -244,7 +244,7 @@ public class KongtiaoActivity extends Activity{
         else  if (id == R.id.action_save) {
             //判断输入是否合法，若合法，存入对象和数据库中，否则弹出对话框,缺少空指针处理
             if (ynyouhua==true) {
-                if (index != 1 && index != 2) {
+                if (index != 1 && index != 2 && index!=7) {
                     starttimeint[index] = Integer.parseInt(starttime.getText().toString());
                     overtimeint[index] = Integer.parseInt(overtime.getText().toString());
                     if (starttimeint[index] > 23 || starttimeint[index] < 0 || overtimeint[index] > 24

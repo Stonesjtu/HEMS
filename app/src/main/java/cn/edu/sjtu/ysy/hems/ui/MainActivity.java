@@ -28,6 +28,7 @@ import java.net.URL;
 import java.util.Locale;
 
 import cn.edu.sjtu.ysy.hems.R;
+import control.Communication;
 import db.Database;
 import model.Appliance;
 import model.ApplianceDelay;
@@ -65,7 +66,7 @@ public class MainActivity extends Activity implements ActionBar.TabListener {
     public static ApplianceDelay Xiwanji;
     public static ApplianceTher Kongtiao;
     public static ApplianceTher Reshuiqi;
-   // public static ApplianceTher Kongjing;
+    public static Appliance Qita;
     public static ApplianceTher Dianche;
     public static Appliance Fengji;
     public static Appliance Guangfu;
@@ -87,11 +88,11 @@ public class MainActivity extends Activity implements ActionBar.TabListener {
         Xiyiji=new ApplianceDelay("5");
         Xiwanji=new ApplianceDelay("6");
         Dianche=new ApplianceTher("7");
-      //  Kongjing=new ApplianceTher("8");
+        Qita=new Appliance("8");
 
-        appliances = new Appliance[] {Kongtiao,Bingxiang,Dianshi,Reshuiqi,Xiyiji,Xiwanji,Dianche};
+        appliances = new Appliance[] {Kongtiao,Bingxiang,Dianshi,Reshuiqi,Xiyiji,Xiwanji,Dianche,Qita};
 
-        for (int i=0;i<7;i++){
+        for (int i=0;i<8;i++){
             appliances[i].loadfromDB();
         }
 //
@@ -129,7 +130,7 @@ public class MainActivity extends Activity implements ActionBar.TabListener {
         }
 
         //json deserialize
-        int [] ktstate = new int [24];
+     /*   int [] ktstate = new int [24];
         int bxstate[]=new int[24];
         int tvstate[]=new int[24];
         int rsqstate[]=new int[24];
@@ -138,6 +139,7 @@ public class MainActivity extends Activity implements ActionBar.TabListener {
         int evstate[]=new int[24];
         int fjstate[]=new int[24];
         int gfstate[]=new int[24];
+        int qtstate[]=new int[24];
         try {
             JSONObject object = (JSONObject) new JSONTokener(result).nextValue();
             JSONArray jakt =  object.getJSONArray("Kongtiao");
@@ -147,6 +149,7 @@ public class MainActivity extends Activity implements ActionBar.TabListener {
             JSONArray jaxyj =  object.getJSONArray("Xiyiji");
             JSONArray jaxwj =  object.getJSONArray("Xiwanji");
             JSONArray jaev =  object.getJSONArray("Dianche");
+            JSONArray jaqt =  object.getJSONArray("Qita");
             JSONArray jafj =  object.getJSONArray("Fengji");
             JSONArray jagf =  object.getJSONArray("Guangfu");
 
@@ -158,40 +161,45 @@ public class MainActivity extends Activity implements ActionBar.TabListener {
                 xyjstate[i]=jaxyj.getInt(i);
                 xwjstate[i]=jaxwj.getInt(i);
                 evstate[i]=jaev.getInt(i);
+                qtstate[i]=jaqt.getInt(i);
                 fjstate[i]=jafj.getInt(i);
                 gfstate[i]=jagf.getInt(i);
             }
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
-      //  int[] ktstate={300,0,0,0,400,400,500,450,0,0,0,0,0,0,0,0,0,0,270,312,300,200,100,0};
+*/
+        //调用communication类
+        Communication connect=new Communication();
+       int[] ktstate={300,0,0,0,400,400,500,450,0,0,0,0,0,0,0,0,0,0,270,312,300,200,100,0};
         Kongtiao.setState(ktstate);
-     //   int[] bxstate={43,45,52,37,42,41,47,49,50,38,46,31,47,56,51,47,43,49,40,50,52,51,52,53};
+        int[] bxstate={43,45,52,37,42,41,47,49,50,38,46,31,47,56,51,47,43,49,40,50,52,51,52,53};
         Bingxiang.setState(bxstate);
-      //  int tvstate[]={0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,150,150,150,150,0};
+        int tvstate[]={0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,150,150,150,150,0};
         Dianshi.setState(tvstate);
-      //  int rsqstate[]={0,0,0,0,0,250,312,369,385,0,0,0,0,0,0,0,800,800,338,354,369,385,354,310};
+       int rsqstate[]={0,0,0,0,0,250,312,369,385,0,0,0,0,0,0,0,800,800,338,354,369,385,354,310};
         Reshuiqi.setState(rsqstate);
-     //   int xyjstate[]={0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0};
+        int xyjstate[]={0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0};
         Xiyiji.setState(xyjstate);
-     //   int xwjstate[]={0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,1,0,0,0,0};
+        int xwjstate[]={0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,1,0,0,0,0};
         Xiwanji.setState(xwjstate);
-     //   int evstate[]={3000,3000,0,3000,3000,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3000,3000,3000,3000};
+        int evstate[]={3000,3000,0,3000,3000,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3000,3000,3000,3000};
         Dianche.setState(evstate);
+       int qtstate[]={0,0,0,0,0,0,220,500,380,100,0,0,0,0,0,0,0,200,800,500,300,100,200,100};
+        Qita.setState(qtstate);
 
         Fengji = new Appliance("11");
         Guangfu = new Appliance("12");
         Fengji.loadfromDB();
         Guangfu.loadfromDB();
-      //  int[] gfstate = {0,0, 0, 0, 0, 0, 800, 1500, 2000, 2500, 2800, 3000, 3800, 3800, 3600, 3000, 2500, 1600, 500, 0, 0, 0, 0, 0};//1-24hour
-     //  int[] fjstate = {3000,3000, 3000, 3000, 2800, 2400, 2700, 2500, 1900, 1700, 1500, 1200, 1100, 1500, 1800, 2200, 2400, 2400, 2200, 2100, 2700, 3000, 3000, 3000};
+       int[] gfstate = {0,0, 0, 0, 0, 0, 800, 1500, 2000, 2500, 2800, 3000, 3800, 3800, 3600, 3000, 2500, 1600, 500, 0, 0, 0, 0, 0};//1-24hour
+       int[] fjstate = {3000,3000, 3000, 3000, 2800, 2400, 2700, 2500, 1900, 1700, 1500, 1200, 1100, 1500, 1800, 2200, 2400, 2400, 2200, 2100, 2700, 3000, 3000, 3000};
         Fengji.setState(fjstate);
         Guangfu.setState(gfstate);
         Fengji.savetoDB();
         Guangfu.savetoDB();
 
-        for (int i=0;i<7;i++){
+        for (int i=0;i<8;i++){
             appliances[i].savetoDB();
         }
 
