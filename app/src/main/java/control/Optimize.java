@@ -40,7 +40,7 @@ public class Optimize {
     //all zero array generator
     public static int[] ZERO() { return new int[]{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};}
     public static final double r=0.95;
-    public static final double q=-0.009;
+    public static final double q=-0.0045;
     public static final double R=0.2;
     public static final double Q=13;
     public static final int Pchmax=3000;
@@ -234,7 +234,7 @@ public class Optimize {
                 // Fuhe.state[index] += Dianche.power;
             } else {
                 Dianche.state[index] = Dianche.power;
-                buypower[index] = Dianche.power - genpower[index];
+                buypower[index] += Dianche.power - genpower[index];
                 genpower[index] = 0;
                 //  Fuhe.state[index] += Dianche.power;
             }
@@ -366,7 +366,7 @@ public class Optimize {
                     if (Kongtiao.state[i%24]>Kongtiao.power){
                         Kongtiao.state[i%24]=Kongtiao.power;
                     }
-                    buypower[i%24]=Kongtiao.state[i%24]-genpower[i%24];
+                    buypower[i%24]+=Kongtiao.state[i%24]-genpower[i%24];
                     genpower[i%24]=0;
                 } else {
                     Kongtiao.state[i%24] = genpower[i%24];
@@ -421,7 +421,7 @@ public class Optimize {
                     if (Reshuiqi.state[i%24] > Reshuiqi.power){
                         Reshuiqi.state[i%24]=Reshuiqi.power;
                     }
-                    buypower[i%24]=Reshuiqi.state[i%24]-genpower[i%24];
+                    buypower[i%24]+=Reshuiqi.state[i%24]-genpower[i%24];
                     genpower[i%24]=0;
                 } else {
                    Reshuiqi.state[i%24] = genpower[i%24];
@@ -512,7 +512,7 @@ public class Optimize {
         for (int i = indexstart+1; i < indexend+1; i++) {
             Win[i%24] = calTroom(Win[(i-1)%24], Tout[i%24], exactstate2[(i-1)%24], 0);
         }
-        Reshuiqi.setState(exactstate2);
+        RSQ0.setState(exactstate2);
 
         //计算总负荷功率
         for (int i=0;i<6;i++){
@@ -546,7 +546,7 @@ public class Optimize {
                 } else chupower[i] = Py[i] - Ph[i];
                 SOC[i + 1] = SOC[i] + gdis * chupower[i]/Eb;
                 if (SOC[i + 1] < SOCmin) {
-                    buypower[i] = Ph[i] - Py[i];     //买电，买入为正
+                    buypower[i] += Ph[i] - Py[i];     //买电，买入为正
                     chupower[i] = 0;
                     SOC[i + 1] = SOC[i] + gdis * chupower[i]/Eb;
                     Chudian.state[i] = 0;
@@ -561,17 +561,21 @@ public class Optimize {
     public void calCharge(){
         for (int i=0;i<6;i++){
             Fee[i]=buypower[i] * Appliance.VALLEY /1000.0;
-            sell[i]=selpower[i]*SELL/1000.0;
+           // sell[i]=selpower[i]*SELL/1000.0;
         }
         for (int i=6;i<22;i++){
             Fee[i]=buypower[i] * Appliance.PEAK /1000.0;
-            sell[i]=selpower[i]*SELL/1000.0;
+          //  sell[i]=selpower[i]*SELL/1000.0;
         }
         for (int i=22;i<24;i++){
             Fee[i]=buypower[i] * Appliance.VALLEY /1000.0;
+           // sell[i]=selpower[i]*SELL/1000.0;
+        }
+        for (int i=0;i<24;i++){
             sell[i]=selpower[i]*SELL/1000.0;
         }
-
+        if(chupower[23]>0) sell[0]+=chupower[23]*SELL/1000.0;
+        else Fee[0]=Fee[0]-chupower[23]*Appliance.VALLEY/1000.0;
         peakFee=sum24(Fee,6,21);
         valleyFee=sum24(Fee,0,5)+sum24(Fee,22,23);
         sellFee=sum24(sell,0,23);
