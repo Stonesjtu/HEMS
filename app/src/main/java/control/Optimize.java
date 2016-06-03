@@ -518,9 +518,17 @@ public class Optimize {
         for (int i=0;i<6;i++){
             conpower0=addState(conpower0,Appliances0[i].getPower());
         }
-        buypower = conpower0;
-        selpower = Dianyuan.getPower();
-
+        int[] tmpstate = minusState(conpower0,genpower);
+        for (int i = 0;i!=24;i++){
+            if (tmpstate[i] > 0){
+                buypower[i] = tmpstate[i];
+                selpower[i] = 0;
+            }
+            else{
+                buypower[i] = 0;
+                selpower[i] = -tmpstate[i];
+            }
+        }
     }
 
     public void getBattery(int[] Py,int[] Ph) {
